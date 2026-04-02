@@ -155,11 +155,11 @@ import { CommonModule } from '@angular/common';
       <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
         <span *ngIf="!started()" class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
         <ng-container *ngIf="started()">
-          <span *ngIf="currentPhase() === 1" class="absolute w-full px-6">🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀 다짜고짜 부산으로 내려가요 💨</span>
-          <span *ngIf="currentPhase() === 2" class="absolute w-full px-6">😳 시간을 보낸 승혁이는 확신을 가지고, 우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️</span>
-          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6">💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다. 꽃다발을 들고. 두근두근 🥰</span>
-          <span *ngIf="currentPhase() === 4" class="absolute w-full px-6">🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
-          <span *ngIf="currentPhase() === 5" class="absolute w-full px-6">💍 그렇게 별내의 예비 신랑&신부가 된 승혁이와 선경이가 여러분을 결혼식에 초대합니다 🎊</span>
+<span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
+<span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
+<span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
+<span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
+<span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
         </ng-container>
       </div>
     </section>
