@@ -51,9 +51,17 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <ng-container *ngIf="started()">
+            <!--
+              총 32초 기준:
+              Phase1 내려가기:    0s~8s   = 0.000~0.250
+              Phase2 올라오기:    8s~16s  = 0.250~0.500
+              Phase3 꽃들고내려:  16s~24s = 0.500~0.750
+              Phase4 같이올라:    24s~32s = 0.750~1.000
+            -->
+
             <!-- Train Group -->
             <g>
-              <animateMotion dur="48s" repeatCount="indefinite"
+              <animateMotion dur="32s" repeatCount="indefinite"
                 path="M 75,85 Q 130,120 145,220"
                 keyPoints="0;1;1;0;0;1;1;0"
                 keyTimes="0;0.25;0.26;0.5;0.51;0.75;0.76;1"
@@ -62,7 +70,8 @@ import { CommonModule } from '@angular/common';
                 <animateTransform attributeName="transform" type="scale"
                   values="1 1;1 1;-1 1;-1 1;1 1;1 1;-1 1;-1 1;1 1"
                   keyTimes="0;0.24;0.26;0.49;0.51;0.74;0.76;0.99;1"
-                  calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                  calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+
                 <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
 
                 <!-- Phase1: 혼자 내려가기 -->
@@ -70,7 +79,7 @@ import { CommonModule } from '@angular/common';
                   <animate attributeName="opacity"
                     values="1;1;0;0;0;0;0;0;0"
                     keyTimes="0;0.24;0.25;0.26;0.5;0.51;0.75;0.76;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   👦🏻
                 </text>
 
@@ -79,7 +88,7 @@ import { CommonModule } from '@angular/common';
                   <animate attributeName="opacity"
                     values="0;0;1;1;1;0;0;0;0"
                     keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.75;0.76;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                   <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
@@ -90,7 +99,7 @@ import { CommonModule } from '@angular/common';
                   <animate attributeName="opacity"
                     values="0;0;0;0;0;1;1;1;0;0"
                     keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
                 </g>
@@ -100,28 +109,26 @@ import { CommonModule } from '@angular/common';
                   <animate attributeName="opacity"
                     values="0;0;0;0;0;0;0;0;1;1"
                     keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   👦🏻❤️👧🏻
                 </text>
               </g>
             </g>
 
-            <!-- Car Group: Phase1 끝(부산도착)에만 표시, Phase3는 제거 -->
+            <!-- Car Group: Phase1 끝(부산도착)에만 표시 -->
             <g>
               <animate attributeName="opacity"
                 values="0;0;1;0;0;0;0;0;0"
                 keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75"
-                calcMode="discrete" dur="48s" repeatCount="indefinite"/>
-              <animateMotion dur="48s" repeatCount="indefinite"
+                calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+              <animateMotion dur="32s" repeatCount="indefinite"
                 path="M 145,220 L 165,230"
                 keyPoints="0;0;0;1;0;0;0;0;0"
                 keyTimes="0;0.24;0.25;0.255;0.26;0.5;0.51;0.74;0.75"
                 calcMode="linear"/>
               <g>
                 <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
-                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">
-                  👦🏻
-                </text>
+                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
               </g>
             </g>
 
@@ -173,9 +180,10 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   }
 
   runPhases() {
-    this.timers.push(setTimeout(() => this.currentPhase.set(2), 12000));
-    this.timers.push(setTimeout(() => this.currentPhase.set(3), 24000));
-    this.timers.push(setTimeout(() => this.currentPhase.set(4), 36000));
+    // 32초 기준 각 phase 8초씩
+    this.timers.push(setTimeout(() => this.currentPhase.set(2), 8000));
+    this.timers.push(setTimeout(() => this.currentPhase.set(3), 16000));
+    this.timers.push(setTimeout(() => this.currentPhase.set(4), 24000));
   }
 
   ngOnDestroy() {
