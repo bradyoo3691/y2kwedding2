@@ -36,13 +36,13 @@ import { CommonModule } from '@angular/common';
             </div>
             <span class="text-xs font-bold">네이버지도</span>
           </a>
-          <a href="https://tmap.life/61Wh4" target="_blank"
-            class="flex flex-col items-center gap-3 w-28 py-5 bg-blue-500 text-white rounded-2xl shadow-md hover:bg-blue-600 transition">
-            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
-              <span class="text-blue-500 font-black text-xl">T</span>
-            </div>
-            <span class="text-xs font-bold">T맵</span>
-          </a>
+<a href="https://tmap.life/babbf403" target="_blank"
+  class="flex flex-col items-center gap-3 w-28 py-5 bg-blue-500 text-white rounded-2xl shadow-md hover:bg-blue-600 transition">
+  <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
+    <span class="text-blue-500 font-black text-xl">T</span>
+  </div>
+  <span class="text-xs font-bold">T맵</span>
+</a>
           <a href="https://kko.to/X_dr-kIe1N" target="_blank"
             class="flex flex-col items-center gap-3 w-28 py-5 bg-yellow-400 text-stone-800 rounded-2xl shadow-md hover:bg-yellow-500 transition">
             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
