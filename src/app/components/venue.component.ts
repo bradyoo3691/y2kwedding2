@@ -1,8 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-venue',
   standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="py-24 md:py-32 px-6 bg-stone-100 text-stone-800">
@@ -30,24 +32,29 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
             class="mt-4 inline-flex items-center gap-2 px-5 py-2 border border-stone-400 text-stone-600 text-sm rounded-full hover:bg-stone-200 transition">
             📋 주소 복사
           </button>
-          <p *ngIf="copied" class="text-rose-400 text-xs mt-2">✅ 주소가 복사되었습니다!</p>
         </div>
 
         <!-- 지도 앱 버튼 -->
-        <div class="flex justify-center gap-4 mt-8 mb-16 flex-wrap">
-          <a href="https://map.naver.com/v5/search/W스퀘어컨벤션" target="_blank"
-            class="flex flex-col items-center gap-2 px-6 py-4 bg-green-500 text-white rounded-2xl shadow-md hover:bg-green-600 transition min-w-[90px]">
-            <img src="https://play-lh.googleusercontent.com/T5x3LBKRB4GOUx4wCREhFBDFLh5Ye_s80jJdOFhOgxfnBxbyLJFxHVyqRVqAEuKKA" class="w-10 h-10 rounded-xl" alt="naver"/>
+        <div class="flex justify-center gap-4 mt-8 mb-16">
+          <a href="https://map.naver.com/v5/search/경기 성남시 분당구 삼평동 674" target="_blank"
+            class="flex flex-col items-center gap-3 w-28 py-5 bg-green-500 text-white rounded-2xl shadow-md hover:bg-green-600 transition">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
+              <span class="text-green-500 font-black text-xl">N</span>
+            </div>
             <span class="text-xs font-bold">네이버지도</span>
           </a>
-          <a href="tmap://search?name=W스퀘어컨벤션" target="_blank"
-            class="flex flex-col items-center gap-2 px-6 py-4 bg-blue-500 text-white rounded-2xl shadow-md hover:bg-blue-600 transition min-w-[90px]">
-            <img src="https://play-lh.googleusercontent.com/1tFnEgZ6JsLQHx6LTDaJKGyCjkAFv_OHEYN71JO8pLPpWdBhIiAuHSwxA9hH5FXBSA" class="w-10 h-10 rounded-xl" alt="tmap"/>
+          <a href="https://tmap.life/61Wh4" target="_blank"
+            class="flex flex-col items-center gap-3 w-28 py-5 bg-blue-500 text-white rounded-2xl shadow-md hover:bg-blue-600 transition">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
+              <span class="text-blue-500 font-black text-xl">T</span>
+            </div>
             <span class="text-xs font-bold">T맵</span>
           </a>
-          <a href="kakaomap://look?p=37.4005,127.1085" target="_blank"
-            class="flex flex-col items-center gap-2 px-6 py-4 bg-yellow-400 text-stone-800 rounded-2xl shadow-md hover:bg-yellow-500 transition min-w-[90px]">
-            <img src="https://play-lh.googleusercontent.com/7Xa7ZEYhCMrpCgDcEJsXqaHXBKqm0rLiuoBiGNfAUNJbwSmcN7x7NE6FGqBv8vBQ" class="w-10 h-10 rounded-xl" alt="kakao"/>
+          <a href="https://kko.to/X_dr-kIe1N" target="_blank"
+            class="flex flex-col items-center gap-3 w-28 py-5 bg-yellow-400 text-stone-800 rounded-2xl shadow-md hover:bg-yellow-500 transition">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
+              <span class="text-yellow-500 font-black text-xl">K</span>
+            </div>
             <span class="text-xs font-bold">카카오내비</span>
           </a>
         </div>
@@ -65,7 +72,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
               <p class="font-serif text-lg mb-1">유승혁</p>
               <p class="text-stone-600 text-sm mb-4">우리은행 1002-050-717720</p>
               <button
-                (click)="copyAccount('우리은행 1002-050-717720 유승혁')"
+                (click)="copyAccount('우리은행 1002-050-717720 유승혁', 'groom')"
                 class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
                 📋 계좌번호 복사
               </button>
@@ -77,34 +84,59 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
               <p class="font-serif text-lg mb-1">김선경</p>
               <p class="text-stone-600 text-sm mb-4">신한은행 110-438-886892</p>
               <button
-                (click)="copyAccount('신한은행 110-438-886892 김선경')"
+                (click)="copyAccount('신한은행 110-438-886892 김선경', 'bride')"
                 class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
                 📋 계좌번호 복사
               </button>
             </div>
           </div>
-          <p *ngIf="accountCopied" class="text-rose-400 text-xs mt-4">✅ 계좌번호가 복사되었습니다!</p>
         </div>
 
       </div>
+
+      <!-- 팝업 토스트 -->
+      <div *ngIf="toastMessage"
+        class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-stone-800 text-white text-sm px-6 py-3 rounded-full shadow-xl animate-toast">
+        ✅ {{ toastMessage }}
+      </div>
+
     </section>
-  `
+  `,
+  styles: [`
+    .animate-toast {
+      animation: toast-in 0.3s ease-out;
+    }
+    @keyframes toast-in {
+      0% { opacity: 0; transform: translate(-50%, 20px); }
+      100% { opacity: 1; transform: translate(-50%, 0); }
+    }
+  `]
 })
 export class VenueComponent {
-  copied = false;
-  accountCopied = false;
+  toastMessage = '';
+  private toastTimer: any;
+
+  showToast(message: string) {
+    this.toastMessage = message;
+    clearTimeout(this.toastTimer);
+    this.toastTimer = setTimeout(() => {
+      this.toastMessage = '';
+    }, 3000);
+  }
 
   copyAddress() {
     navigator.clipboard.writeText('경기 성남시 분당구 판교역로226번길 16 W스퀘어컨벤션 8층 채플홀').then(() => {
-      this.copied = true;
-      setTimeout(() => this.copied = false, 3000);
+      this.showToast('주소가 복사되었어요!');
     });
   }
 
-  copyAccount(text: string) {
+  copyAccount(text: string, who: 'groom' | 'bride') {
     navigator.clipboard.writeText(text).then(() => {
-      this.accountCopied = true;
-      setTimeout(() => this.accountCopied = false, 3000);
+      if (who === 'groom') {
+        this.showToast('신랑(유승혁)의 계좌번호가 복사되었어요!');
+      } else {
+        this.showToast('신부(김선경)의 계좌번호가 복사되었어요!');
+      }
     });
   }
 }
