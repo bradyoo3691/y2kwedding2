@@ -59,11 +59,11 @@ import { CommonModule } from '@angular/common';
 
           <ng-container *ngIf="started()">
             <!--
-              총 48초 기준 타이밍:
-              Phase1 내려가기:   0s  ~ 12s  (0 ~ 0.25)
-              Phase2 올라오기:   12s ~ 24s  (0.25 ~ 0.5)
-              Phase3 꽃들고내려: 24s ~ 36s  (0.5 ~ 0.75)
-              Phase4 같이올라:   36s ~ 48s  (0.75 ~ 1)
+              총 48초:
+              Phase1 내려가기:    0s~12s  (0~0.25)
+              Phase2 올라오기:   12s~24s  (0.25~0.5)
+              Phase3 꽃들고내려: 24s~36s  (0.5~0.75)
+              Phase4 같이올라:   36s~48s  (0.75~1)
             -->
 
             <!-- Train Group -->
@@ -85,7 +85,6 @@ import { CommonModule } from '@angular/common';
 
                 <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
 
-                <!-- Phase1: 혼자 내려가기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                   <animate attributeName="opacity"
                     values="1;1;0;0;0;0;0"
@@ -94,7 +93,6 @@ import { CommonModule } from '@angular/common';
                   👦🏻
                 </text>
 
-                <!-- Phase2: 부끄러운 표정으로 올라오기 -->
                 <g>
                   <animate attributeName="opacity"
                     values="0;0;1;1;0;0;0"
@@ -105,7 +103,6 @@ import { CommonModule } from '@angular/common';
                   <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                 </g>
 
-                <!-- Phase3: 꽃다발 들고 내려가기 -->
                 <g>
                   <animate attributeName="opacity"
                     values="0;0;0;0;1;1;0;0"
@@ -115,7 +112,6 @@ import { CommonModule } from '@angular/common';
                   <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
                 </g>
 
-                <!-- Phase4: 둘이 같이 올라오기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                   <animate attributeName="opacity"
                     values="0;0;0;0;0;1;1"
@@ -126,7 +122,7 @@ import { CommonModule } from '@angular/common';
               </g>
             </g>
 
-            <!-- Car Group (부산 도착후 쏘카) -->
+            <!-- Car Group -->
             <g>
               <animate attributeName="opacity"
                 values="0;1;0;0;1;0;0"
@@ -165,7 +161,7 @@ import { CommonModule } from '@angular/common';
         <ng-container *ngIf="started()">
           <span *ngIf="currentPhase() === 1" class="absolute w-full px-6">🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀 다짜고짜 부산으로 내려가요 💨</span>
           <span *ngIf="currentPhase() === 2" class="absolute w-full px-6">😳 시간을 보낸 승혁이는 확신을 가지고, 우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️</span>
-          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6">💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다. 꽃다발을 들고. 두근두근 🥰</span>
+          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6">💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다. 꽃다발을 들고. 두..근..두..근..... 🥰</span>
           <span *ngIf="currentPhase() === 4" class="absolute w-full px-6">🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
         </ng-container>
       </div>
@@ -175,43 +171,3 @@ import { CommonModule } from '@angular/common';
     .animate-float { animation: float 6s ease-in-out infinite; }
     .animate-float-slow { animation: float 8s ease-in-out infinite; }
     .animate-float-fast { animation: float 4s ease-in-out infinite; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-  `]
-})
-export class StoryComponent implements AfterViewInit, OnDestroy {
-  started = signal(false);
-  currentPhase = signal(1);
-  private timers: any[] = [];
-
-  @ViewChild('sectionRef') sectionRef!: ElementRef;
-
-  ngAfterViewInit() {}
-
-  startStory() {
-    this.started.set(true);
-    this.currentPhase.set(1);
-    this.runPhases();
-  }
-
-  resetStory() {
-    this.timers.forEach(t => clearTimeout(t));
-    this.timers = [];
-    this.started.set(false);
-    this.currentPhase.set(1);
-  }
-
-  runPhases() {
-    // 48초 기준: 각 페이즈 12초씩
-    // Phase1: 0~12s, Phase2: 12~24s, Phase3: 24~36s, Phase4: 36~48s
-    this.timers.push(setTimeout(() => this.currentPhase.set(2), 12000));
-    this.timers.push(setTimeout(() => this.currentPhase.set(3), 24000));
-    this.timers.push(setTimeout(() => this.currentPhase.set(4), 36000));
-  }
-
-  ngOnDestroy() {
-    this.timers.forEach(t => clearTimeout(t));
-  }
-}
