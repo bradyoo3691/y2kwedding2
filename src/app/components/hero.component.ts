@@ -11,14 +11,14 @@ import { CommonModule } from '@angular/common';
     <div *ngIf="showPopup()" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
       <div class="bg-white rounded-2xl p-10 text-center shadow-2xl mx-6">
         <p class="text-xl font-serif mb-2 text-stone-700">🎵 BGM을 함께 들으시겠습니까?</p>
-        <p class="text-sm text-stone-400 mb-8">멋진 음악과 함께 선경이와 승혁이의 댄스를 감사하세요!</p>
+        <p class="text-sm text-stone-400 mb-8">멋진 음악과 함께 선경이와 승혁이의 댄스를 감상하세요!</p>
         <div class="flex flex-col gap-3 items-center">
-          <button 
+          <button
             (click)="enableSound()"
             class="w-48 px-8 py-3 bg-rose-400 text-white text-lg font-bold rounded-full shadow-lg hover:bg-rose-500 transition transform hover:scale-105">
             🎶 네 (추천)
           </button>
-          <button 
+          <button
             (click)="disableSound()"
             class="w-48 px-8 py-2 border border-stone-300 text-stone-400 text-sm rounded-full hover:bg-stone-50 transition">
             아니오
@@ -30,10 +30,10 @@ import { CommonModule } from '@angular/common';
     <section class="relative w-full h-screen p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-200">
-          <video 
+          <video
             #videoRef
-            autoplay 
-            loop 
+            autoplay
+            loop
             muted
             playsinline
             class="w-full h-full object-cover"
@@ -42,28 +42,53 @@ import { CommonModule } from '@angular/common';
           </video>
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
+
+        <!-- 텍스트 전체: 처음엔 가운데, 5초 후 위로 이동 -->
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
-          <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase mb-6 opacity-90">We are getting married</p>
-          <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 font-light drop-shadow-lg">
-            <span class="block italic">Brady</span>
-            <span class="block text-4xl md:text-5xl my-4 opacity-80">&amp;</span>
-            <span class="block italic">Perrier</span>
-          </h1>
-          <p class="font-sans text-base md:text-lg tracking-[0.3em] mt-8 opacity-90">
-            JUNE 06, 2026
-          </p>
+          <div [class]="moved ? 'animate-move-up' : 'translate-y-0'" class="flex flex-col items-center transition-all">
+
+            <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mb-6">
+              We are getting married
+            </p>
+
+            <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-6 font-light drop-shadow-lg">
+              <span class="block italic">Brady</span>
+              <span class="block text-4xl md:text-5xl my-3 opacity-80">&amp;</span>
+              <span class="block italic">Perrier</span>
+            </h1>
+
+            <div class="flex flex-col items-center gap-2 opacity-90 mt-4">
+              <p class="font-sans text-base md:text-lg tracking-[0.25em]">2026.06.06 15:30</p>
+              <p class="font-sans text-sm md:text-base tracking-[0.2em] opacity-80">at W스퀘어컨벤션 판교</p>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </section>
   `,
-  styles: []
+  styles: [`
+    .animate-move-up {
+      animation: move-up 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes move-up {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-80px); }
+    }
+  `]
 })
 export class HeroComponent implements AfterViewInit {
   @ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
 
   showPopup = signal(true);
+  moved = false;
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.moved = true;
+    }, 8500);
+  }
 
   enableSound() {
     this.showPopup.set(false);
