@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
     <div *ngIf="showPopup()" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
       <div class="bg-white rounded-2xl p-10 text-center shadow-2xl mx-6">
         <p class="text-xl font-serif mb-2 text-stone-700">🎵 BGM을 함께 들으시겠습니까?</p>
-        <p class="text-sm text-stone-400 mb-8">영상과 함께 음악을 들으시면 더욱 감동적이에요</p>
+        <p class="text-sm text-stone-400 mb-8">멋진 음악과 함께 선경이와 승혁이의 댄스를 감사하세요!</p>
         <div class="flex flex-col gap-3 items-center">
           <button 
             (click)="enableSound()"
