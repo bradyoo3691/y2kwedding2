@@ -32,7 +32,29 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
 
-      <div class="relative w-full max-w-lg h-[500px] z-10 px-4">
+      <!-- Phase5: 가운데 축하 화면 -->
+      <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[500px] z-10 px-4 flex items-center justify-center">
+        <div class="flex flex-col items-center justify-center">
+          <div class="text-8xl mb-4 animate-couple-pop">🤵👰</div>
+          <div class="flex gap-2 animate-hearts">
+            <span class="text-3xl animate-heart-1">❤️</span>
+            <span class="text-4xl animate-heart-2">💕</span>
+            <span class="text-3xl animate-heart-3">❤️</span>
+          </div>
+          <div class="flex gap-2 mt-2 animate-hearts-2">
+            <span class="text-2xl animate-heart-4">💖</span>
+            <span class="text-3xl animate-heart-5">❤️</span>
+            <span class="text-2xl animate-heart-6">💗</span>
+          </div>
+          <div class="mt-6 text-center">
+            <p class="font-serif text-2xl text-rose-700 italic animate-fade-in-text">승혁 & 선경</p>
+            <p class="font-sans text-sm text-rose-400 mt-2 tracking-widest animate-fade-in-text">Forever Together 💍</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 1~4: 지도 애니메이션 -->
+      <div *ngIf="currentPhase() !== 5" class="relative w-full max-w-lg h-[500px] z-10 px-4">
         <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
           <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
@@ -51,15 +73,6 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <ng-container *ngIf="started()">
-            <!--
-              총 32초 기준:
-              Phase1 내려가기:    0s~8s   = 0.000~0.250
-              Phase2 올라오기:    8s~16s  = 0.250~0.500
-              Phase3 꽃들고내려:  16s~24s = 0.500~0.750
-              Phase4 같이올라:    24s~32s = 0.750~1.000
-            -->
-
-            <!-- Train Group -->
             <g>
               <animateMotion dur="32s" repeatCount="indefinite"
                 path="M 75,85 Q 130,120 145,220"
@@ -71,56 +84,30 @@ import { CommonModule } from '@angular/common';
                   values="1 1;1 1;-1 1;-1 1;1 1;1 1;-1 1;-1 1;1 1"
                   keyTimes="0;0.24;0.26;0.49;0.51;0.74;0.76;0.99;1"
                   calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-
                 <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
-
-                <!-- Phase1: 혼자 내려가기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity"
-                    values="1;1;0;0;0;0;0;0;0"
-                    keyTimes="0;0.24;0.25;0.26;0.5;0.51;0.75;0.76;1"
-                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="1;1;0;0;0;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.5;0.51;0.75;0.76;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   👦🏻
                 </text>
-
-                <!-- Phase2: 부끄러운 표정 올라오기 -->
                 <g>
-                  <animate attributeName="opacity"
-                    values="0;0;1;1;1;0;0;0;0"
-                    keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.75;0.76;1"
-                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0;1;1;1;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.75;0.76;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                   <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                 </g>
-
-                <!-- Phase3: 꽃다발 들고 내려가기 -->
                 <g>
-                  <animate attributeName="opacity"
-                    values="0;0;0;0;0;1;1;1;0;0"
-                    keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1"
-                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0;0;0;0;1;1;1;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
                 </g>
-
-                <!-- Phase4: 둘이 같이 올라오기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity"
-                    values="0;0;0;0;0;0;0;0;1;1"
-                    keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1"
-                    calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
                   👦🏻❤️👧🏻
                 </text>
               </g>
             </g>
-
-            <!-- Car Group: Phase1 끝(부산도착)에만 표시 -->
             <g>
-              <animate attributeName="opacity"
-                values="0;0;1;0;0;0;0;0;0"
-                keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75"
-                calcMode="discrete" dur="32s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0;1;0;0;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
               <animateMotion dur="32s" repeatCount="indefinite"
                 path="M 145,220 L 165,230"
                 keyPoints="0;0;0;1;0;0;0;0;0"
@@ -131,7 +118,6 @@ import { CommonModule } from '@angular/common';
                 <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
               </g>
             </g>
-
           </ng-container>
         </svg>
       </div>
@@ -143,6 +129,7 @@ import { CommonModule } from '@angular/common';
           <span *ngIf="currentPhase() === 2" class="absolute w-full px-6">😳 시간을 보낸 승혁이는 확신을 가지고, 우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️</span>
           <span *ngIf="currentPhase() === 3" class="absolute w-full px-6">💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다. 꽃다발을 들고. 두근두근 🥰</span>
           <span *ngIf="currentPhase() === 4" class="absolute w-full px-6">🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
+          <span *ngIf="currentPhase() === 5" class="absolute w-full px-6">💍 그렇게 별내의 예비 신랑&신부가 된 승혁이와 선경이가 여러분을 결혼식에 초대합니다 🎊</span>
         </ng-container>
       </div>
     </section>
@@ -154,6 +141,36 @@ import { CommonModule } from '@angular/common';
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
+    }
+
+    .animate-couple-pop {
+      animation: couple-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    @keyframes couple-pop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .animate-fade-in-text {
+      animation: fade-in-text 1s ease-in 0.5s both;
+    }
+    @keyframes fade-in-text {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-heart-1 { animation: heart-fly 1.5s ease-out 0.3s infinite; }
+    .animate-heart-2 { animation: heart-fly 1.5s ease-out 0.5s infinite; }
+    .animate-heart-3 { animation: heart-fly 1.5s ease-out 0.7s infinite; }
+    .animate-heart-4 { animation: heart-fly 1.5s ease-out 0.4s infinite; }
+    .animate-heart-5 { animation: heart-fly 1.5s ease-out 0.6s infinite; }
+    .animate-heart-6 { animation: heart-fly 1.5s ease-out 0.8s infinite; }
+
+    @keyframes heart-fly {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-20px) scale(1.3); opacity: 0.8; }
+      100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
     }
   `]
 })
@@ -180,10 +197,10 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   }
 
   runPhases() {
-    // 32초 기준 각 phase 8초씩
     this.timers.push(setTimeout(() => this.currentPhase.set(2), 8000));
     this.timers.push(setTimeout(() => this.currentPhase.set(3), 16000));
     this.timers.push(setTimeout(() => this.currentPhase.set(4), 24000));
+    this.timers.push(setTimeout(() => this.currentPhase.set(5), 32000));
   }
 
   ngOnDestroy() {
