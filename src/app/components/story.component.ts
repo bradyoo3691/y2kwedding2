@@ -32,23 +32,58 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
 
-      <!-- Phase 5: 축하 화면 -->
-      <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[500px] z-10 px-4 flex items-center justify-center">
-        <div class="flex flex-col items-center justify-center">
-          <div class="text-8xl mb-4 animate-couple-pop">🤵👰</div>
-          <div class="flex gap-2">
-            <span class="text-3xl animate-heart-1">❤️</span>
-            <span class="text-4xl animate-heart-2">💕</span>
-            <span class="text-3xl animate-heart-3">❤️</span>
+      <!-- Phase 5: love.png + 하트 -->
+      <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[500px] z-10 px-4 flex items-center justify-center overflow-hidden">
+
+        <!-- 뿜뿜 하트들 -->
+        <div class="absolute inset-0 pointer-events-none">
+          <span class="absolute text-2xl animate-heart-pop-1">❤️</span>
+          <span class="absolute text-3xl animate-heart-pop-2">💕</span>
+          <span class="absolute text-2xl animate-heart-pop-3">💖</span>
+          <span class="absolute text-xl animate-heart-pop-4">❤️</span>
+          <span class="absolute text-3xl animate-heart-pop-5">💗</span>
+          <span class="absolute text-2xl animate-heart-pop-6">💕</span>
+          <span class="absolute text-xl animate-heart-pop-7">❤️</span>
+          <span class="absolute text-2xl animate-heart-pop-8">💖</span>
+          <span class="absolute text-3xl animate-heart-pop-9">💕</span>
+          <span class="absolute text-xl animate-heart-pop-10">❤️</span>
+        </div>
+
+        <!-- 하트 프레임 + 사진 -->
+        <div class="relative flex flex-col items-center animate-frame-entrance">
+          <!-- 하트 모양 클립 -->
+          <div class="relative animate-frame-shake">
+            <svg width="0" height="0">
+              <defs>
+                <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+                  <path d="M 0.5,0.85 C 0.1,0.6 -0.1,0.3 0.1,0.15 C 0.2,0.05 0.35,0.02 0.5,0.15 C 0.65,0.02 0.8,0.05 0.9,0.15 C 1.1,0.3 0.9,0.6 0.5,0.85 Z"/>
+                </clipPath>
+              </defs>
+            </svg>
+
+            <!-- 하트 테두리 -->
+            <div class="w-64 h-64 relative">
+              <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full drop-shadow-2xl">
+                <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
+                  fill="none" stroke="#f43f5e" stroke-width="6" class="animate-heart-border"/>
+                <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
+                  fill="rgba(244,63,94,0.1)"/>
+              </svg>
+
+              <!-- 사진 -->
+              <img
+                src="/love.png"
+                alt="love"
+                class="absolute inset-0 w-full h-full object-cover"
+                style="clip-path: path('M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z'); transform: scale(0.95);"
+              />
+            </div>
           </div>
-          <div class="flex gap-2 mt-2">
-            <span class="text-2xl animate-heart-4">💖</span>
-            <span class="text-3xl animate-heart-5">❤️</span>
-            <span class="text-2xl animate-heart-6">💗</span>
-          </div>
-          <div class="mt-6 text-center">
-            <p class="font-serif text-2xl text-rose-700 italic animate-fade-in-text">승혁 & 선경</p>
-            <p class="font-sans text-sm text-rose-400 mt-2 tracking-widest animate-fade-in-text">Forever Together 💍</p>
+
+          <!-- 이름 -->
+          <div class="mt-4 text-center animate-fade-in-text">
+            <p class="font-serif text-2xl text-rose-700 italic">승혁 & 선경</p>
+            <p class="font-sans text-xs text-rose-400 mt-1 tracking-widest">Forever Together 💍</p>
           </div>
         </div>
       </div>
@@ -56,49 +91,37 @@ import { CommonModule } from '@angular/common';
       <!-- Phase 1~4: 지도 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
         <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
-          <!-- 지도 배경 -->
           <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
           <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
           <circle cx="185" cy="90" r="3" class="fill-white stroke-pink-200" stroke-width="2"/>
           <path d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
           <path d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
-
-          <!-- 서울 마커 -->
           <g transform="translate(75, 85)">
             <circle cx="0" cy="0" r="5" class="fill-pink-400 stroke-white" stroke-width="2"/>
             <rect x="-20" y="-22" width="40" height="14" rx="4" class="fill-white/90"/>
             <text x="0" y="-12" font-size="8" font-weight="bold" text-anchor="middle" class="fill-pink-600 tracking-widest font-sans">SEOUL</text>
           </g>
-
-          <!-- 부산 마커 -->
           <g transform="translate(145, 220)">
             <circle cx="0" cy="0" r="5" class="fill-blue-400 stroke-white" stroke-width="2"/>
             <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
             <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
           </g>
 
-          <!-- Phase1: 혼자 내려가기 -->
-          <g *ngIf="currentPhase() === 1" class="animate-phase1-down">
+          <g *ngIf="currentPhase() === 1">
             <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
             <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
           </g>
-
-          <!-- Phase2: 부끄러워하며 올라오기 -->
           <g *ngIf="currentPhase() === 2">
             <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
             <text x="145" y="200" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻</text>
             <ellipse cx="139" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
             <ellipse cx="151" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
           </g>
-
-          <!-- Phase3: 꽃들고 내려가기 -->
           <g *ngIf="currentPhase() === 3">
             <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
             <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
             <text x="85" y="70" font-size="14" text-anchor="middle" dominant-baseline="central" class="animate-move-down">💐</text>
           </g>
-
-          <!-- Phase4: 둘이 같이 올라오기 -->
           <g *ngIf="currentPhase() === 4">
             <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
             <text x="145" y="200" font-size="16" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻❤️👧🏻</text>
@@ -106,7 +129,7 @@ import { CommonModule } from '@angular/common';
         </svg>
       </div>
 
-      <!-- 시작 전 지도만 표시 -->
+      <!-- 시작 전 지도 -->
       <div *ngIf="!started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
         <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
@@ -124,7 +147,6 @@ import { CommonModule } from '@angular/common';
             <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
             <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
           </g>
-          <!-- 서울에 남자 대기 -->
           <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
         </svg>
       </div>
@@ -167,33 +189,58 @@ import { CommonModule } from '@angular/common';
       100% { transform: translate(-70px, -135px); }
     }
 
-    .animate-couple-pop {
-      animation: couple-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    .animate-frame-entrance {
+      animation: frame-entrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
-    @keyframes couple-pop {
-      0% { transform: scale(0); opacity: 0; }
-      70% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes frame-entrance {
+      0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+      70% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .animate-frame-shake {
+      animation: frame-shake 2s ease-in-out 1s infinite;
+    }
+    @keyframes frame-shake {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-3deg); }
+      40% { transform: rotate(3deg); }
+      60% { transform: rotate(-2deg); }
+      80% { transform: rotate(2deg); }
+    }
+
+    .animate-heart-border {
+      animation: heart-pulse 1s ease-in-out infinite;
+    }
+    @keyframes heart-pulse {
+      0%, 100% { stroke-width: 6; opacity: 1; }
+      50% { stroke-width: 10; opacity: 0.7; }
     }
 
     .animate-fade-in-text {
-      animation: fade-in-text 1s ease-in 0.5s both;
+      animation: fade-in-text 1s ease-in 0.8s both;
     }
     @keyframes fade-in-text {
       0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    .animate-heart-1 { animation: heart-fly 1.5s ease-out 0.3s infinite; }
-    .animate-heart-2 { animation: heart-fly 1.5s ease-out 0.5s infinite; }
-    .animate-heart-3 { animation: heart-fly 1.5s ease-out 0.7s infinite; }
-    .animate-heart-4 { animation: heart-fly 1.5s ease-out 0.4s infinite; }
-    .animate-heart-5 { animation: heart-fly 1.5s ease-out 0.6s infinite; }
-    .animate-heart-6 { animation: heart-fly 1.5s ease-out 0.8s infinite; }
-    @keyframes heart-fly {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      50% { transform: translateY(-20px) scale(1.3); opacity: 0.8; }
-      100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
+    /* 하트 뿜뿜 10개 - 각기 다른 위치와 타이밍 */
+    .animate-heart-pop-1  { top: 60%; left: 50%; animation: heart-pop 2s ease-out 0.0s infinite; }
+    .animate-heart-pop-2  { top: 65%; left: 30%; animation: heart-pop 2s ease-out 0.2s infinite; }
+    .animate-heart-pop-3  { top: 65%; left: 70%; animation: heart-pop 2s ease-out 0.4s infinite; }
+    .animate-heart-pop-4  { top: 70%; left: 20%; animation: heart-pop 2s ease-out 0.6s infinite; }
+    .animate-heart-pop-5  { top: 70%; left: 80%; animation: heart-pop 2s ease-out 0.8s infinite; }
+    .animate-heart-pop-6  { top: 55%; left: 15%; animation: heart-pop 2s ease-out 1.0s infinite; }
+    .animate-heart-pop-7  { top: 55%; left: 85%; animation: heart-pop 2s ease-out 1.2s infinite; }
+    .animate-heart-pop-8  { top: 75%; left: 40%; animation: heart-pop 2s ease-out 1.4s infinite; }
+    .animate-heart-pop-9  { top: 75%; left: 60%; animation: heart-pop 2s ease-out 1.6s infinite; }
+    .animate-heart-pop-10 { top: 50%; left: 50%; animation: heart-pop 2s ease-out 1.8s infinite; }
+
+    @keyframes heart-pop {
+      0%   { transform: translate(0, 0) scale(0.5); opacity: 0; }
+      20%  { opacity: 1; }
+      100% { transform: translate(var(--tx, 0px), -120px) scale(1.2); opacity: 0; }
     }
   `]
 })
