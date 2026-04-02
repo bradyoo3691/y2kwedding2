@@ -11,15 +11,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="absolute inset-0 w-full h-full bg-stone-200">
           <!-- We use a cinematic image with a slow zoom if video isn't available. 
                You can replace this <img> with a <video autoplay loop muted playsinline> tag -->
-         <video 
-  autoplay 
-  loop 
-  muted 
-  playsinline
-  class="w-full h-full object-cover"
->
-  <source src="mochung.mp4" type="video/mp4">
-</video>
+          <img 
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2938&auto=format&fit=crop" 
+            alt="Wedding Video Placeholder"
+            class="w-full h-full object-cover animate-slow-zoom"
+            referrerpolicy="no-referrer"
+          />
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
 
@@ -27,12 +24,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
           <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase mb-6 opacity-90">We are getting married</p>
           <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-8 font-light drop-shadow-lg">
-            <span class="block italic">Jimin</span>
+            <span class="block italic">Brady</span>
             <span class="block text-4xl md:text-5xl my-4 opacity-80">&amp;</span>
-            <span class="block italic">Minho</span>
+            <span class="block italic">Perrier</span>
           </h1>
           <p class="font-sans text-base md:text-lg tracking-[0.3em] mt-8 opacity-90">
-            OCTOBER 24, 2026
+            JUNE 06, 2026
           </p>
         </div>
       </div>

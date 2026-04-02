@@ -13,7 +13,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
           <div class="space-y-12 text-center md:text-left order-2 md:order-1">
             <div>
               <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-4">When</h3>
-              <p class="font-serif text-3xl">Saturday, October 24, 2026</p>
+              <p class="font-serif text-3xl">Saturday, June 06, 2026</p>
               <p class="font-sans text-lg text-stone-600 mt-2">At 12:30 PM</p>
             </div>
             

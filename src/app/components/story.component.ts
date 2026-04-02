@@ -55,28 +55,32 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
               
               <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
               
-              <!-- Boy alone -->
-              <text x="0" y="-15" font-size="12" text-anchor="middle" dominant-baseline="central">
+              <!-- Boy alone (0 - 0.1666) -->
+              <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                 <animate attributeName="opacity" values="1; 0; 0" keyTimes="0; 0.1666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻
+                👦🏻
               </text>
               
-              <!-- Boy blushing -->
-              <text x="0" y="-15" font-size="12" text-anchor="middle" dominant-baseline="central">
+              <!-- Boy blushing (0.25 - 0.4166) -->
+              <g>
                 <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.25; 0.4166; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻😳
-              </text>
+                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                <!-- Blush overlay on the cheeks -->
+                <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
+                <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
+              </g>
 
-              <!-- Boy with bouquet -->
-              <text x="0" y="-15" font-size="12" text-anchor="middle" dominant-baseline="central">
+              <!-- Boy with bouquet (0.4166 - 0.5833) -->
+              <g>
                 <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.4166; 0.5833; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻💐
-              </text>
+                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
+              </g>
               
-              <!-- Couple returning to Seoul -->
-              <text x="0" y="-15" font-size="12" text-anchor="middle" dominant-baseline="central">
+              <!-- Couple returning to Seoul (0.6666 - 1) -->
+              <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                 <animate attributeName="opacity" values="0; 1; 1" keyTimes="0; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻❤️👩🏻
+                👦🏻❤️👧🏻
               </text>
             </g>
           </g>
@@ -91,27 +95,28 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
               
               <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
               
-              <!-- Boy alone -->
-              <text x="0" y="-12" font-size="10" text-anchor="middle" dominant-baseline="central">
+              <!-- Boy alone (0.1666 - 0.25) -->
+              <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">
                 <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻
+                👦🏻
               </text>
               
-              <!-- Boy with bouquet -->
-              <text x="0" y="-12" font-size="10" text-anchor="middle" dominant-baseline="central">
+              <!-- Boy with bouquet (0.5833 - 0.6666) -->
+              <g>
                 <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👨🏻💐
-              </text>
+                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                <text x="6" y="-12" font-size="12" text-anchor="middle" dominant-baseline="central">💐</text>
+              </g>
             </g>
           </g>
         </svg>
       </div>
       
-      <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 py-6 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4">
-        <span class="block mb-2">남자가 서울에서 기차를 타고 부산을 가서, 쏘카를 타고 여자를 만났어요 🚙</span>
-        <span class="block mb-2">볼이 발그레 빨개진 남자는 서울로 혼자 기차를 타고 올라왔죠 😳</span>
-        <span class="block mb-2">그리고 남자는 꽃다발을 들고 다시 기차를 타고 부산을 내려가서 쏘카를 탔어요 💐</span>
-        <span class="block">마침내 여자와 사랑에 빠져 함께 서울로 올라옵니다 ❤️</span>
+      <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-1">남자가 서울에서 기차를 타고 부산을 가서, 쏘카를 타고 여자를 만났어요 🚙</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-2">볼이 발그레 빨개진 남자는 서울로 혼자 기차를 타고 올라왔죠 😳</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-3">그리고 남자는 꽃다발을 들고 다시 기차를 타고 부산을 내려가서 쏘카를 탔어요 💐</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-4">마침내 여자와 사랑에 빠져 함께 서울로 올라옵니다 ❤️</span>
       </div>
     </section>
   `,
@@ -124,6 +129,32 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
+    }
+
+    /* Sequential text animations */
+    .animate-story-text-1 { animation: story-text-1 24s infinite; }
+    .animate-story-text-2 { animation: story-text-2 24s infinite; }
+    .animate-story-text-3 { animation: story-text-3 24s infinite; }
+    .animate-story-text-4 { animation: story-text-4 24s infinite; }
+
+    @keyframes story-text-1 {
+      0%, 23% { opacity: 1; transform: translateY(0); }
+      25%, 100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes story-text-2 {
+      0%, 23% { opacity: 0; transform: translateY(-10px); }
+      25%, 40% { opacity: 1; transform: translateY(0); }
+      42%, 100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes story-text-3 {
+      0%, 40% { opacity: 0; transform: translateY(-10px); }
+      42%, 65% { opacity: 1; transform: translateY(0); }
+      67%, 100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes story-text-4 {
+      0%, 65% { opacity: 0; transform: translateY(-10px); }
+      67%, 98% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(10px); }
     }
   `]
 })
