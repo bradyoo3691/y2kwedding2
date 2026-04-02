@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </div>
 
-    <section class="relative w-full h-[100svh] p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50">
+    <section class="relative w-full h-screen p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-200">
           <video 
@@ -60,7 +60,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HeroComponent implements AfterViewInit {
   @ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
-  
+
   showPopup = signal(true);
 
   ngAfterViewInit() {}
