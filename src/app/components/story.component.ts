@@ -65,7 +65,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
               <g>
                 <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.25; 0.4166; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                <!-- Blush overlay on the cheeks -->
                 <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                 <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
               </g>
@@ -113,15 +112,14 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       </div>
       
       <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-1">남자가 서울에서 기차를 타고 부산을 가서, 쏘카를 타고 여자를 만났어요 🚙</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-2">볼이 발그레 빨개진 남자는 서울로 혼자 기차를 타고 올라왔죠 😳</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-3">그리고 남자는 꽃다발을 들고 다시 기차를 타고 부산을 내려가서 쏘카를 탔어요 💐</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-4">마침내 여자와 사랑에 빠져 함께 서울로 올라옵니다 ❤️</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-1">🚂 신랑 승혁이(서울사무실 근무)는 직장동료 선경이가 자꾸 눈에 밟혀 부산으로 기차를 타고 다짜고짜 내려가요 💨</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-2">😳 승혁이는 바로 확신을 가지고, 전략을 짜러 서울로 일단 올라옵니다 🗺️</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-3">💐 승혁이는 작정하고 꽃다발을 들고 부산에 있는 선경이(부산사무실 근무)를 향해 갑니다 두근두근 🥰</span>
+        <span class="absolute w-full px-6 opacity-0 animate-story-text-4">🎉 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
       </div>
     </section>
   `,
   styles: [`
-    /* Background animations */
     .animate-float { animation: float 6s ease-in-out infinite; }
     .animate-float-slow { animation: float 8s ease-in-out infinite; }
     .animate-float-fast { animation: float 4s ease-in-out infinite; }
@@ -131,7 +129,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       50% { transform: translateY(-20px); }
     }
 
-    /* Sequential text animations */
     .animate-story-text-1 { animation: story-text-1 24s infinite; }
     .animate-story-text-2 { animation: story-text-2 24s infinite; }
     .animate-story-text-3 { animation: story-text-3 24s infinite; }
