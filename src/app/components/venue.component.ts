@@ -121,9 +121,9 @@ import { CommonModule } from '@angular/common';
 
         <hr class="border-stone-300 mb-12"/>
 
-        <!-- 마음 전하기 / 계좌번호 -->
+        <!-- 감사 전하기 / 계좌번호 -->
         <div class="text-center">
-          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-8">감사 전하기</h3>
+          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-8">마음 전하기</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- 신랑측 -->
             <div class="bg-white rounded-2xl p-6 shadow-sm">
