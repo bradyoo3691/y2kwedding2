@@ -78,7 +78,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-  styles: [`
+styles: [`
     .animate-fade-in {
       animation: fade-in 0.5s ease-out forwards;
     }
@@ -88,11 +88,11 @@ import { CommonModule } from '@angular/common';
     }
 
     .animate-shrink-up {
-      animation: shrink-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: shrink-up 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
     @keyframes shrink-up {
       0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(-120px); }
+      100% { opacity: 1; transform: translateY(-180px); }
     }
   `]
 })
