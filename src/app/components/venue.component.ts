@@ -25,13 +25,6 @@ import { CommonModule } from '@angular/common';
           <p class="font-sans text-base text-stone-600">도로명: 경기 성남시 분당구 판교역로226번길 16</p>
           <p class="font-sans text-base text-stone-600 mt-1">지번: 경기 성남시 분당구 삼평동 674</p>
           <p class="font-sans text-base text-stone-600 mt-1">8층 채플홀</p>
-
-          <!-- 주소 복사 버튼 -->
-          <button
-            (click)="copyAddress()"
-            class="mt-4 inline-flex items-center gap-2 px-5 py-2 border border-stone-400 text-stone-600 text-sm rounded-full hover:bg-stone-200 transition">
-            📋 주소 복사
-          </button>
         </div>
 
         <!-- 지도 앱 버튼 -->
@@ -59,32 +52,97 @@ import { CommonModule } from '@angular/common';
           </a>
         </div>
 
-        <hr class="border-stone-300 mb-16"/>
+        <hr class="border-stone-300 mb-12"/>
+
+        <!-- 주차 안내 -->
+        <div class="mb-12">
+          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🅿️ 주차 안내</h3>
+
+          <!-- 웨딩홀 주차장 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm mb-4">
+            <p class="font-serif text-lg font-semibold mb-2">웨딩홀 주차장 <span class="text-sm font-sans text-stone-500">(300대 수용)</span></p>
+            <p class="text-xs text-amber-600 mb-1">⚠️ 앞뒤 결혼식 주차차량으로 인해 살짝 혼잡할 수 있어요!</p>
+            <p class="text-xs text-stone-500 mb-1">🕐 주차등록시 2시간 무료 (초과시 15분당 1,000원)</p>
+            <p class="text-xs text-stone-400 mb-4">경기 성남시 분당구 삼평동 674</p>
+            <button
+              (click)="copyParkingAddress('wedding')"
+              class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+              📋 웨딩홀 주소 복사
+            </button>
+          </div>
+
+          <!-- 인근 주차장 -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm">
+            <p class="font-serif text-lg font-semibold mb-2">인근 주차장 <span class="text-sm font-sans text-stone-500">(1,000대 수용)</span></p>
+            <p class="text-xs text-stone-600 mb-1">📍 웨딩홀 바로 맞은편 스타벅스 판교HIPEX점 건물</p>
+            <p class="text-xs text-stone-600 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;'삼환하이펙스B동'</p>
+            <p class="text-xs text-green-600 mb-1">🆓 주차등록시 종일 무료</p>
+            <p class="text-xs text-stone-400 mb-4">경기 성남시 분당구 삼평동 679</p>
+            <button
+              (click)="copyParkingAddress('nearby')"
+              class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+              📋 종일무료주차장 주소 복사
+            </button>
+          </div>
+        </div>
+
+        <hr class="border-stone-300 mb-12"/>
+
+        <!-- 대중교통 -->
+        <div class="mb-12">
+          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🚇 대중교통</h3>
+          <div class="bg-white rounded-2xl p-6 shadow-sm space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="text-lg">🚇</span>
+              <div>
+                <p class="text-sm font-semibold text-stone-700">지하철</p>
+                <p class="text-sm text-stone-600">신분당선 판교역에서 도보 10분</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-lg">🚌</span>
+              <div>
+                <p class="text-sm font-semibold text-stone-700">웨딩홀 셔틀버스</p>
+                <p class="text-sm text-stone-600">판교역 1번출구 택시승강장에서 탑승</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-stone-300 mb-12"/>
+
+        <!-- ATM -->
+        <div class="mb-12">
+          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🏧 ATM</h3>
+          <div class="bg-white rounded-2xl p-6 shadow-sm text-center">
+            <p class="text-sm text-stone-600">본 웨딩홀 L층에 마련되어 있습니다.</p>
+          </div>
+        </div>
+
+        <hr class="border-stone-300 mb-12"/>
 
         <!-- 감사 전하기 / 계좌번호 -->
         <div class="text-center">
           <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-8">감사 전하기</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
             <!-- 신랑측 -->
             <div class="bg-white rounded-2xl p-6 shadow-sm">
               <p class="text-stone-500 text-xs tracking-widest uppercase mb-2">신랑측</p>
               <p class="font-serif text-lg mb-1">유승혁</p>
               <p class="text-stone-600 text-sm mb-4">우리은행 1002-050-717720</p>
               <button
-                (click)="copyAccount('우리은행 1002-050-717720 유승혁', 'groom')"
+                (click)="copyAccount('groom')"
                 class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
                 📋 계좌번호 복사
               </button>
             </div>
-
             <!-- 신부측 -->
             <div class="bg-white rounded-2xl p-6 shadow-sm">
               <p class="text-stone-500 text-xs tracking-widest uppercase mb-2">신부측</p>
               <p class="font-serif text-lg mb-1">김선경</p>
               <p class="text-stone-600 text-sm mb-4">신한은행 110-438-886892</p>
               <button
-                (click)="copyAccount('신한은행 110-438-886892 김선경', 'bride')"
+                (click)="copyAccount('bride')"
                 class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
                 📋 계좌번호 복사
               </button>
@@ -96,7 +154,7 @@ import { CommonModule } from '@angular/common';
 
       <!-- 팝업 토스트 -->
       <div *ngIf="toastMessage"
-        class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-stone-800 text-white text-sm px-6 py-3 rounded-full shadow-xl animate-toast">
+        class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-stone-800 text-white text-sm px-6 py-3 rounded-full shadow-xl animate-toast whitespace-nowrap">
         ✅ {{ toastMessage }}
       </div>
 
@@ -124,14 +182,17 @@ export class VenueComponent {
     }, 3000);
   }
 
-  copyAddress() {
-    navigator.clipboard.writeText('경기 성남시 분당구 판교역로226번길 16 W스퀘어컨벤션 8층 채플홀').then(() => {
-      this.showToast('주소가 복사되었어요!');
+  copyParkingAddress(type: 'wedding' | 'nearby') {
+    const address = type === 'wedding' ? '성남시 분당구 삼평동 674' : '성남시 분당구 삼평동 679';
+    const label = type === 'wedding' ? '웨딩홀 주소가 복사되었어요!' : '종일무료주차장 주소가 복사되었어요!';
+    navigator.clipboard.writeText(address).then(() => {
+      this.showToast(label);
     });
   }
 
-  copyAccount(text: string, who: 'groom' | 'bride') {
-    navigator.clipboard.writeText(text).then(() => {
+  copyAccount(who: 'groom' | 'bride') {
+    const accountNumber = who === 'groom' ? '1002-050-717720' : '110-438-886892';
+    navigator.clipboard.writeText(accountNumber).then(() => {
       if (who === 'groom') {
         this.showToast('신랑(유승혁)의 계좌번호가 복사되었어요!');
       } else {
