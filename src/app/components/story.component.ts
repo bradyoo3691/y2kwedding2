@@ -51,34 +51,62 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <ng-container *ngIf="started()">
+            <!-- Train Group -->
             <g>
-              <animate attributeName="opacity" values="1;1;0;1;0;1;1" keyTimes="0;0.25;0.27;0.5;0.52;0.75;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
-              <animateMotion dur="48s" repeatCount="indefinite" path="M 75,85 Q 130,120 145,220" keyPoints="0;1;1;0;0;1;1;0" keyTimes="0;0.25;0.27;0.5;0.52;0.75;0.77;1" calcMode="linear"/>
+              <animate attributeName="opacity"
+                values="1;1;1;0;1;0;1;1"
+                keyTimes="0;0.24;0.25;0.27;0.5;0.52;0.75;1"
+                calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+              <animateMotion dur="48s" repeatCount="indefinite"
+                path="M 75,85 Q 130,120 145,220"
+                keyPoints="0;1;1;0;0;1;1;0"
+                keyTimes="0;0.25;0.27;0.5;0.52;0.75;0.77;1"
+                calcMode="linear"/>
               <g>
-                <animateTransform attributeName="transform" type="scale" values="1 1;-1 1;1 1;-1 1;1 1" keyTimes="0;0.27;0.52;0.77;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                <animateTransform attributeName="transform" type="scale"
+                  values="1 1;-1 1;1 1;-1 1;1 1"
+                  keyTimes="0;0.27;0.52;0.77;1"
+                  calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                 <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
+                <!-- Phase1: 혼자 내려가기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity" values="1;1;0;0;0;0;0" keyTimes="0;0.24;0.25;0.5;0.52;0.75;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity"
+                    values="1;1;0;0;0;0"
+                    keyTimes="0;0.24;0.27;0.5;0.75;1"
+                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                   👦🏻
                 </text>
+                <!-- Phase2: 부끄러운 표정으로 올라오기 -->
                 <g>
-                  <animate attributeName="opacity" values="0;0;1;1;0;0;0" keyTimes="0;0.27;0.28;0.49;0.5;0.75;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity"
+                    values="0;0;1;1;0;0;0"
+                    keyTimes="0;0.27;0.28;0.49;0.5;0.75;1"
+                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                   <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                 </g>
+                <!-- Phase3: 꽃다발 들고 내려가기 -->
                 <g>
-                  <animate attributeName="opacity" values="0;0;0;0;1;1;0;0" keyTimes="0;0.25;0.27;0.52;0.53;0.74;0.75;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity"
+                    values="0;0;0;0;1;1;0;0"
+                    keyTimes="0;0.25;0.27;0.52;0.53;0.74;0.75;1"
+                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                   <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
                   <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
                 </g>
+                <!-- Phase4: 둘이 같이 올라오기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity" values="0;0;0;0;0;1;1" keyTimes="0;0.25;0.5;0.52;0.77;0.78;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity"
+                    values="0;0;0;0;0;1;1"
+                    keyTimes="0;0.25;0.5;0.52;0.77;0.78;1"
+                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                   👦🏻❤️👧🏻
                 </text>
               </g>
             </g>
 
+            <!-- Car Group -->
             <g>
               <animate attributeName="opacity" values="0;1;0;0;1;0;0" keyTimes="0;0.25;0.27;0.52;0.75;0.77;1" calcMode="discrete" dur="48s" repeatCount="indefinite"/>
               <animateMotion dur="48s" repeatCount="indefinite" path="M 145,220 L 165,230" keyPoints="0;0;1;0;0;1;0;0" keyTimes="0;0.25;0.26;0.27;0.52;0.76;0.77;1" calcMode="linear"/>
