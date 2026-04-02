@@ -11,12 +11,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="absolute inset-0 w-full h-full bg-stone-200">
           <!-- We use a cinematic image with a slow zoom if video isn't available. 
                You can replace this <img> with a <video autoplay loop muted playsinline> tag -->
-          <img 
-            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2938&auto=format&fit=crop" 
-            alt="Wedding Video Placeholder"
-            class="w-full h-full object-cover animate-slow-zoom"
-            referrerpolicy="no-referrer"
-          />
+        <video 
+  autoplay 
+  loop 
+  muted 
+  playsinline
+  class="w-full h-full object-cover"
+>
+  <source src="/mochung.mp4" type="video/mp4">
+</video>
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
 
