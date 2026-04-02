@@ -43,9 +43,8 @@ import { CommonModule } from '@angular/common';
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
 
-        <!-- 텍스트 전체: 처음엔 가운데, 5초 후 위로 이동 -->
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
-          <div [class]="moved ? 'animate-move-up' : 'translate-y-0'" class="flex flex-col items-center transition-all">
+          <div [class]="moved() ? 'animate-move-up' : ''" class="flex flex-col items-center">
 
             <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mb-6">
               We are getting married
@@ -82,11 +81,11 @@ export class HeroComponent implements AfterViewInit {
   @ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
 
   showPopup = signal(true);
-  moved = false;
+  moved = signal(false);
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.moved = true;
+      this.moved.set(true);
     }, 8500);
   }
 
