@@ -1,23 +1,26 @@
 import { Component, ChangeDetectionStrategy, signal, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- BGM 팝업 -->
     <div *ngIf="showPopup()" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-      <div class="bg-white rounded-2xl p-8 text-center shadow-2xl mx-6">
-        <p class="text-lg font-serif mb-6 text-stone-700">🎵 BGM을 들으시겠습니까?</p>
-        <div class="flex gap-4 justify-center">
+      <div class="bg-white rounded-2xl p-10 text-center shadow-2xl mx-6">
+        <p class="text-xl font-serif mb-2 text-stone-700">🎵 BGM을 함께 들으시겠습니까?</p>
+        <p class="text-sm text-stone-400 mb-8">영상과 함께 음악을 들으시면 더욱 감동적이에요</p>
+        <div class="flex flex-col gap-3 items-center">
           <button 
             (click)="enableSound()"
-            class="px-6 py-2 bg-stone-800 text-white rounded-full hover:bg-stone-600 transition">
-            예
+            class="w-48 px-8 py-3 bg-rose-400 text-white text-lg font-bold rounded-full shadow-lg hover:bg-rose-500 transition transform hover:scale-105">
+            🎶 네 (추천)
           </button>
           <button 
             (click)="disableSound()"
-            class="px-6 py-2 border border-stone-400 text-stone-600 rounded-full hover:bg-stone-100 transition">
+            class="w-48 px-8 py-2 border border-stone-300 text-stone-400 text-sm rounded-full hover:bg-stone-50 transition">
             아니오
           </button>
         </div>
@@ -53,12 +56,7 @@ import { Component, ChangeDetectionStrategy, signal, AfterViewInit, ViewChild, E
       </div>
     </section>
   `,
-  styles: [`
-    @keyframes slow-zoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.15); }
-    }
-  `]
+  styles: []
 })
 export class HeroComponent implements AfterViewInit {
   @ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
