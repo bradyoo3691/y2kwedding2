@@ -1,12 +1,13 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-story',
   standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="relative w-full min-h-[80vh] bg-gradient-to-b from-pink-100 via-rose-50 to-pink-100 overflow-hidden flex flex-col items-center justify-center py-20">
-      <!-- Cute floating background elements -->
+    <section #sectionRef class="relative w-full min-h-[80vh] bg-gradient-to-b from-pink-100 via-rose-50 to-pink-100 overflow-hidden flex flex-col items-center justify-center py-20">
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-10 left-10 text-4xl opacity-60 animate-float-slow">☁️</div>
         <div class="absolute top-20 right-20 text-5xl opacity-60 animate-float">☁️</div>
@@ -16,7 +17,26 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="absolute top-1/2 left-10 text-2xl opacity-50 animate-float-fast">✨</div>
       </div>
 
-      <h2 class="relative font-serif text-4xl md:text-5xl italic text-rose-800 drop-shadow-sm z-10 mb-8">Our Story</h2>
+      <h2 class="relative font-serif text-4xl md:text-5xl italic text-rose-800 drop-shadow-sm z-10 mb-4">Our Story</h2>
+
+      <!-- 시작 전 버튼 -->
+      <div *ngIf="!started()" class="relative z-10 mb-6">
+        <button 
+          (click)="startStory()"
+          class="px-8 py-3 bg-rose-400 text-white font-bold rounded-full shadow-lg hover:bg-rose-500 transition transform hover:scale-105 text-base">
+          💑 러브스토리 처음부터 보기
+        </button>
+      </div>
+
+      <!-- 진행중 표시 -->
+      <div *ngIf="started()" class="relative z-10 mb-4 flex items-center gap-3">
+        <span class="text-rose-400 text-sm font-sans">재생중...</span>
+        <button 
+          (click)="resetStory()"
+          class="px-4 py-1 border border-rose-300 text-rose-400 text-xs rounded-full hover:bg-rose-50 transition">
+          🔄 다시보기
+        </button>
+      </div>
       
       <div class="relative w-full max-w-lg h-[500px] z-10 px-4">
         <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
@@ -26,10 +46,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
           <circle cx="185" cy="90" r="3" class="fill-white stroke-pink-200" stroke-width="2"/>
 
           <!-- Train Track -->
-          <path id="train-route" d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
-          
-          <!-- Car Route -->
-          <path id="car-route" d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
+          <path d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
+          <path d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
 
           <!-- Seoul Marker -->
           <g transform="translate(75, 85)">
@@ -45,77 +63,72 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
             <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
           </g>
 
-          <!-- Train Group -->
-          <g>
-            <animate attributeName="opacity" values="1; 0; 1; 0; 1; 1" keyTimes="0; 0.1666; 0.25; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-            <animateMotion dur="24s" repeatCount="indefinite" path="M 75,85 Q 130,120 145,220" keyPoints="0; 1; 1; 0; 1; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 0.4166; 0.5833; 0.6666; 0.8333; 1" calcMode="linear" />
-            
+          <!-- 애니메이션: started()일때만 -->
+          <ng-container *ngIf="started()">
+            <!-- Train Group -->
             <g>
-              <animateTransform attributeName="transform" type="scale" values="1 1; -1 1; 1 1; -1 1; 1 1; 1 1" keyTimes="0; 0.25; 0.4166; 0.6666; 0.8333; 1" calcMode="discrete" dur="24s" repeatCount="indefinite" />
-              
-              <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
-              
-              <!-- Boy alone (0 - 0.1666) -->
-              <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                <animate attributeName="opacity" values="1; 0; 0" keyTimes="0; 0.1666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👦🏻
-              </text>
-              
-              <!-- Boy blushing (0.25 - 0.4166) -->
+              <animate attributeName="opacity" values="1; 0; 1; 0; 1; 1" keyTimes="0; 0.1666; 0.25; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+              <animateMotion dur="24s" repeatCount="indefinite" path="M 75,85 Q 130,120 145,220" keyPoints="0; 1; 1; 0; 1; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 0.4166; 0.5833; 0.6666; 0.8333; 1" calcMode="linear" />
               <g>
-                <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.25; 0.4166; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
-                <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
-              </g>
-
-              <!-- Boy with bouquet (0.4166 - 0.5833) -->
-              <g>
-                <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.4166; 0.5833; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
-              </g>
-              
-              <!-- Couple returning to Seoul (0.6666 - 1) -->
-              <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                <animate attributeName="opacity" values="0; 1; 1" keyTimes="0; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👦🏻❤️👧🏻
-              </text>
-            </g>
-          </g>
-
-          <!-- Car Group -->
-          <g>
-            <animate attributeName="opacity" values="0; 1; 0; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-            <animateMotion dur="24s" repeatCount="indefinite" path="M 145,220 L 165,230" keyPoints="0; 0; 1; 0; 0; 0; 1; 0; 0" keyTimes="0; 0.1666; 0.2083; 0.25; 0.4166; 0.5833; 0.625; 0.6666; 1" calcMode="linear" />
-            
-            <g>
-              <animateTransform attributeName="transform" type="scale" values="1 1; -1 1; 1 1; -1 1; 1 1; 1 1" keyTimes="0; 0.2083; 0.25; 0.625; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite" />
-              
-              <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
-              
-              <!-- Boy alone (0.1666 - 0.25) -->
-              <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">
-                <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                👦🏻
-              </text>
-              
-              <!-- Boy with bouquet (0.5833 - 0.6666) -->
-              <g>
-                <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
-                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                <text x="6" y="-12" font-size="12" text-anchor="middle" dominant-baseline="central">💐</text>
+                <animateTransform attributeName="transform" type="scale" values="1 1; -1 1; 1 1; -1 1; 1 1; 1 1" keyTimes="0; 0.25; 0.4166; 0.6666; 0.8333; 1" calcMode="discrete" dur="24s" repeatCount="indefinite" />
+                <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
+                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
+                  <animate attributeName="opacity" values="1; 0; 0" keyTimes="0; 0.1666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  👦🏻
+                </text>
+                <g>
+                  <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.25; 0.4166; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                  <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
+                  <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
+                </g>
+                <g>
+                  <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.4166; 0.5833; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                  <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
+                </g>
+                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
+                  <animate attributeName="opacity" values="0; 1; 1" keyTimes="0; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  👦🏻❤️👧🏻
+                </text>
               </g>
             </g>
-          </g>
+
+            <!-- Car Group -->
+            <g>
+              <animate attributeName="opacity" values="0; 1; 0; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+              <animateMotion dur="24s" repeatCount="indefinite" path="M 145,220 L 165,230" keyPoints="0; 0; 1; 0; 0; 0; 1; 0; 0" keyTimes="0; 0.1666; 0.2083; 0.25; 0.4166; 0.5833; 0.625; 0.6666; 1" calcMode="linear" />
+              <g>
+                <animateTransform attributeName="transform" type="scale" values="1 1; -1 1; 1 1; -1 1; 1 1; 1 1" keyTimes="0; 0.2083; 0.25; 0.625; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite" />
+                <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
+                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">
+                  <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.1666; 0.25; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  👦🏻
+                </text>
+                <g>
+                  <animate attributeName="opacity" values="0; 1; 0; 0" keyTimes="0; 0.5833; 0.6666; 1" calcMode="discrete" dur="24s" repeatCount="indefinite"/>
+                  <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+                  <text x="6" y="-12" font-size="12" text-anchor="middle" dominant-baseline="central">💐</text>
+                </g>
+              </g>
+            </g>
+          </ng-container>
         </svg>
       </div>
       
+      <!-- 텍스트 박스 -->
       <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-1">🚂 신랑 승혁이(서울사무실 근무)는 직장동료 선경이가 자꾸 눈에 밟혀 부산으로 기차를 타고 다짜고짜 내려가요 💨</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-2">😳 승혁이는 바로 확신을 가지고, 전략을 짜러 서울로 일단 올라옵니다 🗺️</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-3">💐 승혁이는 작정하고 꽃다발을 들고 부산에 있는 선경이(부산사무실 근무)를 향해 갑니다 두근두근 🥰</span>
-        <span class="absolute w-full px-6 opacity-0 animate-story-text-4">🎉 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
+        
+        <!-- 시작 전 -->
+        <span *ngIf="!started()" class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
+
+        <!-- 시작 후 -->
+        <ng-container *ngIf="started()">
+          <span *ngIf="currentPhase() === 1" class="absolute w-full px-6 transition-opacity duration-500">🚂 신랑 승혁이(서울사무실 근무)는 직장동료 선경이가 자꾸 눈에 밟혀 부산으로 기차를 타고 다짜고짜 내려가요 💨</span>
+          <span *ngIf="currentPhase() === 2" class="absolute w-full px-6 transition-opacity duration-500">😳 승혁이는 바로 확신을 가지고, 전략을 짜러 서울로 일단 올라옵니다 🗺️</span>
+          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6 transition-opacity duration-500">💐 승혁이는 작정하고 꽃다발을 들고 부산에 있는 선경이(부산사무실 근무)를 향해 갑니다 두근두근 🥰</span>
+          <span *ngIf="currentPhase() === 4" class="absolute w-full px-6 transition-opacity duration-500">🎉 선경이는 승혁이의 고백을 수락했고, 둘의 사랑은 이루어집니다! ❤️</span>
+        </ng-container>
       </div>
     </section>
   `,
@@ -128,31 +141,47 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
-
-    .animate-story-text-1 { animation: story-text-1 24s infinite; }
-    .animate-story-text-2 { animation: story-text-2 24s infinite; }
-    .animate-story-text-3 { animation: story-text-3 24s infinite; }
-    .animate-story-text-4 { animation: story-text-4 24s infinite; }
-
-    @keyframes story-text-1 {
-      0%, 23% { opacity: 1; transform: translateY(0); }
-      25%, 100% { opacity: 0; transform: translateY(10px); }
-    }
-    @keyframes story-text-2 {
-      0%, 23% { opacity: 0; transform: translateY(-10px); }
-      25%, 40% { opacity: 1; transform: translateY(0); }
-      42%, 100% { opacity: 0; transform: translateY(10px); }
-    }
-    @keyframes story-text-3 {
-      0%, 40% { opacity: 0; transform: translateY(-10px); }
-      42%, 65% { opacity: 1; transform: translateY(0); }
-      67%, 100% { opacity: 0; transform: translateY(10px); }
-    }
-    @keyframes story-text-4 {
-      0%, 65% { opacity: 0; transform: translateY(-10px); }
-      67%, 98% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(10px); }
-    }
   `]
 })
-export class StoryComponent {}
+export class StoryComponent implements AfterViewInit, OnDestroy {
+  started = signal(false);
+  currentPhase = signal(1);
+
+  private timer: any;
+  private observer: IntersectionObserver | null = null;
+
+  @ViewChild('sectionRef') sectionRef!: ElementRef;
+
+  ngAfterViewInit() {}
+
+  startStory() {
+    this.started.set(true);
+    this.currentPhase.set(1);
+    this.runPhases();
+  }
+
+  resetStory() {
+    this.started.set(false);
+    this.currentPhase.set(1);
+    clearTimeout(this.timer);
+  }
+
+  runPhases() {
+    // 24s 기준: phase1=0~4s, phase2=6~10s, phase3=10~14s, phase4=16~24s
+    this.currentPhase.set(1);
+    this.timer = setTimeout(() => {
+      this.currentPhase.set(2);
+      this.timer = setTimeout(() => {
+        this.currentPhase.set(3);
+        this.timer = setTimeout(() => {
+          this.currentPhase.set(4);
+        }, 4000);
+      }, 4000);
+    }, 4000);
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.timer);
+    if (this.observer) this.observer.disconnect();
+  }
+}
