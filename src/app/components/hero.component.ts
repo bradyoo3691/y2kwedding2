@@ -44,36 +44,55 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
-          <div [class]="moved() ? 'animate-move-up' : ''" class="flex flex-col items-center">
 
+          <!-- 8.5초 전: 크게 가운데 표시 -->
+          <div *ngIf="!moved()" class="flex flex-col items-center animate-fade-in">
             <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mb-6">
               We are getting married
             </p>
-
             <h1 class="font-serif text-7xl md:text-8xl lg:text-9xl mb-6 font-light drop-shadow-lg">
               <span class="block italic">Brady</span>
               <span class="block text-4xl md:text-5xl my-3 opacity-80">&amp;</span>
               <span class="block italic">Perrier</span>
             </h1>
-
             <div class="flex flex-col items-center gap-2 opacity-90 mt-4">
               <p class="font-sans text-base md:text-lg tracking-[0.25em]">2026.06.06 15:30</p>
               <p class="font-sans text-sm md:text-base tracking-[0.2em] opacity-80">at W스퀘어컨벤션 판교</p>
             </div>
-
           </div>
-        </div>
 
+          <!-- 8.5초 후: 작게 위쪽으로 -->
+          <div *ngIf="moved()" class="flex flex-col items-center animate-shrink-up">
+            <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90">
+              We are getting married
+            </p>
+            <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mt-1">
+              Brady &amp; Perrier
+            </p>
+            <p class="font-sans text-xs md:text-sm tracking-[0.3em] opacity-80 mt-1">
+              2026.06.06 15:30 · W스퀘어컨벤션 판교
+            </p>
+          </div>
+
+        </div>
       </div>
     </section>
   `,
   styles: [`
-    .animate-move-up {
-      animation: move-up 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    .animate-fade-in {
+      animation: fade-in 0.5s ease-out forwards;
     }
-    @keyframes move-up {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-80px); }
+    @keyframes fade-in {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .animate-shrink-up {
+      animation: shrink-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes shrink-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(-120px); }
     }
   `]
 })
