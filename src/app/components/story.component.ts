@@ -51,17 +51,7 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <ng-container *ngIf="started()">
-
-            <!-- 
-              Phase 타이밍 (48초 기준):
-              Phase1 내려가기:    0s~12s   = 0.000~0.250
-              Phase2 올라오기:    12s~24s  = 0.250~0.500
-              Phase3 꽃들고내려:  24s~36s  = 0.500~0.750
-              Phase4 같이올라:    36s~48s  = 0.750~1.000
-              기차는 항상 보임(opacity=1), 이모지만 전환
-            -->
-
-            <!-- Train: 항상 표시, 위치만 이동 -->
+            <!-- Train Group -->
             <g>
               <animateMotion dur="48s" repeatCount="indefinite"
                 path="M 75,85 Q 130,120 145,220"
@@ -73,10 +63,9 @@ import { CommonModule } from '@angular/common';
                   values="1 1;1 1;-1 1;-1 1;1 1;1 1;-1 1;-1 1;1 1"
                   keyTimes="0;0.24;0.26;0.49;0.51;0.74;0.76;0.99;1"
                   calcMode="discrete" dur="48s" repeatCount="indefinite"/>
-
                 <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
 
-                <!-- Phase1: 혼자 내려가기 (0~0.25) -->
+                <!-- Phase1: 혼자 내려가기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                   <animate attributeName="opacity"
                     values="1;1;0;0;0;0;0;0;0"
@@ -85,7 +74,7 @@ import { CommonModule } from '@angular/common';
                   👦🏻
                 </text>
 
-                <!-- Phase2: 부끄러운 표정 올라오기 (0.25~0.5) -->
+                <!-- Phase2: 부끄러운 표정 올라오기 -->
                 <g>
                   <animate attributeName="opacity"
                     values="0;0;1;1;1;0;0;0;0"
@@ -96,7 +85,7 @@ import { CommonModule } from '@angular/common';
                   <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
                 </g>
 
-                <!-- Phase3: 꽃다발 들고 내려가기 (0.5~0.75) -->
+                <!-- Phase3: 꽃다발 들고 내려가기 -->
                 <g>
                   <animate attributeName="opacity"
                     values="0;0;0;0;0;1;1;1;0;0"
@@ -106,7 +95,7 @@ import { CommonModule } from '@angular/common';
                   <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
                 </g>
 
-                <!-- Phase4: 둘이 같이 올라오기 (0.75~1) -->
+                <!-- Phase4: 둘이 같이 올라오기 -->
                 <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
                   <animate attributeName="opacity"
                     values="0;0;0;0;0;0;0;0;1;1"
@@ -117,36 +106,22 @@ import { CommonModule } from '@angular/common';
               </g>
             </g>
 
-            <!-- Car Group: Phase1 끝(부산도착)과 Phase3 끝(부산도착)에만 표시 -->
+            <!-- Car Group: Phase1 끝(부산도착)에만 표시, Phase3는 제거 -->
             <g>
               <animate attributeName="opacity"
-                values="0;0;1;0;0;0;1;0;0"
+                values="0;0;1;0;0;0;0;0;0"
                 keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75"
                 calcMode="discrete" dur="48s" repeatCount="indefinite"/>
               <animateMotion dur="48s" repeatCount="indefinite"
                 path="M 145,220 L 165,230"
-                keyPoints="0;0;0;1;0;0;0;1;0"
-                keyTimes="0;0.24;0.25;0.255;0.26;0.5;0.51;0.745;0.75"
+                keyPoints="0;0;0;1;0;0;0;0;0"
+                keyTimes="0;0.24;0.25;0.255;0.26;0.5;0.51;0.74;0.75"
                 calcMode="linear"/>
               <g>
                 <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
-                <!-- Phase1 끝: 혼자 쏘카 -->
                 <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity"
-                    values="0;0;1;0;0;0;0;0;0"
-                    keyTimes="0;0.24;0.25;0.26;0.5;0.51;0.74;0.75;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
                   👦🏻
                 </text>
-                <!-- Phase3 끝: 꽃들고 쏘카 -->
-                <g>
-                  <animate attributeName="opacity"
-                    values="0;0;0;0;0;0;1;0;0"
-                    keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.75;1"
-                    calcMode="discrete" dur="48s" repeatCount="indefinite"/>
-                  <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                  <text x="6" y="-12" font-size="12" text-anchor="middle" dominant-baseline="central">💐</text>
-                </g>
               </g>
             </g>
 
