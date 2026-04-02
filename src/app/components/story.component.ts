@@ -32,16 +32,16 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
 
-      <!-- Phase5: 가운데 축하 화면 -->
+      <!-- Phase 5: 축하 화면 -->
       <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[500px] z-10 px-4 flex items-center justify-center">
         <div class="flex flex-col items-center justify-center">
           <div class="text-8xl mb-4 animate-couple-pop">🤵👰</div>
-          <div class="flex gap-2 animate-hearts">
+          <div class="flex gap-2">
             <span class="text-3xl animate-heart-1">❤️</span>
             <span class="text-4xl animate-heart-2">💕</span>
             <span class="text-3xl animate-heart-3">❤️</span>
           </div>
-          <div class="flex gap-2 mt-2 animate-hearts-2">
+          <div class="flex gap-2 mt-2">
             <span class="text-2xl animate-heart-4">💖</span>
             <span class="text-3xl animate-heart-5">❤️</span>
             <span class="text-2xl animate-heart-6">💗</span>
@@ -53,8 +53,61 @@ import { CommonModule } from '@angular/common';
         </div>
       </div>
 
-      <!-- Phase 1~4: 지도 애니메이션 -->
-      <div *ngIf="currentPhase() !== 5" class="relative w-full max-w-lg h-[500px] z-10 px-4">
+      <!-- Phase 1~4: 지도 -->
+      <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
+        <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+          <!-- 지도 배경 -->
+          <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
+          <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
+          <circle cx="185" cy="90" r="3" class="fill-white stroke-pink-200" stroke-width="2"/>
+          <path d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
+          <path d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
+
+          <!-- 서울 마커 -->
+          <g transform="translate(75, 85)">
+            <circle cx="0" cy="0" r="5" class="fill-pink-400 stroke-white" stroke-width="2"/>
+            <rect x="-20" y="-22" width="40" height="14" rx="4" class="fill-white/90"/>
+            <text x="0" y="-12" font-size="8" font-weight="bold" text-anchor="middle" class="fill-pink-600 tracking-widest font-sans">SEOUL</text>
+          </g>
+
+          <!-- 부산 마커 -->
+          <g transform="translate(145, 220)">
+            <circle cx="0" cy="0" r="5" class="fill-blue-400 stroke-white" stroke-width="2"/>
+            <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
+            <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
+          </g>
+
+          <!-- Phase1: 혼자 내려가기 -->
+          <g *ngIf="currentPhase() === 1" class="animate-phase1-down">
+            <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
+            <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
+          </g>
+
+          <!-- Phase2: 부끄러워하며 올라오기 -->
+          <g *ngIf="currentPhase() === 2">
+            <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
+            <text x="145" y="200" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻</text>
+            <ellipse cx="139" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
+            <ellipse cx="151" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
+          </g>
+
+          <!-- Phase3: 꽃들고 내려가기 -->
+          <g *ngIf="currentPhase() === 3">
+            <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
+            <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
+            <text x="85" y="70" font-size="14" text-anchor="middle" dominant-baseline="central" class="animate-move-down">💐</text>
+          </g>
+
+          <!-- Phase4: 둘이 같이 올라오기 -->
+          <g *ngIf="currentPhase() === 4">
+            <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
+            <text x="145" y="200" font-size="16" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻❤️👧🏻</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 시작 전 지도만 표시 -->
+      <div *ngIf="!started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
         <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
           <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
@@ -71,57 +124,12 @@ import { CommonModule } from '@angular/common';
             <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
             <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
           </g>
-
-          <ng-container *ngIf="started()">
-            <g>
-              <animateMotion dur="32s" repeatCount="indefinite"
-                path="M 75,85 Q 130,120 145,220"
-                keyPoints="0;1;1;0;0;1;1;0"
-                keyTimes="0;0.25;0.26;0.5;0.51;0.75;0.76;1"
-                calcMode="linear"/>
-              <g>
-                <animateTransform attributeName="transform" type="scale"
-                  values="1 1;1 1;-1 1;-1 1;1 1;1 1;-1 1;-1 1;1 1"
-                  keyTimes="0;0.24;0.26;0.49;0.51;0.74;0.76;0.99;1"
-                  calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-                <text x="0" y="5" font-size="20" text-anchor="middle" dominant-baseline="central">🚂</text>
-                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity" values="1;1;0;0;0;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.5;0.51;0.75;0.76;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-                  👦🏻
-                </text>
-                <g>
-                  <animate attributeName="opacity" values="0;0;1;1;1;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.75;0.76;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-                  <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                  <ellipse cx="-6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
-                  <ellipse cx="6" cy="-18" rx="3" ry="2" fill="#ff6b81" opacity="0.9"/>
-                </g>
-                <g>
-                  <animate attributeName="opacity" values="0;0;0;0;0;1;1;1;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-                  <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-                  <text x="8" y="-15" font-size="14" text-anchor="middle" dominant-baseline="central">💐</text>
-                </g>
-                <text x="0" y="-20" font-size="20" text-anchor="middle" dominant-baseline="central">
-                  <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;1;1" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75;1" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-                  👦🏻❤️👧🏻
-                </text>
-              </g>
-            </g>
-            <g>
-              <animate attributeName="opacity" values="0;0;1;0;0;0;0;0;0" keyTimes="0;0.24;0.25;0.26;0.49;0.5;0.51;0.74;0.75" calcMode="discrete" dur="32s" repeatCount="indefinite"/>
-              <animateMotion dur="32s" repeatCount="indefinite"
-                path="M 145,220 L 165,230"
-                keyPoints="0;0;0;1;0;0;0;0;0"
-                keyTimes="0;0.24;0.25;0.255;0.26;0.5;0.51;0.74;0.75"
-                calcMode="linear"/>
-              <g>
-                <text x="0" y="5" font-size="16" text-anchor="middle" dominant-baseline="central">🚙</text>
-                <text x="0" y="-16" font-size="16" text-anchor="middle" dominant-baseline="central">👦🏻</text>
-              </g>
-            </g>
-          </ng-container>
+          <!-- 서울에 남자 대기 -->
+          <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
         </svg>
       </div>
 
+      <!-- 텍스트 박스 -->
       <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
         <span *ngIf="!started()" class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
         <ng-container *ngIf="started()">
@@ -141,6 +149,22 @@ import { CommonModule } from '@angular/common';
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
+    }
+
+    .animate-move-down {
+      animation: move-down 8s linear forwards;
+    }
+    @keyframes move-down {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(70px, 135px); }
+    }
+
+    .animate-move-up {
+      animation: move-up 8s linear forwards;
+    }
+    @keyframes move-up {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-70px, -135px); }
     }
 
     .animate-couple-pop {
@@ -166,7 +190,6 @@ import { CommonModule } from '@angular/common';
     .animate-heart-4 { animation: heart-fly 1.5s ease-out 0.4s infinite; }
     .animate-heart-5 { animation: heart-fly 1.5s ease-out 0.6s infinite; }
     .animate-heart-6 { animation: heart-fly 1.5s ease-out 0.8s infinite; }
-
     @keyframes heart-fly {
       0% { transform: translateY(0) scale(1); opacity: 1; }
       50% { transform: translateY(-20px) scale(1.3); opacity: 0.8; }
