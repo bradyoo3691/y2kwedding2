@@ -92,7 +92,7 @@ styles: [`
     }
     @keyframes shrink-up {
       0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(-180px); }
+      100% { opacity: 1; transform: translateY(-250px); }
     }
   `]
 })
