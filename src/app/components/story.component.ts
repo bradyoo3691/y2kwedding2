@@ -75,25 +75,22 @@ import { CommonModule } from '@angular/common';
 
       <!-- Phase 1~4: 지도 + 자막 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 400 420" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 400 420" class="w-full" preserveAspectRatio="xMidYMid meet">
           <defs>
             <filter id="smoke-blur">
               <feGaussianBlur stdDeviation="2"/>
             </filter>
-            <radialGradient id="fade-edge" cx="50%" cy="50%" r="50%">
-              <stop offset="65%" stop-color="transparent"/>
-              <stop offset="100%" stop-color="#fce7f3"/>
-            </radialGradient>
-            <filter id="edge-blur">
-              <feGaussianBlur stdDeviation="14"/>
-            </filter>
+            <mask id="fade-mask">
+              <radialGradient id="mask-grad" cx="50%" cy="45%" r="50%">
+                <stop offset="52%" stop-color="white"/>
+                <stop offset="100%" stop-color="black"/>
+              </radialGradient>
+              <rect x="0" y="0" width="400" height="380" fill="url(#mask-grad)"/>
+            </mask>
           </defs>
 
-          <!-- 반도 이미지 배경 -->
-          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet"/>
-
-          <!-- 경계 블러 오버레이 -->
-          <rect x="0" y="0" width="400" height="380" fill="url(#fade-edge)" filter="url(#edge-blur)"/>
+          <!-- 반도 이미지: 마스크로 자연스러운 페이드 -->
+          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
 
           <!-- 서울~부산 점선 경로 -->
           <path d="M 150,110 Q 230,235 310,360" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
@@ -112,7 +109,7 @@ import { CommonModule } from '@angular/common';
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1: brady 서울→부산, perrier 부산 대기 -->
+          <!-- Phase1 -->
           <g *ngIf="currentPhase() === 1">
             <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
             <g class="animate-train-down">
@@ -124,7 +121,7 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase2: bashful_brady 부산→서울, perrier 부산 대기 -->
+          <!-- Phase2 -->
           <g *ngIf="currentPhase() === 2">
             <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
             <g class="animate-train-up">
@@ -136,7 +133,7 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase3: bashful_brady 서울→부산, perrier 부산 대기 -->
+          <!-- Phase3 -->
           <g *ngIf="currentPhase() === 3">
             <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
             <g class="animate-train-down">
@@ -148,7 +145,7 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase4: brady2 + perrier 같이 서울로 -->
+          <!-- Phase4 -->
           <g *ngIf="currentPhase() === 4">
             <g class="animate-train-up">
               <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
@@ -184,18 +181,17 @@ import { CommonModule } from '@angular/common';
 
       <!-- 시작 전 지도 -->
       <div *ngIf="!started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 400 420" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 400 420" class="w-full" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <radialGradient id="fade-edge2" cx="50%" cy="50%" r="50%">
-              <stop offset="65%" stop-color="transparent"/>
-              <stop offset="100%" stop-color="#fce7f3"/>
-            </radialGradient>
-            <filter id="edge-blur2">
-              <feGaussianBlur stdDeviation="14"/>
-            </filter>
+            <mask id="fade-mask2">
+              <radialGradient id="mask-grad2" cx="50%" cy="45%" r="50%">
+                <stop offset="52%" stop-color="white"/>
+                <stop offset="100%" stop-color="black"/>
+              </radialGradient>
+              <rect x="0" y="0" width="400" height="380" fill="url(#mask-grad2)"/>
+            </mask>
           </defs>
-          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet"/>
-          <rect x="0" y="0" width="400" height="380" fill="url(#fade-edge2)" filter="url(#edge-blur2)"/>
+          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask2)"/>
           <path d="M 150,110 Q 230,235 310,360" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
           <g transform="translate(150, 110)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
