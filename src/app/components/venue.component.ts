@@ -32,21 +32,21 @@ import { CommonModule } from '@angular/common';
   <a href="https://map.naver.com/v5/search/경기 성남시 분당구 삼평동 674" target="_blank"
     class="flex flex-col items-center gap-3 w-28 py-5 bg-green-500 text-white rounded-2xl shadow-md hover:bg-green-600 transition">
     <div class="w-12 h-12 rounded-xl overflow-hidden">
-      <img src="/네이버지도.jpg" class="w-full h-full object-cover" alt="naver"/>
+      <img src="/naver.jpg" class="w-full h-full object-cover" alt="naver"/>
     </div>
     <span class="text-xs font-bold">네이버지도</span>
   </a>
   <a href="https://tmap.life/babbf403" target="_blank"
     class="flex flex-col items-center gap-3 w-28 py-5 bg-blue-500 text-white rounded-2xl shadow-md hover:bg-blue-600 transition">
     <div class="w-12 h-12 rounded-xl overflow-hidden">
-      <img src="/티맵.jpg" class="w-full h-full object-cover" alt="tmap"/>
+      <img src="/tmap.jpg" class="w-full h-full object-cover" alt="tmap"/>
     </div>
     <span class="text-xs font-bold">T맵</span>
   </a>
   <a href="https://kko.to/X_dr-kIe1N" target="_blank"
     class="flex flex-col items-center gap-3 w-28 py-5 bg-yellow-400 text-stone-800 rounded-2xl shadow-md hover:bg-yellow-500 transition">
     <div class="w-12 h-12 rounded-xl overflow-hidden">
-      <img src="/카카오맵.jpg" class="w-full h-full object-cover" alt="kakao"/>
+      <img src="/kakao.jpg" class="w-full h-full object-cover" alt="kakao"/>
     </div>
     <span class="text-xs font-bold">카카오맵</span>
   </a>
