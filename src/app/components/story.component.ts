@@ -73,135 +73,152 @@ import { CommonModule } from '@angular/common';
         </div>
       </div>
 
-      <!-- Phase 1~4: 지도 -->
-      <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
-        <svg viewBox="0 0 220 320" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
-          <!-- 대한민국 지도 (더 사실적인 윤곽) -->
+      <!-- Phase 1~4: 지도 + 자막 -->
+      <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
+        <svg viewBox="0 0 220 290" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <defs>
             <filter id="map-shadow">
               <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
             </filter>
           </defs>
 
-          <!-- 본토 -->
+          <!-- 대한민국 본토 -->
           <path d="
-            M 95,18 L 105,15 L 118,20 L 128,18 L 135,25
-            L 148,30 L 155,40 L 158,52 L 162,65
-            L 168,80 L 170,95 L 168,110 L 172,122
-            L 170,135 L 165,148 L 162,160 L 158,172
-            L 152,182 L 148,192 L 142,202 L 135,212
-            L 128,220 L 118,225 L 108,228 L 98,226
-            L 88,222 L 78,215 L 70,205 L 62,195
-            L 55,183 L 50,170 L 48,158 L 45,145
-            L 42,132 L 40,118 L 42,104 L 38,90
-            L 40,76 L 45,63 L 50,52 L 58,42
-            L 68,33 L 78,24 L 88,19 Z"
+            M 100,12 L 108,10 L 118,13 L 126,12 L 134,16
+            L 143,22 L 150,30 L 155,40 L 158,50
+            L 162,62 L 165,75 L 166,88 L 164,100
+            L 168,112 L 166,124 L 162,136 L 158,148
+            L 154,158 L 150,167 L 145,175 L 140,182
+            L 134,188 L 127,193 L 120,196 L 113,197
+            L 106,196 L 99,193 L 92,188 L 85,182
+            L 78,174 L 72,165 L 67,155 L 63,144
+            L 59,133 L 57,121 L 56,109 L 58,97
+            L 54,85 L 56,73 L 60,62 L 65,52
+            L 72,43 L 80,35 L 88,27 L 95,19 Z"
             fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow)"/>
 
+          <path d="M 60,62 Q 52,70 56,78 Q 48,86 54,95 Q 46,104 56,112 Q 50,120 57,128"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+          <path d="M 162,62 Q 168,72 165,82 Q 170,92 166,102 Q 171,112 168,122"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+          <path d="M 67,155 Q 75,162 80,158 Q 88,165 95,160 Q 102,166 110,161 Q 118,167 125,162 Q 132,168 140,162 Q 145,168 150,167"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+
           <!-- 제주도 -->
-          <ellipse cx="88" cy="268" rx="18" ry="9" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <ellipse cx="95" cy="252" rx="20" ry="10" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <text x="95" y="254" font-size="6" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">제주</text>
 
           <!-- 울릉도 -->
-          <circle cx="185" cy="88" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <circle cx="188" cy="82" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <text x="188" y="84" font-size="5" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">울릉</text>
 
-          <!-- 서울~부산 점선 경로 -->
-          <path d="M 98,75 Q 135,130 148,205" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <!-- 서울~부산 점선 -->
+          <path d="M 105,82 Q 138,128 148,188" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
 
           <!-- 서울 마커 -->
-          <g transform="translate(98, 75)">
+          <g transform="translate(105, 82)">
             <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
           <!-- 부산 마커 -->
-          <g transform="translate(148, 205)">
+          <g transform="translate(148, 188)">
             <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1: brady 서울→부산, perrier 부산 대기 -->
+          <!-- Phase1: brady(60x60) 서울→부산, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 1">
-            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
-            <image href="/brady_face.png" x="86" y="60" width="24" height="24" class="animate-move-down"/>
+            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
+            <image href="/brady_face.png" x="87" y="55" width="60" height="60" class="animate-move-down"/>
           </g>
 
-          <!-- Phase2: brady 부산→서울(부끄), perrier 부산 대기 -->
+          <!-- Phase2: bashful_brady(60x60) 부산→서울, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
-            <image href="/brady_face3.png" x="137" y="190" width="24" height="24" class="animate-move-up"/>
-            <text x="163" y="202" font-size="13" dominant-baseline="central" class="animate-move-up">😳</text>
+            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
+            <image href="/bashful_brady.png" x="130" y="163" width="60" height="60" class="animate-move-up"/>
           </g>
 
-          <!-- Phase3: brady 서울→부산(부끄), perrier 부산 대기 -->
+          <!-- Phase3: bashful_brady(60x60) 서울→부산, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
-            <image href="/brady_face.png" x="86" y="60" width="24" height="24" class="animate-move-down"/>
-            <text x="112" y="72" font-size="13" dominant-baseline="central" class="animate-move-down">😳</text>
+            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
+            <image href="/bashful_brady.png" x="87" y="55" width="60" height="60" class="animate-move-down"/>
           </g>
 
-          <!-- Phase4: brady2 ❤️ perrier 💐 같이 서울로 -->
+          <!-- Phase4: brady2(60x60) ❤️ perrier(36x36) 💐 같이 서울로 -->
           <g *ngIf="currentPhase() === 4">
-            <image href="/brady_face2.png" x="125" y="188" width="24" height="24" class="animate-move-up"/>
-            <text x="151" y="200" font-size="13" dominant-baseline="central" class="animate-move-up">❤️</text>
-            <image href="/perrier_face.png" x="158" y="188" width="24" height="24" class="animate-move-up"/>
-            <text x="184" y="200" font-size="13" dominant-baseline="central" class="animate-move-up">💐</text>
+            <image href="/brady_face2.png" x="110" y="163" width="60" height="60" class="animate-move-up"/>
+            <text x="172" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">❤️</text>
+            <image href="/perrier_face.png" x="178" y="175" width="36" height="36" class="animate-move-up"/>
+            <text x="216" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
           </g>
         </svg>
+
+        <!-- 자막 박스 -->
+        <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center overflow-hidden mt-1">
+          <ng-container *ngIf="started()">
+            <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
+            <span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
+            <span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
+            <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
+            <span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
+          </ng-container>
+        </div>
       </div>
 
       <!-- 시작 전 지도 -->
-      <div *ngIf="!started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
-        <svg viewBox="0 0 220 320" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+      <div *ngIf="!started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
+        <svg viewBox="0 0 220 290" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <defs>
             <filter id="map-shadow2">
               <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
             </filter>
           </defs>
           <path d="
-            M 95,18 L 105,15 L 118,20 L 128,18 L 135,25
-            L 148,30 L 155,40 L 158,52 L 162,65
-            L 168,80 L 170,95 L 168,110 L 172,122
-            L 170,135 L 165,148 L 162,160 L 158,172
-            L 152,182 L 148,192 L 142,202 L 135,212
-            L 128,220 L 118,225 L 108,228 L 98,226
-            L 88,222 L 78,215 L 70,205 L 62,195
-            L 55,183 L 50,170 L 48,158 L 45,145
-            L 42,132 L 40,118 L 42,104 L 38,90
-            L 40,76 L 45,63 L 50,52 L 58,42
-            L 68,33 L 78,24 L 88,19 Z"
+            M 100,12 L 108,10 L 118,13 L 126,12 L 134,16
+            L 143,22 L 150,30 L 155,40 L 158,50
+            L 162,62 L 165,75 L 166,88 L 164,100
+            L 168,112 L 166,124 L 162,136 L 158,148
+            L 154,158 L 150,167 L 145,175 L 140,182
+            L 134,188 L 127,193 L 120,196 L 113,197
+            L 106,196 L 99,193 L 92,188 L 85,182
+            L 78,174 L 72,165 L 67,155 L 63,144
+            L 59,133 L 57,121 L 56,109 L 58,97
+            L 54,85 L 56,73 L 60,62 L 65,52
+            L 72,43 L 80,35 L 88,27 L 95,19 Z"
             fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow2)"/>
-          <ellipse cx="88" cy="268" rx="18" ry="9" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <circle cx="185" cy="88" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <path d="M 98,75 Q 135,130 148,205" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
-          <g transform="translate(98, 75)">
+          <path d="M 60,62 Q 52,70 56,78 Q 48,86 54,95 Q 46,104 56,112 Q 50,120 57,128"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+          <path d="M 162,62 Q 168,72 165,82 Q 170,92 166,102 Q 171,112 168,122"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+          <path d="M 67,155 Q 75,162 80,158 Q 88,165 95,160 Q 102,166 110,161 Q 118,167 125,162 Q 132,168 140,162 Q 145,168 150,167"
+            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
+          <ellipse cx="95" cy="252" rx="20" ry="10" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <text x="95" y="254" font-size="6" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">제주</text>
+          <circle cx="188" cy="82" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <text x="188" y="84" font-size="5" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">울릉</text>
+          <path d="M 105,82 Q 138,128 148,188" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <g transform="translate(105, 82)">
             <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(148, 205)">
+          <g transform="translate(148, 188)">
             <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <!-- 시작 전: brady 서울, perrier 부산 대기 -->
-          <image href="/brady_face.png" x="86" y="60" width="24" height="24"/>
-          <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
+          <image href="/brady_face.png" x="87" y="55" width="60" height="60"/>
+          <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
         </svg>
+
+        <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center mt-1">
+          <span class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
+        </div>
       </div>
 
-      <!-- 텍스트 박스 -->
-      <div class="relative mt-1 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
-        <span *ngIf="!started()" class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
-        <ng-container *ngIf="started()">
-          <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
-          <span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
-          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
-          <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
-          <span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
-        </ng-container>
-      </div>
     </section>
   `,
   styles: [`
@@ -218,7 +235,7 @@ import { CommonModule } from '@angular/common';
     }
     @keyframes move-down {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(62px, 130px); }
+      100% { transform: translate(55px, 106px); }
     }
 
     .animate-move-up {
@@ -226,7 +243,7 @@ import { CommonModule } from '@angular/common';
     }
     @keyframes move-up {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(-62px, -130px); }
+      100% { transform: translate(-55px, -106px); }
     }
 
     .animate-frame-entrance {
