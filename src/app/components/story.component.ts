@@ -82,7 +82,6 @@ import { CommonModule } from '@angular/common';
             </filter>
           </defs>
 
-          <!-- 대한민국 본토 -->
           <path d="
             M 100,12 L 108,10 L 118,13 L 126,12 L 134,16
             L 143,22 L 150,30 L 155,40 L 158,50
@@ -96,71 +95,61 @@ import { CommonModule } from '@angular/common';
             L 54,85 L 56,73 L 60,62 L 65,52
             L 72,43 L 80,35 L 88,27 L 95,19 Z"
             fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow)"/>
-
           <path d="M 60,62 Q 52,70 56,78 Q 48,86 54,95 Q 46,104 56,112 Q 50,120 57,128"
             fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
           <path d="M 162,62 Q 168,72 165,82 Q 170,92 166,102 Q 171,112 168,122"
             fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
           <path d="M 67,155 Q 75,162 80,158 Q 88,165 95,160 Q 102,166 110,161 Q 118,167 125,162 Q 132,168 140,162 Q 145,168 150,167"
             fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-
-          <!-- 제주도 -->
           <ellipse cx="95" cy="252" rx="20" ry="10" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
           <text x="95" y="254" font-size="6" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">제주</text>
-
-          <!-- 울릉도 -->
           <circle cx="188" cy="82" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
           <text x="188" y="84" font-size="5" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">울릉</text>
-
-          <!-- 서울~부산 점선 -->
           <path d="M 105,82 Q 138,128 148,188" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
 
-          <!-- 서울 마커 -->
           <g transform="translate(105, 82)">
             <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-
-          <!-- 부산 마커 -->
           <g transform="translate(148, 188)">
             <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1: brady(60x60) 서울→부산, perrier(36x36) 부산 대기 -->
+          <!-- Phase1: brady(48x48) 서울→부산, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 1">
             <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/brady_face.png" x="87" y="55" width="60" height="60" class="animate-move-down"/>
+            <image href="/brady_face.png" x="93" y="61" width="48" height="48" class="animate-move-down"/>
           </g>
 
-          <!-- Phase2: bashful_brady(60x60) 부산→서울, perrier(36x36) 부산 대기 -->
+          <!-- Phase2: bashful_brady(48x48) 부산→서울, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 2">
             <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/bashful_brady.png" x="130" y="163" width="60" height="60" class="animate-move-up"/>
+            <image href="/bashful_brady.png" x="136" y="169" width="48" height="48" class="animate-move-up"/>
           </g>
 
-          <!-- Phase3: bashful_brady(60x60) 서울→부산, perrier(36x36) 부산 대기 -->
+          <!-- Phase3: bashful_brady(48x48) 서울→부산, perrier(36x36) 부산 대기 -->
           <g *ngIf="currentPhase() === 3">
             <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/bashful_brady.png" x="87" y="55" width="60" height="60" class="animate-move-down"/>
+            <image href="/bashful_brady.png" x="93" y="61" width="48" height="48" class="animate-move-down"/>
           </g>
 
-          <!-- Phase4: brady2(60x60) ❤️ perrier(36x36) 💐 같이 서울로 -->
-<g *ngIf="currentPhase() === 4">
-  <image href="/brady_face2.png" x="100" y="163" width="60" height="60" class="animate-move-up"/>
-  <text x="160" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up">
-    ❤️
-    <animateTransform attributeName="transform" type="scale"
-      values="1;1.3;1;1.2;1"
-      keyTimes="0;0.25;0.5;0.75;1"
-      dur="0.8s" repeatCount="indefinite"
-      additive="sum"/>
-  </text>
-  <image href="/perrier_face.png" x="172" y="175" width="36" height="36" class="animate-move-up"/>
-  <text x="210" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
-</g>
+          <!-- Phase4: brady2(48x48) ❤️ perrier(36x36) 💐 같이 서울로 -->
+          <g *ngIf="currentPhase() === 4">
+            <image href="/brady_face2.png" x="104" y="169" width="48" height="48" class="animate-move-up"/>
+            <text x="156" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up">
+              ❤️
+              <animateTransform attributeName="transform" type="scale"
+                values="1;1.3;1;1.2;1"
+                keyTimes="0;0.25;0.5;0.75;1"
+                dur="0.8s" repeatCount="indefinite"
+                additive="sum"/>
+            </text>
+            <image href="/perrier_face.png" x="164" y="175" width="36" height="36" class="animate-move-up"/>
+            <text x="202" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
+          </g>
         </svg>
 
         <!-- 자막 박스 -->
@@ -217,7 +206,7 @@ import { CommonModule } from '@angular/common';
             <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <image href="/brady_face.png" x="87" y="55" width="60" height="60"/>
+          <image href="/brady_face.png" x="93" y="61" width="48" height="48"/>
           <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
         </svg>
 
