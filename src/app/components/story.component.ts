@@ -148,12 +148,12 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <!-- Phase4: brady2(60x60) ❤️ perrier(36x36) 💐 같이 서울로 -->
-          <g *ngIf="currentPhase() === 4">
-            <image href="/brady_face2.png" x="110" y="163" width="60" height="60" class="animate-move-up"/>
-            <text x="172" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">❤️</text>
-            <image href="/perrier_face.png" x="178" y="175" width="36" height="36" class="animate-move-up"/>
-            <text x="216" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
-          </g>
+<g *ngIf="currentPhase() === 4">
+  <image href="/brady_face2.png" x="100" y="163" width="60" height="60" class="animate-move-up"/>
+  <text x="163" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up animate-heart-wiggle">❤️</text>
+  <image href="/perrier_face.png" x="172" y="175" width="36" height="36" class="animate-move-up"/>
+  <text x="210" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
+</g>
         </svg>
 
         <!-- 자막 박스 -->
