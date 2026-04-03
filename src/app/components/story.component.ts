@@ -75,80 +75,95 @@ import { CommonModule } from '@angular/common';
 
       <!-- Phase 1~4: 지도 + 자막 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 220 290" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 400 420" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <filter id="map-shadow">
-              <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
+            <!-- 기차 연기 필터 -->
+            <filter id="smoke-blur">
+              <feGaussianBlur stdDeviation="2"/>
             </filter>
           </defs>
 
-          <path d="
-            M 100,12 L 108,10 L 118,13 L 126,12 L 134,16
-            L 143,22 L 150,30 L 155,40 L 158,50
-            L 162,62 L 165,75 L 166,88 L 164,100
-            L 168,112 L 166,124 L 162,136 L 158,148
-            L 154,158 L 150,167 L 145,175 L 140,182
-            L 134,188 L 127,193 L 120,196 L 113,197
-            L 106,196 L 99,193 L 92,188 L 85,182
-            L 78,174 L 72,165 L 67,155 L 63,144
-            L 59,133 L 57,121 L 56,109 L 58,97
-            L 54,85 L 56,73 L 60,62 L 65,52
-            L 72,43 L 80,35 L 88,27 L 95,19 Z"
-            fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow)"/>
-          <path d="M 60,62 Q 52,70 56,78 Q 48,86 54,95 Q 46,104 56,112 Q 50,120 57,128"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <path d="M 162,62 Q 168,72 165,82 Q 170,92 166,102 Q 171,112 168,122"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <path d="M 67,155 Q 75,162 80,158 Q 88,165 95,160 Q 102,166 110,161 Q 118,167 125,162 Q 132,168 140,162 Q 145,168 150,167"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="95" cy="252" rx="20" ry="10" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <text x="95" y="254" font-size="6" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">제주</text>
-          <circle cx="188" cy="82" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <text x="188" y="84" font-size="5" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">울릉</text>
-          <path d="M 105,82 Q 138,128 148,188" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <!-- 반도 이미지 배경 -->
+          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet"/>
 
-          <g transform="translate(105, 82)">
-            <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
-            <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
-            <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
-          </g>
-          <g transform="translate(148, 188)">
-            <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
-            <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
-            <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
+          <!-- 서울~부산 점선 경로 -->
+          <path id="train-path" d="M 272,95 Q 285,180 295,275" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+
+          <!-- 서울 마커 -->
+          <g transform="translate(272, 95)">
+            <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
+            <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
-          <!-- Phase1: brady(48x48) 서울→부산, perrier(36x36) 부산 대기 -->
+          <!-- 부산 마커 -->
+          <g transform="translate(295, 275)">
+            <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
+            <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
+          </g>
+
+          <!-- Phase1: brady 서울→부산, perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 1">
-            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/brady_face.png" x="93" y="61" width="48" height="48" class="animate-move-down"/>
+            <!-- perrier 부산 고정 -->
+            <image href="/perrier_face.png" x="298" y="258" width="36" height="36"/>
+
+            <!-- 기차 + brady 이동 -->
+            <g class="animate-train-down">
+              <!-- 연기 -->
+              <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="-45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <!-- 기차 -->
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
+              <!-- brady 얼굴 -->
+              <image href="/brady_face.png" x="-24" y="-60" width="48" height="48"/>
+            </g>
           </g>
 
-          <!-- Phase2: bashful_brady(48x48) 부산→서울, perrier(36x36) 부산 대기 -->
+          <!-- Phase2: bashful_brady 부산→서울, perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/bashful_brady.png" x="136" y="169" width="48" height="48" class="animate-move-up"/>
+            <image href="/perrier_face.png" x="298" y="258" width="36" height="36"/>
+            <g class="animate-train-up">
+              <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/bashful_brady.png" x="-24" y="-60" width="48" height="48"/>
+            </g>
           </g>
 
-          <!-- Phase3: bashful_brady(48x48) 서울→부산, perrier(36x36) 부산 대기 -->
+          <!-- Phase3: bashful_brady 서울→부산, perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
-            <image href="/bashful_brady.png" x="93" y="61" width="48" height="48" class="animate-move-down"/>
+            <image href="/perrier_face.png" x="298" y="258" width="36" height="36"/>
+            <g class="animate-train-down">
+              <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="-45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
+              <image href="/bashful_brady.png" x="-24" y="-60" width="48" height="48"/>
+            </g>
           </g>
 
-          <!-- Phase4: brady2(48x48) ❤️ perrier(36x36) 💐 같이 서울로 -->
+          <!-- Phase4: brady2 + perrier 같이 서울로 -->
           <g *ngIf="currentPhase() === 4">
-            <image href="/brady_face2.png" x="104" y="169" width="48" height="48" class="animate-move-up"/>
-            <text x="156" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up">
-              ❤️
-              <animateTransform attributeName="transform" type="scale"
-                values="1;1.3;1;1.2;1"
-                keyTimes="0;0.25;0.5;0.75;1"
-                dur="0.8s" repeatCount="indefinite"
-                additive="sum"/>
-            </text>
-            <image href="/perrier_face.png" x="164" y="175" width="36" height="36" class="animate-move-up"/>
-            <text x="202" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
+            <g class="animate-train-up">
+              <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/brady_face2.png" x="-58" y="-60" width="48" height="48"/>
+              <text x="-6" y="-36" font-size="18" text-anchor="middle" dominant-baseline="central">
+                ❤️
+                <animateTransform attributeName="transform" type="scale"
+                  values="1;1.3;1;1.2;1"
+                  keyTimes="0;0.25;0.5;0.75;1"
+                  dur="0.8s" repeatCount="indefinite"
+                  additive="sum"/>
+              </text>
+              <image href="/perrier_face.png" x="10" y="-60" width="36" height="36"/>
+              <text x="46" y="-42" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+            </g>
           </g>
         </svg>
 
@@ -166,48 +181,22 @@ import { CommonModule } from '@angular/common';
 
       <!-- 시작 전 지도 -->
       <div *ngIf="!started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 220 290" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
-          <defs>
-            <filter id="map-shadow2">
-              <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
-            </filter>
-          </defs>
-          <path d="
-            M 100,12 L 108,10 L 118,13 L 126,12 L 134,16
-            L 143,22 L 150,30 L 155,40 L 158,50
-            L 162,62 L 165,75 L 166,88 L 164,100
-            L 168,112 L 166,124 L 162,136 L 158,148
-            L 154,158 L 150,167 L 145,175 L 140,182
-            L 134,188 L 127,193 L 120,196 L 113,197
-            L 106,196 L 99,193 L 92,188 L 85,182
-            L 78,174 L 72,165 L 67,155 L 63,144
-            L 59,133 L 57,121 L 56,109 L 58,97
-            L 54,85 L 56,73 L 60,62 L 65,52
-            L 72,43 L 80,35 L 88,27 L 95,19 Z"
-            fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow2)"/>
-          <path d="M 60,62 Q 52,70 56,78 Q 48,86 54,95 Q 46,104 56,112 Q 50,120 57,128"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <path d="M 162,62 Q 168,72 165,82 Q 170,92 166,102 Q 171,112 168,122"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <path d="M 67,155 Q 75,162 80,158 Q 88,165 95,160 Q 102,166 110,161 Q 118,167 125,162 Q 132,168 140,162 Q 145,168 150,167"
-            fill="none" stroke="#fbb6ce" stroke-width="1" opacity="0.5"/>
-          <ellipse cx="95" cy="252" rx="20" ry="10" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <text x="95" y="254" font-size="6" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">제주</text>
-          <circle cx="188" cy="82" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
-          <text x="188" y="84" font-size="5" text-anchor="middle" fill="#fbb6ce" font-family="sans-serif">울릉</text>
-          <path d="M 105,82 Q 138,128 148,188" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
-          <g transform="translate(105, 82)">
-            <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
-            <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
-            <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
+        <svg viewBox="0 0 400 420" class="w-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet"/>
+          <path d="M 272,95 Q 285,180 295,275" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <g transform="translate(272, 95)">
+            <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
+            <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(148, 188)">
-            <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
-            <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
-            <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
+          <g transform="translate(295, 275)">
+            <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
+            <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <image href="/brady_face.png" x="93" y="61" width="48" height="48"/>
-          <image href="/perrier_face.png" x="136" y="179" width="36" height="36"/>
+          <!-- 시작 전: brady 서울, perrier 부산 -->
+          <image href="/brady_face.png" x="248" y="55" width="48" height="48"/>
+          <image href="/perrier_face.png" x="298" y="258" width="36" height="36"/>
         </svg>
 
         <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center mt-1">
@@ -226,20 +215,33 @@ import { CommonModule } from '@angular/common';
       50% { transform: translateY(-20px); }
     }
 
-    .animate-move-down {
-      animation: move-down 8s linear forwards;
+    /* 기차 서울→부산 */
+    .animate-train-down {
+      animation: train-down 8s linear forwards;
+      transform-origin: center;
     }
-    @keyframes move-down {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(55px, 106px); }
+    @keyframes train-down {
+      0% { transform: translate(272px, 95px); }
+      100% { transform: translate(295px, 275px); }
     }
 
-    .animate-move-up {
-      animation: move-up 8s linear forwards;
+    /* 기차 부산→서울 */
+    .animate-train-up {
+      animation: train-up 8s linear forwards;
+      transform-origin: center;
     }
-    @keyframes move-up {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-55px, -106px); }
+    @keyframes train-up {
+      0% { transform: translate(295px, 275px); }
+      100% { transform: translate(272px, 95px); }
+    }
+
+    /* 연기 애니메이션 */
+    .animate-smoke-1 { animation: smoke 1.5s ease-out 0s infinite; }
+    .animate-smoke-2 { animation: smoke 1.5s ease-out 0.3s infinite; }
+    .animate-smoke-3 { animation: smoke 1.5s ease-out 0.6s infinite; }
+    @keyframes smoke {
+      0% { opacity: 0.7; transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-10px, -20px) scale(2); }
     }
 
     .animate-frame-entrance {
