@@ -32,10 +32,8 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
 
-      <!-- Phase 5: love.png + 하트 -->
+      <!-- Phase 5 -->
       <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[500px] z-10 px-4 flex items-center justify-center overflow-hidden">
-
-        <!-- 뿜뿜 하트들 -->
         <div class="absolute inset-0 pointer-events-none">
           <span class="absolute text-2xl animate-heart-pop-1">❤️</span>
           <span class="absolute text-3xl animate-heart-pop-2">💕</span>
@@ -48,10 +46,7 @@ import { CommonModule } from '@angular/common';
           <span class="absolute text-3xl animate-heart-pop-9">💕</span>
           <span class="absolute text-xl animate-heart-pop-10">❤️</span>
         </div>
-
-        <!-- 하트 프레임 + 사진 -->
         <div class="relative flex flex-col items-center animate-frame-entrance">
-          <!-- 하트 모양 클립 -->
           <div class="relative animate-frame-shake">
             <svg width="0" height="0">
               <defs>
@@ -60,8 +55,6 @@ import { CommonModule } from '@angular/common';
                 </clipPath>
               </defs>
             </svg>
-
-            <!-- 하트 테두리 -->
             <div class="w-64 h-64 relative">
               <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full drop-shadow-2xl">
                 <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
@@ -69,18 +62,10 @@ import { CommonModule } from '@angular/common';
                 <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
                   fill="rgba(244,63,94,0.1)"/>
               </svg>
-
-              <!-- 사진 -->
-              <img
-                src="/love.png"
-                alt="love"
-                class="absolute inset-0 w-full h-full object-cover"
-                style="clip-path: path('M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z'); transform: scale(0.95);"
-              />
+              <img src="/love.png" alt="love" class="absolute inset-0 w-full h-full object-cover"
+                style="clip-path: path('M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z'); transform: scale(0.95);"/>
             </div>
           </div>
-
-          <!-- 이름 -->
           <div class="mt-4 text-center animate-fade-in-text">
             <p class="font-serif text-2xl text-rose-700 italic">승혁 & 선경</p>
             <p class="font-sans text-xs text-rose-400 mt-1 tracking-widest">Forever Together 💍</p>
@@ -90,76 +75,131 @@ import { CommonModule } from '@angular/common';
 
       <!-- Phase 1~4: 지도 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
-        <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
-          <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <circle cx="185" cy="90" r="3" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <path d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
-          <path d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
-          <g transform="translate(75, 85)">
-            <circle cx="0" cy="0" r="5" class="fill-pink-400 stroke-white" stroke-width="2"/>
-            <rect x="-20" y="-22" width="40" height="14" rx="4" class="fill-white/90"/>
-            <text x="0" y="-12" font-size="8" font-weight="bold" text-anchor="middle" class="fill-pink-600 tracking-widest font-sans">SEOUL</text>
-          </g>
-          <g transform="translate(145, 220)">
-            <circle cx="0" cy="0" r="5" class="fill-blue-400 stroke-white" stroke-width="2"/>
-            <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
-            <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
+        <svg viewBox="0 0 220 320" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+          <!-- 대한민국 지도 (더 사실적인 윤곽) -->
+          <defs>
+            <filter id="map-shadow">
+              <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+
+          <!-- 본토 -->
+          <path d="
+            M 95,18 L 105,15 L 118,20 L 128,18 L 135,25
+            L 148,30 L 155,40 L 158,52 L 162,65
+            L 168,80 L 170,95 L 168,110 L 172,122
+            L 170,135 L 165,148 L 162,160 L 158,172
+            L 152,182 L 148,192 L 142,202 L 135,212
+            L 128,220 L 118,225 L 108,228 L 98,226
+            L 88,222 L 78,215 L 70,205 L 62,195
+            L 55,183 L 50,170 L 48,158 L 45,145
+            L 42,132 L 40,118 L 42,104 L 38,90
+            L 40,76 L 45,63 L 50,52 L 58,42
+            L 68,33 L 78,24 L 88,19 Z"
+            fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow)"/>
+
+          <!-- 제주도 -->
+          <ellipse cx="88" cy="268" rx="18" ry="9" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+
+          <!-- 울릉도 -->
+          <circle cx="185" cy="88" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+
+          <!-- 서울~부산 점선 경로 -->
+          <path d="M 98,75 Q 135,130 148,205" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
+
+          <!-- 서울 마커 -->
+          <g transform="translate(98, 75)">
+            <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
+            <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
+          <!-- 부산 마커 -->
+          <g transform="translate(148, 205)">
+            <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
+            <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
+          </g>
+
+          <!-- Phase1: brady 서울→부산, perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 1">
-            <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
-            <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
+            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
+            <image href="/brady_face.png" x="86" y="60" width="24" height="24" class="animate-move-down"/>
           </g>
+
+          <!-- Phase2: brady 부산→서울(부끄), perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 2">
-            <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
-            <text x="145" y="200" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻</text>
-            <ellipse cx="139" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
-            <ellipse cx="151" cy="202" rx="3" ry="2" fill="#ff6b81" opacity="0.9" class="animate-move-up"/>
+            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
+            <image href="/brady_face.png" x="137" y="190" width="24" height="24" class="animate-move-up"/>
+            <text x="163" y="202" font-size="13" dominant-baseline="central" class="animate-move-up">😳</text>
           </g>
+
+          <!-- Phase3: brady 서울→부산(부끄), perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 3">
-            <text x="75" y="85" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">🚂</text>
-            <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-down">👦🏻</text>
-            <text x="85" y="70" font-size="14" text-anchor="middle" dominant-baseline="central" class="animate-move-down">💐</text>
+            <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
+            <image href="/brady_face.png" x="86" y="60" width="24" height="24" class="animate-move-down"/>
+            <text x="112" y="72" font-size="13" dominant-baseline="central" class="animate-move-down">😳</text>
           </g>
+
+          <!-- Phase4: brady2 ❤️ perrier 💐 같이 서울로 -->
           <g *ngIf="currentPhase() === 4">
-            <text x="145" y="220" font-size="20" text-anchor="middle" dominant-baseline="central" class="animate-move-up">🚂</text>
-            <text x="145" y="200" font-size="16" text-anchor="middle" dominant-baseline="central" class="animate-move-up">👦🏻❤️👧🏻</text>
+            <image href="/brady_face2.png" x="125" y="188" width="24" height="24" class="animate-move-up"/>
+            <text x="151" y="200" font-size="13" dominant-baseline="central" class="animate-move-up">❤️</text>
+            <image href="/perrier_face.png" x="158" y="188" width="24" height="24" class="animate-move-up"/>
+            <text x="184" y="200" font-size="13" dominant-baseline="central" class="animate-move-up">💐</text>
           </g>
         </svg>
       </div>
 
       <!-- 시작 전 지도 -->
       <div *ngIf="!started()" class="relative w-full max-w-lg h-[500px] z-10 px-4">
-        <svg viewBox="0 0 200 300" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
-          <path d="M 60,30 Q 90,15 120,30 Q 150,60 160,100 Q 175,160 150,230 Q 100,250 60,230 Q 40,200 50,160 Q 30,120 40,80 Q 50,50 60,30 Z" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <ellipse cx="50" cy="275" rx="12" ry="6" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <circle cx="185" cy="90" r="3" class="fill-white stroke-pink-200" stroke-width="2"/>
-          <path d="M 75,85 Q 130,120 145,220" fill="none" class="stroke-pink-300" stroke-width="3" stroke-dasharray="4,4"/>
-          <path d="M 145,220 L 165,230" fill="none" class="stroke-blue-300" stroke-width="2" stroke-dasharray="2,2"/>
-          <g transform="translate(75, 85)">
-            <circle cx="0" cy="0" r="5" class="fill-pink-400 stroke-white" stroke-width="2"/>
-            <rect x="-20" y="-22" width="40" height="14" rx="4" class="fill-white/90"/>
-            <text x="0" y="-12" font-size="8" font-weight="bold" text-anchor="middle" class="fill-pink-600 tracking-widest font-sans">SEOUL</text>
+        <svg viewBox="0 0 220 320" class="w-full h-full drop-shadow-xl" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <filter id="map-shadow2">
+              <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#f9a8d4" flood-opacity="0.4"/>
+            </filter>
+          </defs>
+          <path d="
+            M 95,18 L 105,15 L 118,20 L 128,18 L 135,25
+            L 148,30 L 155,40 L 158,52 L 162,65
+            L 168,80 L 170,95 L 168,110 L 172,122
+            L 170,135 L 165,148 L 162,160 L 158,172
+            L 152,182 L 148,192 L 142,202 L 135,212
+            L 128,220 L 118,225 L 108,228 L 98,226
+            L 88,222 L 78,215 L 70,205 L 62,195
+            L 55,183 L 50,170 L 48,158 L 45,145
+            L 42,132 L 40,118 L 42,104 L 38,90
+            L 40,76 L 45,63 L 50,52 L 58,42
+            L 68,33 L 78,24 L 88,19 Z"
+            fill="#fff5f7" stroke="#fbb6ce" stroke-width="2" filter="url(#map-shadow2)"/>
+          <ellipse cx="88" cy="268" rx="18" ry="9" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <circle cx="185" cy="88" r="5" fill="#fff5f7" stroke="#fbb6ce" stroke-width="1.5"/>
+          <path d="M 98,75 Q 135,130 148,205" fill="none" stroke="#f9a8d4" stroke-width="2.5" stroke-dasharray="5,4"/>
+          <g transform="translate(98, 75)">
+            <circle cx="0" cy="0" r="6" fill="#f43f5e" stroke="white" stroke-width="2"/>
+            <rect x="-22" y="-26" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="-15" font-size="8" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(145, 220)">
-            <circle cx="0" cy="0" r="5" class="fill-blue-400 stroke-white" stroke-width="2"/>
-            <rect x="-20" y="10" width="40" height="14" rx="4" class="fill-white/90"/>
-            <text x="0" y="20" font-size="8" font-weight="bold" text-anchor="middle" class="fill-blue-600 tracking-widest font-sans">BUSAN</text>
+          <g transform="translate(148, 205)">
+            <circle cx="0" cy="0" r="6" fill="#3b82f6" stroke="white" stroke-width="2"/>
+            <rect x="-22" y="10" width="44" height="16" rx="4" fill="white" opacity="0.95"/>
+            <text x="0" y="21" font-size="8" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <text x="75" y="65" font-size="20" text-anchor="middle" dominant-baseline="central">👦🏻</text>
+          <!-- 시작 전: brady 서울, perrier 부산 대기 -->
+          <image href="/brady_face.png" x="86" y="60" width="24" height="24"/>
+          <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
         </svg>
       </div>
 
       <!-- 텍스트 박스 -->
-      <div class="relative mt-8 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
+      <div class="relative mt-1 font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 z-10 max-w-lg mx-4 h-24 flex items-center justify-center overflow-hidden w-full">
         <span *ngIf="!started()" class="text-rose-300 text-sm">버튼을 눌러 러브스토리를 시작해보세요 💕</span>
         <ng-container *ngIf="started()">
-<span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
-<span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
-<span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
-<span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
-<span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
+          <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
+          <span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
+          <span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
+          <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
+          <span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
         </ng-container>
       </div>
     </section>
@@ -178,7 +218,7 @@ import { CommonModule } from '@angular/common';
     }
     @keyframes move-down {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(70px, 135px); }
+      100% { transform: translate(62px, 130px); }
     }
 
     .animate-move-up {
@@ -186,7 +226,7 @@ import { CommonModule } from '@angular/common';
     }
     @keyframes move-up {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(-70px, -135px); }
+      100% { transform: translate(-62px, -130px); }
     }
 
     .animate-frame-entrance {
@@ -225,7 +265,6 @@ import { CommonModule } from '@angular/common';
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* 하트 뿜뿜 10개 - 각기 다른 위치와 타이밍 */
     .animate-heart-pop-1  { top: 60%; left: 50%; animation: heart-pop 2s ease-out 0.0s infinite; }
     .animate-heart-pop-2  { top: 65%; left: 30%; animation: heart-pop 2s ease-out 0.2s infinite; }
     .animate-heart-pop-3  { top: 65%; left: 70%; animation: heart-pop 2s ease-out 0.4s infinite; }
