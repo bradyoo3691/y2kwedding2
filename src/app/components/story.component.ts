@@ -150,7 +150,14 @@ import { CommonModule } from '@angular/common';
           <!-- Phase4: brady2(60x60) ❤️ perrier(36x36) 💐 같이 서울로 -->
 <g *ngIf="currentPhase() === 4">
   <image href="/brady_face2.png" x="100" y="163" width="60" height="60" class="animate-move-up"/>
-  <text x="163" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up animate-heart-wiggle">❤️</text>
+  <text x="160" y="193" font-size="20" dominant-baseline="central" text-anchor="middle" class="animate-move-up">
+    ❤️
+    <animateTransform attributeName="transform" type="scale"
+      values="1;1.3;1;1.2;1"
+      keyTimes="0;0.25;0.5;0.75;1"
+      dur="0.8s" repeatCount="indefinite"
+      additive="sum"/>
+  </text>
   <image href="/perrier_face.png" x="172" y="175" width="36" height="36" class="animate-move-up"/>
   <text x="210" y="193" font-size="16" dominant-baseline="central" class="animate-move-up">💐</text>
 </g>
