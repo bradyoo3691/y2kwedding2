@@ -130,7 +130,7 @@ import { CommonModule } from '@angular/common';
           <!-- Phase2: brady 부산→서울(부끄), perrier 부산 대기 -->
           <g *ngIf="currentPhase() === 2">
             <image href="/perrier_face.png" x="133" y="190" width="24" height="24"/>
-            <image href="/brady_face.png" x="137" y="190" width="24" height="24" class="animate-move-up"/>
+            <image href="/brady_face3.png" x="137" y="190" width="24" height="24" class="animate-move-up"/>
             <text x="163" y="202" font-size="13" dominant-baseline="central" class="animate-move-up">😳</text>
           </g>
 
