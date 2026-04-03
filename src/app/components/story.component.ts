@@ -89,21 +89,20 @@ import { CommonModule } from '@angular/common';
             </mask>
           </defs>
 
-          <!-- 반도 이미지: 마스크로 자연스러운 페이드 -->
           <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
 
           <!-- 서울~부산 점선 경로 -->
-          <path d="M 150,110 Q 230,235 310,360" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <path d="M 185,155 Q 252,232 320,310" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
 
           <!-- 서울 마커 -->
-          <g transform="translate(150, 110)">
+          <g transform="translate(185, 155)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
           <!-- 부산 마커 -->
-          <g transform="translate(310, 360)">
+          <g transform="translate(320, 310)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
@@ -111,7 +110,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase1 -->
           <g *ngIf="currentPhase() === 1">
-            <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
+            <image href="/perrier_face.png" x="302" y="292" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -123,7 +122,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase2 -->
           <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
+            <image href="/perrier_face.png" x="302" y="292" width="36" height="36"/>
             <g class="animate-train-up">
               <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -135,7 +134,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase3 -->
           <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
+            <image href="/perrier_face.png" x="302" y="292" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -173,7 +172,7 @@ import { CommonModule } from '@angular/common';
             <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이(서울오피스)는 직장동료 선경이(부산오피스)가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
             <span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
             <span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
-            <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을 수락했고,<br>둘의 사랑은 이루어집니다! ❤️ 야호'"></span>
+            <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을<br>수락했고, 둘의 사랑은 이루어집니다! ❤️ 야호!'"></span>
             <span *ngIf="currentPhase() === 5" class="absolute w-full px-6" [innerHTML]="'💍 그렇게 예비 신랑&amp;신부가 된 승혁이와 선경이가<br>이제는 여러분을 둘의 사랑스러운 결혼식에 초대합니다 🎊'"></span>
           </ng-container>
         </div>
@@ -192,19 +191,19 @@ import { CommonModule } from '@angular/common';
             </mask>
           </defs>
           <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask2)"/>
-          <path d="M 150,110 Q 230,235 310,360" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
-          <g transform="translate(150, 110)">
+          <path d="M 185,155 Q 252,232 320,310" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <g transform="translate(185, 155)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(310, 360)">
+          <g transform="translate(320, 310)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <image href="/brady_face.png" x="126" y="70" width="48" height="48"/>
-          <image href="/perrier_face.png" x="292" y="342" width="36" height="36"/>
+          <image href="/brady_face.png" x="161" y="115" width="48" height="48"/>
+          <image href="/perrier_face.png" x="302" y="292" width="36" height="36"/>
         </svg>
 
         <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center mt-1">
@@ -227,16 +226,16 @@ import { CommonModule } from '@angular/common';
       animation: train-down 8s linear forwards;
     }
     @keyframes train-down {
-      0% { transform: translate(150px, 110px); }
-      100% { transform: translate(310px, 360px); }
+      0% { transform: translate(185px, 155px); }
+      100% { transform: translate(320px, 310px); }
     }
 
     .animate-train-up {
       animation: train-up 8s linear forwards;
     }
     @keyframes train-up {
-      0% { transform: translate(310px, 360px); }
-      100% { transform: translate(150px, 110px); }
+      0% { transform: translate(320px, 310px); }
+      100% { transform: translate(185px, 155px); }
     }
 
     .animate-smoke-1 { animation: smoke 1.5s ease-out 0s infinite; }
