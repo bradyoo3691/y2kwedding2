@@ -91,25 +91,26 @@ import { CommonModule } from '@angular/common';
 
           <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
 
-          <path d="M 260,80 Q 285,175 310,270" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <!-- 서울(228,105) → 부산(295,285) 점선 -->
+          <path d="M 228,105 Q 262,195 295,285" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
 
           <!-- 서울 마커 -->
-          <g transform="translate(260, 80)">
+          <g transform="translate(228, 105)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
           <!-- 부산 마커 -->
-          <g transform="translate(310, 270)">
+          <g transform="translate(295, 285)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1 -->
+          <!-- Phase1: 서울→부산 -->
           <g *ngIf="currentPhase() === 1">
-            <image href="/perrier_face.png" x="292" y="252" width="36" height="36"/>
+            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -119,9 +120,9 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase2 -->
+          <!-- Phase2: 부산→서울 -->
           <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="292" y="252" width="36" height="36"/>
+            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
             <g class="animate-train-up">
               <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -131,9 +132,9 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase3 -->
+          <!-- Phase3: 서울→부산 -->
           <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="292" y="252" width="36" height="36"/>
+            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -143,7 +144,7 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase4 -->
+          <!-- Phase4: 부산→서울 (함께) -->
           <g *ngIf="currentPhase() === 4">
             <g class="animate-train-up">
               <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
@@ -190,19 +191,21 @@ import { CommonModule } from '@angular/common';
             </mask>
           </defs>
           <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask2)"/>
-          <path d="M 260,80 Q 285,175 310,270" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
-          <g transform="translate(260, 80)">
+          <path d="M 228,105 Q 262,195 295,285" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <g transform="translate(228, 105)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(310, 270)">
+          <g transform="translate(295, 285)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <image href="/brady_face.png" x="236" y="40" width="48" height="48"/>
-          <image href="/perrier_face.png" x="292" y="252" width="36" height="36"/>
+          <!-- brady: 서울 위 -->
+          <image href="/brady_face.png" x="204" y="45" width="48" height="48"/>
+          <!-- perrier: 부산 위 -->
+          <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
         </svg>
 
         <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center mt-1">
@@ -225,16 +228,16 @@ import { CommonModule } from '@angular/common';
       animation: train-down 8s linear forwards;
     }
     @keyframes train-down {
-      0% { transform: translate(260px, 80px); }
-      100% { transform: translate(310px, 270px); }
+      0% { transform: translate(228px, 105px); }
+      100% { transform: translate(295px, 285px); }
     }
 
     .animate-train-up {
       animation: train-up 8s linear forwards;
     }
     @keyframes train-up {
-      0% { transform: translate(310px, 270px); }
-      100% { transform: translate(260px, 80px); }
+      0% { transform: translate(295px, 285px); }
+      100% { transform: translate(228px, 105px); }
     }
 
     .animate-smoke-1 { animation: smoke 1.5s ease-out 0s infinite; }
