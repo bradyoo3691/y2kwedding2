@@ -75,7 +75,7 @@ import { CommonModule } from '@angular/common';
 
       <!-- Phase 1~4: 지도 + 자막 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 400 420" class="w-full" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 400 450" class="w-full" preserveAspectRatio="xMidYMid meet">
           <defs>
             <filter id="smoke-blur">
               <feGaussianBlur stdDeviation="2"/>
@@ -85,24 +85,25 @@ import { CommonModule } from '@angular/common';
                 <stop offset="52%" stop-color="white"/>
                 <stop offset="100%" stop-color="black"/>
               </radialGradient>
-              <rect x="0" y="0" width="400" height="380" fill="url(#mask-grad)"/>
+              <rect x="0" y="0" width="400" height="434" fill="url(#mask-grad)"/>
             </mask>
           </defs>
 
-          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
+          <!-- 이미지 비율 맞춤: 원본 943x1024 → SVG 400x434 -->
+          <image href="/반도.png" x="0" y="0" width="400" height="434" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
 
-          <!-- 서울(228,105) → 부산(295,285) 점선 -->
-          <path d="M 228,105 Q 262,195 295,285" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <!-- 서울(182,119) → 부산(255,275) 점선 -->
+          <path d="M 182,119 Q 225,197 255,275" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
 
           <!-- 서울 마커 -->
-          <g transform="translate(228, 105)">
+          <g transform="translate(182, 119)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
           <!-- 부산 마커 -->
-          <g transform="translate(295, 285)">
+          <g transform="translate(255, 275)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
@@ -110,7 +111,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase1: 서울→부산 -->
           <g *ngIf="currentPhase() === 1">
-            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
+            <image href="/perrier_face.png" x="237" y="257" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -122,7 +123,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase2: 부산→서울 -->
           <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
+            <image href="/perrier_face.png" x="237" y="257" width="36" height="36"/>
             <g class="animate-train-up">
               <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -134,7 +135,7 @@ import { CommonModule } from '@angular/common';
 
           <!-- Phase3: 서울→부산 -->
           <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
+            <image href="/perrier_face.png" x="237" y="257" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="-5" cy="-25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
@@ -180,32 +181,32 @@ import { CommonModule } from '@angular/common';
 
       <!-- 시작 전 지도 -->
       <div *ngIf="!started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
-        <svg viewBox="0 0 400 420" class="w-full" preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 400 450" class="w-full" preserveAspectRatio="xMidYMid meet">
           <defs>
             <mask id="fade-mask2">
               <radialGradient id="mask-grad2" cx="50%" cy="45%" r="50%">
                 <stop offset="52%" stop-color="white"/>
                 <stop offset="100%" stop-color="black"/>
               </radialGradient>
-              <rect x="0" y="0" width="400" height="380" fill="url(#mask-grad2)"/>
+              <rect x="0" y="0" width="400" height="434" fill="url(#mask-grad2)"/>
             </mask>
           </defs>
-          <image href="/반도.png" x="0" y="0" width="400" height="380" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask2)"/>
-          <path d="M 228,105 Q 262,195 295,285" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
-          <g transform="translate(228, 105)">
+          <image href="/반도.png" x="0" y="0" width="400" height="434" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask2)"/>
+          <path d="M 182,119 Q 225,197 255,275" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
+          <g transform="translate(182, 119)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
-          <g transform="translate(295, 285)">
+          <g transform="translate(255, 275)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
           <!-- brady: 서울 위 -->
-          <image href="/brady_face.png" x="204" y="45" width="48" height="48"/>
+          <image href="/brady_face.png" x="158" y="59" width="48" height="48"/>
           <!-- perrier: 부산 위 -->
-          <image href="/perrier_face.png" x="277" y="267" width="36" height="36"/>
+          <image href="/perrier_face.png" x="237" y="257" width="36" height="36"/>
         </svg>
 
         <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-24 flex items-center justify-center mt-1">
@@ -228,16 +229,16 @@ import { CommonModule } from '@angular/common';
       animation: train-down 8s linear forwards;
     }
     @keyframes train-down {
-      0% { transform: translate(228px, 105px); }
-      100% { transform: translate(295px, 285px); }
+      0% { transform: translate(182px, 119px); }
+      100% { transform: translate(255px, 275px); }
     }
 
     .animate-train-up {
       animation: train-up 8s linear forwards;
     }
     @keyframes train-up {
-      0% { transform: translate(295px, 285px); }
-      100% { transform: translate(228px, 105px); }
+      0% { transform: translate(255px, 275px); }
+      100% { transform: translate(182px, 119px); }
     }
 
     .animate-smoke-1 { animation: smoke 1.5s ease-out 0s infinite; }
