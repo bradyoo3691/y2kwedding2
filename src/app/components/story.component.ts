@@ -135,16 +135,17 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <!-- Phase3: 서울→부산 -->
-          <g *ngIf="currentPhase() === 3">
-            <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
-            <g class="animate-train-down">
-              <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-              <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-              <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
-              <image href="/bashful_brady.png" x="-38" y="-64" width="48" height="48"/>
-            </g>
-          </g>
+<g *ngIf="currentPhase() === 3">
+  <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
+  <g class="animate-train-down">
+    <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+    <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+    <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
+    <image href="/bashful_brady.png" x="-38" y="-64" width="48" height="48"/>
+    <text x="-52" y="-42" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+  </g>
+</g>
 
           <!-- Phase4: 부산→서울 함께 -->
           <g *ngIf="currentPhase() === 4">
@@ -234,9 +235,9 @@ import { CommonModule } from '@angular/common';
       100% { transform: translate(289px, 263px); }
     }
 
-    .animate-train-up {
-      animation: train-up 8s linear forwards;
-    }
+.animate-train-up {
+  animation: train-up 8s linear both;
+}
     @keyframes train-up {
       0%   { transform: translate(289px, 263px); }
       100% { transform: translate(153px, 97px); }
