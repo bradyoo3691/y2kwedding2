@@ -91,7 +91,7 @@ export class GalleryComponent {
   // Placeholder images for each category
   galleryData = {
     '연애': [
-      { id: 101, url: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1000&auto=format&fit=crop' },
+      { id: 101, url: '/연애_0.jpg' },
       { id: 102, url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1000&auto=format&fit=crop' },
       { id: 103, url: 'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=1000&auto=format&fit=crop' },
       { id: 104, url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1000&auto=format&fit=crop' },
@@ -102,7 +102,7 @@ export class GalleryComponent {
       { id: 109, url: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop' },
     ],
     '추곡리': [
-      { id: 201, url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop' },
+      { id: 201, url: '/추곡리16.jpg' },
       { id: 202, url: 'https://images.unsplash.com/photo-1470071131384-001b85755536?q=80&w=1000&auto=format&fit=crop' },
       { id: 203, url: 'https://images.unsplash.com/photo-1444464666168-49b626f86278?q=80&w=1000&auto=format&fit=crop' },
       { id: 204, url: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000&auto=format&fit=crop' },
@@ -110,7 +110,7 @@ export class GalleryComponent {
       { id: 206, url: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1000&auto=format&fit=crop' },
     ],
     '웨딩': [
-      { id: 301, url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop' },
+      { id: 301, url: '/연애_wedding.png' },
       { id: 302, url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1000&auto=format&fit=crop' },
       { id: 303, url: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1000&auto=format&fit=crop' },
       { id: 304, url: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=1000&auto=format&fit=crop' },
