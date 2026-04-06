@@ -76,7 +76,7 @@ import { CommonModule } from '@angular/common';
             <p class="font-serif text-lg font-semibold mb-2">인근 주차장 <span class="text-sm font-sans text-stone-500">(1,000대 수용)</span></p>
             <p class="text-xs text-stone-600 mb-1">📍 웨딩홀 바로 맞은편 스타벅스 판교HIPEX점 건물</p>
             <p class="text-xs text-stone-600 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;'삼환하이펙스B동'</p>
-            <p class="text-xs text-green-600 mb-1">🆓 주차등록시 종일 무료</p>
+            <p class="text-xs text-green-600 mb-1">🆓 주차등록필요없음 & 종일 무료</p>
             <p class="text-xs text-stone-400 mb-4">경기 성남시 분당구 삼평동 679</p>
             <button
               (click)="copyParkingAddress('nearby')"
@@ -88,6 +88,44 @@ import { CommonModule } from '@angular/common';
 
         <hr class="border-stone-300 mb-12"/>
 
+        <!-- 대전 셔틀버스 -->
+<div class="mb-12">
+  <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🚌 대전에서 오는 셔틀버스</h3>
+  <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <p class="text-sm text-stone-700 font-semibold mb-3">신랑신부가 준비한 대전 ↔ 웨딩홀 셔틀버스가 있습니다!</p>
+
+    <div class="space-y-4">
+      <div class="flex items-start gap-3">
+        <span class="text-lg">📍</span>
+        <div>
+          <p class="text-sm font-semibold text-stone-700">탑승 위치</p>
+          <p class="text-sm text-stone-600">대전 서구 용문동 256-50, 선창교회 주차장</p>
+          <p class="text-xs text-stone-400 mt-1">용문역 1번 출구에서 나오셔서 200미터 직진</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-lg">🕧</span>
+        <div>
+          <p class="text-sm font-semibold text-stone-700">대전 → 판교</p>
+          <p class="text-sm text-stone-600">6월 6일 12시 30분 출발</p>
+          <p class="text-xs text-stone-400 mt-1">* 휴게소 1회 정차</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <span class="text-lg">🕠</span>
+        <div>
+          <p class="text-sm font-semibold text-stone-700">판교 → 대전</p>
+          <p class="text-sm text-stone-600">6월 6일 17시 30분 출발</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="border-stone-300 mb-12"/>
+        
         <!-- 대중교통 -->
         <div class="mb-12">
           <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🚇 대중교통</h3>
