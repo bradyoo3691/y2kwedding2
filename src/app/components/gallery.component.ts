@@ -13,7 +13,7 @@ import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/c
         <!-- Instagram-style Profile Info -->
         <div class="flex items-center justify-center gap-6 mb-10 px-4">
           <div class="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden border border-stone-200 p-1">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=200&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover rounded-full" referrerpolicy="no-referrer">
+            <img src="/profile.jpg" alt="Profile" class="w-full h-full object-cover rounded-full">
           </div>
           <div class="flex flex-col">
             <h3 class="text-xl font-medium text-stone-800">Our Memories</h3>
