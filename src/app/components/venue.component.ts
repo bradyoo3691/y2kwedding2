@@ -92,7 +92,7 @@ import { CommonModule } from '@angular/common';
 <div class="mb-12">
   <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-6 text-center">🚌 대전에서 오는 셔틀버스</h3>
   <div class="bg-white rounded-2xl p-6 shadow-sm">
-    <p class="text-sm text-stone-700 font-semibold mb-3">신랑신부가 준비한 대전 ↔ 웨딩홀 셔틀버스가 있습니다!</p>
+    <p class="text-sm text-stone-700 font-semibold mb-3"> 대전 ↔ 판교웨딩홀 셔틀버스가 있습니다!</p>
 
     <div class="space-y-4">
       <div class="flex items-start gap-3">
