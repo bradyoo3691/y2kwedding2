@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
             playsinline
             class="w-full h-full object-cover"
           >
-            <source src="/mochung.mp4" type="video/mp4">
+            <source src="/mochung2.mp4" type="video/mp4">
           </video>
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
