@@ -235,8 +235,6 @@ import { CommonModule } from '@angular/common';
         </button>
       </div>
     </div>
-
-  </div>
 </div>
 
       </div>
