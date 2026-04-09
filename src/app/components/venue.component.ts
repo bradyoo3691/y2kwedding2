@@ -160,33 +160,84 @@ import { CommonModule } from '@angular/common';
         <hr class="border-stone-300 mb-12"/>
 
         <!-- 감사 전하기 / 계좌번호 -->
-        <div class="text-center">
-          <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-8">마음 전하기</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- 신랑측 -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm">
-              <p class="text-stone-500 text-xs tracking-widest uppercase mb-2">신랑측</p>
-              <p class="font-serif text-lg mb-1">유승혁</p>
-              <p class="text-stone-600 text-sm mb-4">우리은행 1002-050-717720</p>
-              <button
-                (click)="copyAccount('groom')"
-                class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
-                📋 계좌번호 복사
-              </button>
-            </div>
-            <!-- 신부측 -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm">
-              <p class="text-stone-500 text-xs tracking-widest uppercase mb-2">신부측</p>
-              <p class="font-serif text-lg mb-1">김선경</p>
-              <p class="text-stone-600 text-sm mb-4">신한은행 110-438-886892</p>
-              <button
-                (click)="copyAccount('bride')"
-                class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
-                📋 계좌번호 복사
-              </button>
-            </div>
-          </div>
-        </div>
+<div class="text-center">
+  <h3 class="font-sans text-sm tracking-[0.2em] uppercase text-stone-500 mb-8">마음 전하기</h3>
+  <div class="flex flex-col gap-6">
+
+    <!-- 신랑측 박스 -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm text-left">
+      <p class="text-stone-500 text-xs tracking-widest uppercase mb-4 text-center">신랑측</p>
+
+      <!-- 신랑 -->
+      <div class="mb-4 pb-4 border-b border-stone-100">
+        <p class="text-xs text-stone-400 mb-1">신랑</p>
+        <p class="font-serif text-base mb-1">유승혁</p>
+        <p class="text-stone-600 text-sm mb-2">우리은행 1002-050-717720</p>
+        <button (click)="copyAccount('groom')"
+          class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+          📋 계좌번호 복사
+        </button>
+      </div>
+
+      <!-- 혼주(부) -->
+      <div class="mb-4 pb-4 border-b border-stone-100">
+        <p class="text-xs text-stone-400 mb-1">혼주(부)</p>
+        <p class="font-serif text-base mb-1">유인형</p>
+        <p class="text-stone-400 text-sm mb-2">추후 삽입 예정</p>
+      </div>
+
+      <!-- 혼주(모) -->
+      <div>
+        <p class="text-xs text-stone-400 mb-1">혼주(모)</p>
+        <p class="font-serif text-base mb-1">장문자</p>
+        <p class="text-stone-600 text-sm mb-2">우리은행 797-099725-02-001</p>
+        <button (click)="copyAccount('groomMom')"
+          class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+          📋 계좌번호 복사
+        </button>
+      </div>
+    </div>
+
+    <!-- 신부측 박스 -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm text-left">
+      <p class="text-stone-500 text-xs tracking-widest uppercase mb-4 text-center">신부측</p>
+
+      <!-- 신부 -->
+      <div class="mb-4 pb-4 border-b border-stone-100">
+        <p class="text-xs text-stone-400 mb-1">신부</p>
+        <p class="font-serif text-base mb-1">김선경</p>
+        <p class="text-stone-600 text-sm mb-2">신한은행 110-438-886892</p>
+        <button (click)="copyAccount('bride')"
+          class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+          📋 계좌번호 복사
+        </button>
+      </div>
+
+      <!-- 혼주(부) -->
+      <div class="mb-4 pb-4 border-b border-stone-100">
+        <p class="text-xs text-stone-400 mb-1">혼주(부)</p>
+        <p class="font-serif text-base mb-1">조관희</p>
+        <p class="text-stone-600 text-sm mb-2">하나은행 634-910709-64007</p>
+        <button (click)="copyAccount('brideDad')"
+          class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+          📋 계좌번호 복사
+        </button>
+      </div>
+
+      <!-- 혼주(모) -->
+      <div>
+        <p class="text-xs text-stone-400 mb-1">혼주(모)</p>
+        <p class="font-serif text-base mb-1">이민자</p>
+        <p class="text-stone-600 text-sm mb-2">하나은행 636-910172-79607</p>
+        <button (click)="copyAccount('brideMom')"
+          class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+          📋 계좌번호 복사
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
       </div>
 
@@ -228,14 +279,16 @@ export class VenueComponent {
     });
   }
 
-  copyAccount(who: 'groom' | 'bride') {
-    const accountNumber = who === 'groom' ? '1002-050-717720' : '110-438-886892';
-    navigator.clipboard.writeText(accountNumber).then(() => {
-      if (who === 'groom') {
-        this.showToast('신랑(유승혁)의 계좌번호가 복사되었어요!');
-      } else {
-        this.showToast('신부(김선경)의 계좌번호가 복사되었어요!');
-      }
-    });
-  }
+copyAccount(who: 'groom' | 'bride' | 'groomMom' | 'brideDad' | 'brideMom') {
+  const map: Record<string, [string, string]> = {
+    groom:    ['1002-050-717720',  '신랑(유승혁)의 계좌번호가 복사되었어요!'],
+    bride:    ['110-438-886892',   '신부(김선경)의 계좌번호가 복사되었어요!'],
+    groomMom: ['79709972502001',   '혼주(장문자)의 계좌번호가 복사되었어요!'],
+    brideDad: ['63491070964007',   '혼주(조관희)의 계좌번호가 복사되었어요!'],
+    brideMom: ['63691017279607',   '혼주(이민자)의 계좌번호가 복사되었어요!'],
+  };
+  const [number, label] = map[who];
+  navigator.clipboard.writeText(number).then(() => {
+    this.showToast(label);
+  });
 }
