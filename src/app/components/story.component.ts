@@ -91,88 +91,83 @@ import { CommonModule } from '@angular/common';
 
           <image href="/반도.png" x="0" y="0" width="400" height="434" preserveAspectRatio="xMidYMid meet" mask="url(#fade-mask)"/>
 
-          <!-- 서울(153,97) → 부산(289,263) 점선 -->
           <path d="M 153,97 Q 221,180 289,263" fill="none" stroke="rgba(244,63,94,0.6)" stroke-width="3" stroke-dasharray="6,4"/>
 
-          <!-- 서울 마커 -->
           <g transform="translate(153, 97)">
             <circle cx="0" cy="0" r="7" fill="#f43f5e" stroke="white" stroke-width="2"/>
             <rect x="-24" y="-28" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="-16" font-size="9" font-weight="bold" text-anchor="middle" fill="#f43f5e" font-family="sans-serif">SEOUL</text>
           </g>
 
-          <!-- 부산 마커 -->
           <g transform="translate(289, 263)">
             <circle cx="0" cy="0" r="7" fill="#3b82f6" stroke="white" stroke-width="2"/>
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1: 서울→부산 -->
+          <!-- Phase1 -->
           <g *ngIf="currentPhase() === 1">
-            <!-- perrier 부산 고정: 핀(289,263) 우상단+21,-21 → image(292,224) -->
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g class="animate-train-down">
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
               <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
-              <!-- brady 핀(153,97) 좌상단-14,-14 → 기차 위 배치 -->
               <image href="/brady_face.png" x="-38" y="-64" width="48" height="48"/>
             </g>
           </g>
 
-          <!-- Phase2: 부산→서울, brady 혼자 -->
-<g *ngIf="currentPhase() === 2">
-  <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
-  <g class="animate-train-up">
-    <!-- 연기: 위로 올라가므로 아래쪽에 -->
-    <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-    <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-    <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-    <!-- 기차 먼저, 얼굴은 그 위에 -->
-    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-    <!-- 얼굴 크기 줄이고 기차 위 중앙에 배치 -->
-    <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
-  </g>
-</g>
-          <!-- Phase3: 서울→부산 -->
-<g *ngIf="currentPhase() === 3">
-  <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
-  <g class="animate-train-down">
-    <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-    <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-    <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
-    <image href="/bashful_brady.png" x="-38" y="-64" width="48" height="48"/>
-    <text x="-52" y="-42" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
-  </g>
-</g>
+          <!-- Phase2 -->
+          <g *ngIf="currentPhase() === 2">
+            <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
+            <g class="animate-train-up">
+              <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
+            </g>
+          </g>
 
-          <!-- Phase4: 부산→서울 함께 -->
-<g *ngIf="currentPhase() === 4">
-  <g class="animate-train-up">
-    <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-    <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-    <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-    <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
-    <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
-      ❤️
-      <animateTransform attributeName="transform" type="scale"
-        values="1;1.3;1;1.2;1"
-        keyTimes="0;0.25;0.5;0.75;1"
-        dur="0.8s" repeatCount="indefinite"
-        additive="sum"/>
-    </text>
-    <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
-    <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
-  </g>
-</g>
+          <!-- Phase3 -->
+          <g *ngIf="currentPhase() === 3">
+            <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
+            <g class="animate-train-down">
+              <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central">🚂</text>
+              <image href="/bashful_brady.png" x="-38" y="-64" width="48" height="48"/>
+              <text x="-52" y="-42" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+            </g>
+          </g>
+
+          <!-- Phase4 -->
+          <g *ngIf="currentPhase() === 4">
+            <g class="animate-train-up">
+              <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
+              <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
+                ❤️
+                <animateTransform attributeName="transform" type="scale"
+                  values="1;1.3;1;1.2;1"
+                  keyTimes="0;0.25;0.5;0.75;1"
+                  dur="0.8s" repeatCount="indefinite"
+                  additive="sum"/>
+              </text>
+              <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
+              <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+            </g>
+          </g>
+        </svg>
+
         <!-- 자막 박스 -->
         <div class="font-sans text-sm md:text-base leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-28 flex items-center justify-center overflow-hidden mt-1">
           <ng-container *ngIf="started()">
-            <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이는 직장동료 선경이가 자꾸 눈에 밟혀 <br>다짜고짜 부산으로 내려가요 💨'"></span>
+            <span *ngIf="currentPhase() === 1" class="absolute w-full px-6" [innerHTML]="'🚂 신랑 승혁이는 직장동료 선경이가 자꾸 눈에 밟혀<br>다짜고짜 부산으로 내려가요 💨'"></span>
             <span *ngIf="currentPhase() === 2" class="absolute w-full px-6" [innerHTML]="'😳 시간을 보낸 승혁이는 확신을 가지고,<br>우선 전략을 수립하러 서울로 일단 돌아옵니다 🗺️'"></span>
             <span *ngIf="currentPhase() === 3" class="absolute w-full px-6" [innerHTML]="'💐 몇주뒤 작정한 승혁이는 다시 부산으로 내려갑니다.<br>꽃다발을 들고. 두근두근 🥰'"></span>
             <span *ngIf="currentPhase() === 4" class="absolute w-full px-6" [innerHTML]="'🎉 숨막히는 고백 끝에 선경이는 승혁이의 고백을<br>수락했고, 둘의 사랑은 이루어집니다! ❤️ 야호!'"></span>
@@ -205,9 +200,7 @@ import { CommonModule } from '@angular/common';
             <rect x="-24" y="10" width="48" height="18" rx="4" fill="white" opacity="0.95"/>
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
-          <!-- brady: 서울핀(153,97) 좌상단 -14,-14 → image(115,59) -->
           <image href="/brady_face.png" x="115" y="59" width="48" height="48"/>
-          <!-- perrier: 부산핀(289,263) 우상단 +21,-21 → image(292,224) -->
           <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
         </svg>
 
@@ -235,10 +228,10 @@ import { CommonModule } from '@angular/common';
       100% { transform: translate(289px, 263px); }
     }
 
-.animate-train-up {
-  animation: train-up 8s linear both;
-  animation-delay: 0.05s;
-}
+    .animate-train-up {
+      animation: train-up 8s linear both;
+      animation-delay: 0.05s;
+    }
     @keyframes train-up {
       0%   { transform: translate(289px, 263px); }
       100% { transform: translate(153px, 97px); }
