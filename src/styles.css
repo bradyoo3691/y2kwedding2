@@ -7,17 +7,17 @@
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
 }
 
-html {
-  scroll-behavior: smooth;
+:root {
+  --vh: 1vh;
 }
 
 html, body {
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
   overscroll-behavior: none;
   -webkit-text-size-adjust: 100%;
   touch-action: pan-y;
   scroll-behavior: auto;
+  height: 100%;
 }
 
 * {
