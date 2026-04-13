@@ -234,7 +234,6 @@ export class GalleryComponent {
   { id: 116, url: '/love_16.jpg' },
   { id: 117, url: '/love_17.jpg' },
   { id: 118, url: '/love_18.jpg' },
-  { id: 119, url: '/love_19.jpg' },
 ],
   };
 
