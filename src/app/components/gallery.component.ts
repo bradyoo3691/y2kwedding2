@@ -217,7 +217,6 @@ export class GalleryComponent {
 '연애': [
   { id: 100, url: '/love_0.jpg' },
   { id: 101, url: '/love_1.jpg' },
-  { id: 102, url: '/Love_2.jpg' },
   { id: 103, url: '/love_3.jpg' },
   { id: 104, url: '/love_4.jpg' },
   { id: 105, url: '/love_5.jpg' },
