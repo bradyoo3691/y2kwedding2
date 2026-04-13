@@ -101,34 +101,34 @@ export class HeroComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const video = this.videoRef.nativeElement;
+    // 팝업 떠있는 동안 첫 프레임에서 멈춤
     video.muted = true;
+    video.preload = 'auto';
     video.load();
+    // 첫 프레임 로드 후 멈춤
+    video.addEventListener('loadeddata', () => {
+      video.pause();
+    }, { once: true });
 
     setTimeout(() => {
       this.moved.set(true);
     }, 8500);
   }
 
-playVideo(withSound: boolean) {
-  const video = this.videoRef.nativeElement;
-  video.muted = !withSound;
-
-  const playPromise = video.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
+  enableSound() {
+    this.showPopup.set(false);
+    const video = this.videoRef.nativeElement;
+    video.muted = false;
+    video.play().catch(() => {
       video.muted = true;
       video.play().catch(() => {});
     });
   }
-}
-
-  enableSound() {
-    this.showPopup.set(false);
-    this.playVideo(true);
-  }
 
   disableSound() {
     this.showPopup.set(false);
-    this.playVideo(false);
+    const video = this.videoRef.nativeElement;
+    video.muted = true;
+    video.play().catch(() => {});
   }
 }
