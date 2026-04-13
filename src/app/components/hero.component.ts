@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
         <div class="absolute inset-0 w-full h-full bg-stone-200">
           <video
             #videoRef
+            autoplay
             loop
             muted
             playsinline
@@ -100,16 +101,6 @@ export class HeroComponent implements AfterViewInit {
   moved = signal(false);
 
   ngAfterViewInit() {
-    const video = this.videoRef.nativeElement;
-    // 팝업 떠있는 동안 첫 프레임에서 멈춤
-    video.muted = true;
-    video.preload = 'auto';
-    video.load();
-    // 첫 프레임 로드 후 멈춤
-    video.addEventListener('loadeddata', () => {
-      video.pause();
-    }, { once: true });
-
     setTimeout(() => {
       this.moved.set(true);
     }, 8500);
@@ -119,16 +110,9 @@ export class HeroComponent implements AfterViewInit {
     this.showPopup.set(false);
     const video = this.videoRef.nativeElement;
     video.muted = false;
-    video.play().catch(() => {
-      video.muted = true;
-      video.play().catch(() => {});
-    });
   }
 
   disableSound() {
     this.showPopup.set(false);
-    const video = this.videoRef.nativeElement;
-    video.muted = true;
-    video.play().catch(() => {});
   }
 }
