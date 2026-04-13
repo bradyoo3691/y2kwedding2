@@ -156,37 +156,45 @@ import { CommonModule } from '@angular/common';
           <div class="flex flex-col gap-6">
 
             <!-- 신랑측 박스 -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm text-left">
-              <p class="text-stone-500 text-xs tracking-widest uppercase mb-4 text-center">신랑측</p>
-              <div class="mb-4 pb-4 border-b border-stone-100">
-                <p class="text-xs text-stone-400 mb-1">신랑</p>
-                <p class="font-serif text-base mb-1">유승혁</p>
-                <p class="text-stone-600 text-sm mb-2">우리은행 1002-050-717720</p>
-                <button (click)="copyAccount('groom')"
-                  class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
-                  📋 계좌번호 복사
-                </button>
-              </div>
-              <div class="mb-4 pb-4 border-b border-stone-100">
-                <p class="text-xs text-stone-400 mb-1">혼주(부)</p>
-                <p class="font-serif text-base mb-1">유인형</p>
-                <p class="text-stone-600 text-sm mb-2">신한은행 110-001-420763</p>
-                 <button (click)="copyAccount('groomDad')"
-                  class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
-                  📋 계좌번호 복사
-                </button>
-              </div>
-              <div>
-                <p class="text-xs text-stone-400 mb-1">혼주(모)</p>
-                <p class="font-serif text-base mb-1">장문자</p>
-                <p class="text-stone-600 text-sm mb-2">우리은행 797-099725-02-001</p>
-                <button (click)="copyAccount('groomMom')"
-                  class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
-                  📋 계좌번호 복사
-                </button>
-              </div>
-            </div>
+          <div class="bg-white rounded-2xl p-6 shadow-sm text-left">
+  <p class="text-stone-500 text-xs tracking-widest uppercase mb-4 text-center">신랑측</p>
+  
+  <div class="mb-4 pb-4 border-b border-stone-100">
+    <p class="text-xs text-stone-400 mb-1">신랑</p>
+    <p class="font-serif text-base mb-1">유승혁</p>
+    <p class="text-stone-600 text-sm mb-2"><span class="font-medium">우리은행</span> 1002-050-717720</p>
+    <button 
+      type="button"
+      (click)="copyAccount('groom')"
+      class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+      📋 계좌번호 복사
+    </button>
+  </div>
 
+  <div class="mb-4 pb-4 border-b border-stone-100">
+    <p class="text-xs text-stone-400 mb-1">혼주(부)</p>
+    <p class="font-serif text-base mb-1">유인형</p>
+    <p class="text-stone-600 text-sm mb-2"><span class="font-medium">신한은행</span> 110-001-420763</p>
+    <button 
+      type="button"
+      (click)="copyAccount('groomDad')"
+      class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+      📋 계좌번호 복사
+    </button>
+  </div>
+
+  <div>
+    <p class="text-xs text-stone-400 mb-1">혼주(모)</p>
+    <p class="font-serif text-base mb-1">장문자</p>
+    <p class="text-stone-600 text-sm mb-2"><span class="font-medium">우리은행</span> 797-099725-02-001</p>
+    <button 
+      type="button"
+      (click)="copyAccount('groomMom')"
+      class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
+      📋 계좌번호 복사
+    </button>
+  </div>
+</div>
             <!-- 신부측 박스 -->
             <div class="bg-white rounded-2xl p-6 shadow-sm text-left">
               <p class="text-stone-500 text-xs tracking-widest uppercase mb-4 text-center">신부측</p>
