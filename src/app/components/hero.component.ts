@@ -100,12 +100,15 @@ export class HeroComponent implements AfterViewInit {
   showPopup = signal(true);
   moved = signal(false);
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.moved.set(true);
-    }, 8500);
-  }
+ngAfterViewInit() {
+  const video = this.videoRef.nativeElement;
+  video.muted = true;
+  video.play().catch(() => {});
 
+  setTimeout(() => {
+    this.moved.set(true);
+  }, 8500);
+}
   enableSound() {
     this.showPopup.set(false);
     const video = this.videoRef.nativeElement;
