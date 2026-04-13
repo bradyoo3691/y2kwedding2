@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </div>
 
-<section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
+    <section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-200">
           <video
@@ -36,7 +36,9 @@ import { CommonModule } from '@angular/common';
             loop
             muted
             playsinline
+            preload="auto"
             class="w-full h-full object-cover"
+            style="image-rendering: high-quality; -webkit-transform: translateZ(0); transform: translateZ(0);"
           >
             <source src="/mochung2.mp4" type="video/mp4">
           </video>
@@ -45,7 +47,6 @@ import { CommonModule } from '@angular/common';
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
 
-          <!-- 8.5초 전: 크게 가운데 표시 -->
           <div *ngIf="!moved()" class="flex flex-col items-center animate-fade-in">
             <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mb-6">
               We are getting married
@@ -61,7 +62,6 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
 
-          <!-- 8.5초 후: 작게 위쪽으로 -->
           <div *ngIf="moved()" class="flex flex-col items-center animate-shrink-up">
             <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90">
               We are getting married
@@ -78,7 +78,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-styles: [`
+  styles: [`
     .animate-fade-in {
       animation: fade-in 0.5s ease-out forwards;
     }
@@ -103,6 +103,9 @@ export class HeroComponent implements AfterViewInit {
   moved = signal(false);
 
   ngAfterViewInit() {
+    const video = this.videoRef.nativeElement;
+    video.load();
+
     setTimeout(() => {
       this.moved.set(true);
     }, 8500);
