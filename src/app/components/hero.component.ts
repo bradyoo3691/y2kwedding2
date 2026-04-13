@@ -30,18 +30,19 @@ import { CommonModule } from '@angular/common';
     <section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-200">
-          <video
-            #videoRef
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            class="w-full h-full object-cover"
-            style="-webkit-transform: translateZ(0); transform: translateZ(0);"
-          >
-            <source src="/mochung2.mp4" type="video/mp4">
-          </video>
+<video
+  #videoRef
+  autoplay
+  loop
+  muted
+  playsinline
+  preload="auto"
+  class="w-full h-full object-cover"
+  style="-webkit-transform: translateZ(0); transform: translateZ(0);"
+>
+  <source src="/mochung2.webm" type="video/webm">
+  <source src="/mochung2.mp4" type="video/mp4">
+</video>
           <div class="absolute inset-0 bg-black/30"></div>
         </div>
 
