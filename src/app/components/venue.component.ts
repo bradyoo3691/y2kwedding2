@@ -170,8 +170,8 @@ import { CommonModule } from '@angular/common';
               <div class="mb-4 pb-4 border-b border-stone-100">
                 <p class="text-xs text-stone-400 mb-1">혼주(부)</p>
                 <p class="font-serif text-base mb-1">유인형</p>
-                <p class="text-stone-400 text-sm mb-2">신한은행 110-001-420763</p>
-                 <button (click)="copyAccount('brideDad')"
+                <p class="text-stone-600 text-sm mb-2">신한은행 110-001-420763</p>
+                 <button (click)="copyAccount('groomDad')"
                   class="w-full py-2 border border-stone-300 text-stone-600 text-sm rounded-full hover:bg-stone-50 transition">
                   📋 계좌번호 복사
                 </button>
