@@ -109,19 +109,18 @@ export class HeroComponent implements AfterViewInit {
     }, 8500);
   }
 
-  playVideo(withSound: boolean) {
-    const video = this.videoRef.nativeElement;
-    video.muted = !withSound;
-    video.currentTime = 0;
+playVideo(withSound: boolean) {
+  const video = this.videoRef.nativeElement;
+  video.muted = !withSound;
 
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        video.muted = true;
-        video.play().catch(() => {});
-      });
-    }
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      video.muted = true;
+      video.play().catch(() => {});
+    });
   }
+}
 
   enableSound() {
     this.showPopup.set(false);
