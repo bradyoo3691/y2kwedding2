@@ -40,7 +40,7 @@ import { CommonModule } from '@angular/common';
   class="w-full h-full object-cover"
   style="-webkit-transform: translateZ(0); transform: translateZ(0);"
 >
-  <source src="/mochung2.webm" type="video/webm">
+  <source src="/mochung2_2.webm" type="video/webm">
   <source src="/mochung2.mp4" type="video/mp4">
 </video>
           <div class="absolute inset-0 bg-black/30"></div>
