@@ -270,11 +270,12 @@ export class VenueComponent {
     });
   }
 
-  copyAccount(who: 'groom' | 'bride' | 'groomMom' | 'brideDad' | 'brideMom') {
+  copyAccount(who: 'groom' | 'bride' |  'groomDad' | 'groomMom' | 'brideDad' | 'brideMom') {
     const map: Record<string, [string, string]> = {
-      groom:    ['1002-050-717720', '신랑(유승혁)의 계좌번호가 복사되었어요!'],
-      bride:    ['110-438-886892',  '신부(김선경)의 계좌번호가 복사되었어요!'],
+      groom:    ['1002050717720', '신랑(유승혁)의 계좌번호가 복사되었어요!'],
+      bride:    ['110438886892',  '신부(김선경)의 계좌번호가 복사되었어요!'],
       groomMom: ['79709972502001',  '혼주(장문자)의 계좌번호가 복사되었어요!'],
+      groomDad: ['110001420763',  '혼주(장문자)의 계좌번호가 복사되었어요!'],
       brideDad: ['63491070964007',  '혼주(조관희)의 계좌번호가 복사되었어요!'],
       brideMom: ['63691017279607',  '혼주(이민자)의 계좌번호가 복사되었어요!'],
     };
