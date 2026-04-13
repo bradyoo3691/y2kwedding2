@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
             playsinline
             preload="auto"
             class="w-full h-full object-cover"
-            style="image-rendering: high-quality; -webkit-transform: translateZ(0); transform: translateZ(0);"
+            style="-webkit-transform: translateZ(0); transform: translateZ(0);"
           >
             <source src="/mochung2.mp4" type="video/mp4">
           </video>
@@ -45,7 +45,6 @@ import { CommonModule } from '@angular/common';
         </div>
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
-
           <div *ngIf="!moved()" class="flex flex-col items-center animate-fade-in">
             <p class="font-sans text-xs md:text-sm tracking-[0.4em] uppercase opacity-90 mb-6">
               We are getting married
@@ -72,7 +71,6 @@ import { CommonModule } from '@angular/common';
               2026.06.06 15:30 · W스퀘어컨벤션 판교
             </p>
           </div>
-
         </div>
       </div>
     </section>
@@ -111,22 +109,27 @@ export class HeroComponent implements AfterViewInit {
     }, 8500);
   }
 
+  playVideo(withSound: boolean) {
+    const video = this.videoRef.nativeElement;
+    video.muted = !withSound;
+    video.currentTime = 0;
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+      });
+    }
+  }
+
   enableSound() {
     this.showPopup.set(false);
-    const video = this.videoRef.nativeElement;
-    video.muted = false;
-    video.currentTime = 0;
-    video.play().catch(() => {
-      video.muted = true;
-      video.play();
-    });
+    this.playVideo(true);
   }
 
   disableSound() {
     this.showPopup.set(false);
-    const video = this.videoRef.nativeElement;
-    video.muted = true;
-    video.currentTime = 0;
-    video.play().catch(() => {});
+    this.playVideo(false);
   }
 }
