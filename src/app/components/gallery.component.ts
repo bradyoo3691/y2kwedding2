@@ -159,7 +159,6 @@ export class GalleryComponent {
       { id: 304, url: '/wedding_4.jpeg' },
       { id: 305, url: '/wedding_5.jpeg' },
       { id: 306, url: '/wedding_6.jpeg' },
-      { id: 307, url: '/wedding_7.jpeg' },
       { id: 308, url: '/wedding_8.jpeg' },
       { id: 309, url: '/wedding_9.jpeg' },
       { id: 310, url: '/wedding_10.jpeg' },
