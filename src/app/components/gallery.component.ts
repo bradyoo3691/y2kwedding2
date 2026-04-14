@@ -56,25 +56,25 @@ import { CommonModule } from '@angular/common';
 
         <!-- 그리드 -->
         <div class="mt-1 overflow-y-auto" style="max-height: 70vh;">
- <div class="grid grid-cols-3 gap-1 md:gap-2">
-  @for (img of currentImages(); track img.id; let i = $index) {
-    <div
-      class="group relative cursor-pointer"
-      style="aspect-ratio: 1/1; overflow: hidden;"
-      (click)="openLightbox(i)"
-    >
-      <img
-        [src]="img.url"
-        [alt]="activeTab() + ' photo ' + img.id"
-        style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
-        loading="lazy"
-      />
-      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" class="drop-shadow-md"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-      </div>
-    </div>
-  }
-</div>
+          <div class="grid grid-cols-3 gap-1 md:gap-2">
+            @for (img of currentImages(); track img.id; let i = $index) {
+              <div
+                class="group relative cursor-pointer"
+                style="aspect-ratio: 1/1; overflow: hidden;"
+                (click)="openLightbox(i)"
+              >
+                <img
+                  [src]="img.url"
+                  [alt]="activeTab() + ' photo ' + img.id"
+                  style="width: 100%; height: 100%; object-fit: cover; object-position: center;"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" class="drop-shadow-md"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+              </div>
+            }
+          </div>
 
           @if (currentImages().length === 0) {
             <div class="py-20 text-center text-stone-500 flex flex-col items-center">
@@ -92,7 +92,12 @@ import { CommonModule } from '@angular/common';
 
     <!-- Lightbox -->
     @if (lightboxOpen()) {
-      <div class="fixed inset-0 z-50 bg-black flex flex-col" (click)="closeLightbox()">
+      <div
+        class="fixed inset-0 z-50 bg-black flex flex-col"
+        (click)="closeLightbox()"
+        (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)"
+      >
         <div class="flex items-center justify-center py-4 relative flex-shrink-0" (click)="$event.stopPropagation()">
           <button
             (click)="closeLightbox()"
@@ -104,7 +109,10 @@ import { CommonModule } from '@angular/common';
           <span class="absolute right-4 text-white/50 text-xs">{{ lightboxIndex() + 1 }} / {{ currentImages().length }}</span>
         </div>
 
-        <div class="flex-1 flex items-center justify-center relative overflow-hidden" (click)="$event.stopPropagation()">
+        <div
+          class="flex-1 flex items-center justify-center relative overflow-hidden"
+          (click)="$event.stopPropagation()"
+        >
           <button
             (click)="prevImage()"
             class="absolute left-2 md:left-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center transition-colors"
@@ -117,7 +125,7 @@ import { CommonModule } from '@angular/common';
             [src]="currentImages()[lightboxIndex()].url"
             [alt]="'photo ' + lightboxIndex()"
             class="max-h-full max-w-full object-contain select-none"
-            style="transition: opacity 0.2s ease;"
+            [style]="'transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s ease; transform: translateX(' + slideOffset() + 'px); opacity: ' + slideOpacity()"
           />
 
           <button
@@ -150,6 +158,11 @@ export class GalleryComponent {
   activeTab = signal<'연애' | '추곡리' | '웨딩'>('웨딩');
   lightboxOpen = signal(false);
   lightboxIndex = signal(0);
+  slideOffset = signal(0);
+  slideOpacity = signal(1);
+
+  private touchStartX = 0;
+  private touchStartY = 0;
 
   galleryData = {
     '웨딩': [
@@ -213,26 +226,26 @@ export class GalleryComponent {
       { id: 220, url: '/chu_20.jpeg' },
       { id: 221, url: '/chu_21.jpeg' },
     ],
-'연애': [
-  { id: 100, url: '/love_0.jpg' },
-  { id: 101, url: '/love_1.jpg' },
-  { id: 103, url: '/love_3.jpg' },
-  { id: 104, url: '/love_4.jpg' },
-  { id: 105, url: '/love_5.jpg' },
-  { id: 106, url: '/love_6.jpg' },
-  { id: 107, url: '/love_7.jpg' },
-  { id: 108, url: '/love_8.jpg' },
-  { id: 109, url: '/love_9.jpg' },
-  { id: 110, url: '/love_10.jpg' },
-  { id: 111, url: '/love_11.jpg' },
-  { id: 112, url: '/love_12.jpg' },
-  { id: 113, url: '/love_13.jpg' },
-  { id: 114, url: '/love_14.jpg' },
-  { id: 115, url: '/love_15.jpg' },
-  { id: 116, url: '/love_16.jpg' },
-  { id: 117, url: '/love_17.jpg' },
-  { id: 118, url: '/love_18.JPG' },
-],
+    '연애': [
+      { id: 100, url: '/love_0.jpg' },
+      { id: 101, url: '/love_1.jpg' },
+      { id: 103, url: '/love_3.jpg' },
+      { id: 104, url: '/love_4.jpg' },
+      { id: 105, url: '/love_5.jpg' },
+      { id: 106, url: '/love_6.jpg' },
+      { id: 107, url: '/love_7.jpg' },
+      { id: 108, url: '/love_8.jpg' },
+      { id: 109, url: '/love_9.jpg' },
+      { id: 110, url: '/love_10.jpg' },
+      { id: 111, url: '/love_11.jpg' },
+      { id: 112, url: '/love_12.jpg' },
+      { id: 113, url: '/love_13.jpg' },
+      { id: 114, url: '/love_14.jpg' },
+      { id: 115, url: '/love_15.jpg' },
+      { id: 116, url: '/love_16.jpg' },
+      { id: 117, url: '/love_17.jpg' },
+      { id: 118, url: '/love_18.JPG' },
+    ],
   };
 
   currentImages = computed(() => this.galleryData[this.activeTab()] || []);
@@ -244,21 +257,60 @@ export class GalleryComponent {
   openLightbox(index: number) {
     this.lightboxIndex.set(index);
     this.lightboxOpen.set(true);
+    this.slideOffset.set(0);
+    this.slideOpacity.set(1);
   }
 
   closeLightbox() {
     this.lightboxOpen.set(false);
   }
 
+  animateSlide(direction: 'left' | 'right', callback: () => void) {
+    const offset = direction === 'left' ? -80 : 80;
+    this.slideOffset.set(offset);
+    this.slideOpacity.set(0);
+    setTimeout(() => {
+      callback();
+      this.slideOffset.set(direction === 'left' ? 80 : -80);
+      setTimeout(() => {
+        this.slideOffset.set(0);
+        this.slideOpacity.set(1);
+      }, 30);
+    }, 250);
+  }
+
   prevImage() {
     if (this.lightboxIndex() > 0) {
-      this.lightboxIndex.update(i => i - 1);
+      this.animateSlide('right', () => {
+        this.lightboxIndex.update(i => i - 1);
+      });
     }
   }
 
   nextImage() {
     if (this.lightboxIndex() < this.currentImages().length - 1) {
-      this.lightboxIndex.update(i => i + 1);
+      this.animateSlide('left', () => {
+        this.lightboxIndex.update(i => i + 1);
+      });
+    }
+  }
+
+  onTouchStart(event: TouchEvent) {
+    this.touchStartX = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  onTouchEnd(event: TouchEvent) {
+    const deltaX = event.changedTouches[0].clientX - this.touchStartX;
+    const deltaY = event.changedTouches[0].clientY - this.touchStartY;
+
+    // 수평 스와이프가 수직보다 클 때만 처리
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+      if (deltaX < 0) {
+        this.nextImage();
+      } else {
+        this.prevImage();
+      }
     }
   }
 }
