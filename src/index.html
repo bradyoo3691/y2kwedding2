@@ -18,6 +18,23 @@
       }
       setVh();
       window.addEventListener('resize', setVh);
+
+      // 갤럭시 크롬 주소창 고정
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < lastScrollY && currentScrollY > 0) {
+              window.scrollTo(0, currentScrollY + 1);
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
     </script>
   </head>
   <body>
