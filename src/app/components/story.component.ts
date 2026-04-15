@@ -114,9 +114,9 @@ import { CommonModule } from '@angular/common';
           <g *ngIf="currentPhase() === 1">
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g>
-              <animateMotion dur="6.2s" fill="freeze" rotate="auto">
-                <mpath href="#train-path-down"/>
-              </animateMotion>
+<animateMotion dur="6.2s" fill="freeze">
+  <mpath href="#train-path-down"/>
+</animateMotion>
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
@@ -126,27 +126,27 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <!-- Phase2: 부산→서울 -->
-          <g *ngIf="currentPhase() === 2">
-            <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
-            <g>
-              <animateMotion dur="6.2s" fill="freeze" rotate="auto">
-                <mpath href="#train-path-up"/>
-              </animateMotion>
-              <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-              <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-              <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-              <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
-            </g>
-          </g>
+<g *ngIf="currentPhase() === 2">
+  <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
+  <g>
+    <animateMotion dur="6.2s" fill="freeze">
+      <mpath href="#train-path-up"/>
+    </animateMotion>
+    <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+    <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+    <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+    <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
+  </g>
+</g>
 
           <!-- Phase3: 서울→부산 -->
           <g *ngIf="currentPhase() === 3">
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g>
-              <animateMotion dur="6.2s" fill="freeze" rotate="auto">
-                <mpath href="#train-path-down"/>
-              </animateMotion>
+<animateMotion dur="6.2s" fill="freeze">
+  <mpath href="#train-path-down"/>
+</animateMotion>
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
@@ -157,28 +157,28 @@ import { CommonModule } from '@angular/common';
           </g>
 
           <!-- Phase4: 부산→서울 -->
-          <g *ngIf="currentPhase() === 4">
-            <g>
-              <animateMotion dur="6.2s" fill="freeze" rotate="auto">
-                <mpath href="#train-path-up"/>
-              </animateMotion>
-              <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-              <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-              <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-              <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
-              <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
-                ❤️
-                <animateTransform attributeName="transform" type="scale"
-                  values="1;1.3;1;1.2;1"
-                  keyTimes="0;0.25;0.5;0.75;1"
-                  dur="0.6s" repeatCount="indefinite"
-                  additive="sum"/>
-              </text>
-              <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
-              <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
-            </g>
-          </g>
+<g *ngIf="currentPhase() === 4">
+  <g>
+    <animateMotion dur="6.2s" fill="freeze">
+      <mpath href="#train-path-up"/>
+    </animateMotion>
+    <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+    <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+    <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+    <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
+    <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
+      ❤️
+      <animateTransform attributeName="transform" type="scale"
+        values="1;1.3;1;1.2;1"
+        keyTimes="0;0.25;0.5;0.75;1"
+        dur="0.6s" repeatCount="indefinite"
+        additive="sum"/>
+    </text>
+    <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
+    <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+  </g>
+</g>
 
           <!-- 경로 정의 (숨김) -->
           <defs>
