@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, signal, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-hero',
@@ -29,21 +30,15 @@ import { CommonModule } from '@angular/common';
 
     <section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
-        <div class="absolute inset-0 w-full h-full bg-stone-200">
-<video
-  #videoRef
-  autoplay
-  loop
-  muted
-  playsinline
-  preload="auto"
-  class="w-full h-full object-cover"
-  style="-webkit-transform: translateZ(0); transform: translateZ(0);"
->
-  <source src="/mochung2_2.webm" type="video/webm">
-  <source src="/mochung2.mp4" type="video/mp4">
-</video>
-          <div class="absolute inset-0 bg-black/30"></div>
+        <div class="absolute inset-0 w-full h-full bg-stone-900">
+          <iframe
+            [src]="vimeoUrl()"
+            class="absolute inset-0 w-full h-full"
+            style="border: none; transform: scale(1.5); transform-origin: center center;"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
         </div>
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
@@ -96,16 +91,17 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class HeroComponent implements AfterViewInit {
-  @ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
-
   showPopup = signal(true);
   moved = signal(false);
+  vimeoUrl = signal<SafeResourceUrl>(
+    this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
+    )
+  );
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit() {
-    const video = this.videoRef.nativeElement;
-    video.muted = true;
-    video.play().catch(() => {});
-
     setTimeout(() => {
       this.moved.set(true);
     }, 8500);
@@ -113,18 +109,14 @@ export class HeroComponent implements AfterViewInit {
 
   enableSound() {
     this.showPopup.set(false);
-    const video = this.videoRef.nativeElement;
-    video.muted = false;
-    video.play().catch(() => {
-      video.muted = true;
-      video.play().catch(() => {});
-    });
+    this.vimeoUrl.set(
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
+      )
+    );
   }
 
   disableSound() {
     this.showPopup.set(false);
-    const video = this.videoRef.nativeElement;
-    video.muted = true;
-    video.play().catch(() => {});
   }
 }
