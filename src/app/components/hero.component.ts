@@ -97,13 +97,13 @@ export class HeroComponent implements AfterViewInit, OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {
-    this.vimeoUrl.set(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
-      )
-    );
-  }
+ngOnInit() {
+  this.vimeoUrl.set(
+    this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://player.vimeo.com/video/1183254717?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
+    )
+  );
+}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -111,16 +111,16 @@ export class HeroComponent implements AfterViewInit, OnInit {
     }, 8500);
   }
 
-  enableSound() {
-    this.showPopup.set(false);
-    this.vimeoUrl.set(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
-      )
-    );
-  }
+enableSound() {
+  this.showPopup.set(false);
+  this.vimeoUrl.set(
+    this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://player.vimeo.com/video/1183254717?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
+    )
+  );
+}
 
-  disableSound() {
-    this.showPopup.set(false);
-  }
+disableSound() {
+  this.showPopup.set(false);
+}
 }
