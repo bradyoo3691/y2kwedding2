@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -90,16 +90,20 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
   `]
 })
-export class HeroComponent implements AfterViewInit {
+export class HeroComponent implements AfterViewInit, OnInit {
   showPopup = signal(true);
   moved = signal(false);
-  vimeoUrl = signal<SafeResourceUrl>(
-    this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
-    )
-  );
+  vimeoUrl = signal<SafeResourceUrl>('');
 
   constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.vimeoUrl.set(
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://player.vimeo.com/video/1183246254?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
+      )
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
