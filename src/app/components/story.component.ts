@@ -33,50 +33,48 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <!-- Phase 5 -->
-  <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[580px] z-10 px-4 flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 pointer-events-none">
-    <span class="absolute text-2xl animate-heart-pop-1">❤️</span>
-    <span class="absolute text-3xl animate-heart-pop-2">💕</span>
-    <span class="absolute text-2xl animate-heart-pop-3">💖</span>
-    <span class="absolute text-xl animate-heart-pop-4">❤️</span>
-    <span class="absolute text-3xl animate-heart-pop-5">💗</span>
-    <span class="absolute text-2xl animate-heart-pop-6">💕</span>
-    <span class="absolute text-xl animate-heart-pop-7">❤️</span>
-    <span class="absolute text-2xl animate-heart-pop-8">💖</span>
-    <span class="absolute text-3xl animate-heart-pop-9">💕</span>
-    <span class="absolute text-xl animate-heart-pop-10">❤️</span>
-  </div>
-  <div class="relative flex flex-col items-center animate-frame-entrance">
-    <div class="relative animate-frame-shake">
-      <svg width="0" height="0">
-        <defs>
-          <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
-            <path d="M 0.5,0.85 C 0.1,0.6 -0.1,0.3 0.1,0.15 C 0.2,0.05 0.35,0.02 0.5,0.15 C 0.65,0.02 0.8,0.05 0.9,0.15 C 1.1,0.3 0.9,0.6 0.5,0.85 Z"/>
-          </clipPath>
-        </defs>
-      </svg>
-      <div class="w-64 h-64 relative">
-        <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full drop-shadow-2xl">
-          <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
-            fill="none" stroke="#f43f5e" stroke-width="6" class="animate-heart-border"/>
-          <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
-            fill="rgba(244,63,94,0.1)"/>
-        </svg>
-        <img src="/love.png" alt="love" class="absolute inset-0 w-full h-full object-cover"
-          style="clip-path: path('M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z'); transform: scale(0.95);"/>
+      <div *ngIf="currentPhase() === 5" class="relative w-full max-w-lg h-[580px] z-10 px-4 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none">
+          <span class="absolute text-2xl animate-heart-pop-1">❤️</span>
+          <span class="absolute text-3xl animate-heart-pop-2">💕</span>
+          <span class="absolute text-2xl animate-heart-pop-3">💖</span>
+          <span class="absolute text-xl animate-heart-pop-4">❤️</span>
+          <span class="absolute text-3xl animate-heart-pop-5">💗</span>
+          <span class="absolute text-2xl animate-heart-pop-6">💕</span>
+          <span class="absolute text-xl animate-heart-pop-7">❤️</span>
+          <span class="absolute text-2xl animate-heart-pop-8">💖</span>
+          <span class="absolute text-3xl animate-heart-pop-9">💕</span>
+          <span class="absolute text-xl animate-heart-pop-10">❤️</span>
+        </div>
+        <div class="relative flex flex-col items-center animate-frame-entrance">
+          <div class="relative animate-frame-shake">
+            <svg width="0" height="0">
+              <defs>
+                <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+                  <path d="M 0.5,0.85 C 0.1,0.6 -0.1,0.3 0.1,0.15 C 0.2,0.05 0.35,0.02 0.5,0.15 C 0.65,0.02 0.8,0.05 0.9,0.15 C 1.1,0.3 0.9,0.6 0.5,0.85 Z"/>
+                </clipPath>
+              </defs>
+            </svg>
+            <div class="w-64 h-64 relative">
+              <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full drop-shadow-2xl">
+                <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
+                  fill="none" stroke="#f43f5e" stroke-width="6" class="animate-heart-border"/>
+                <path d="M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z"
+                  fill="rgba(244,63,94,0.1)"/>
+              </svg>
+              <img src="/love.png" alt="love" class="absolute inset-0 w-full h-full object-cover"
+                style="clip-path: path('M100,170 C30,130 0,80 20,40 C35,10 65,5 100,35 C135,5 165,10 180,40 C200,80 170,130 100,170 Z'); transform: scale(0.95);"/>
+            </div>
+          </div>
+          <div class="mt-4 text-center animate-fade-in-text">
+            <p class="font-serif text-2xl text-rose-700 italic">승혁 & 선경</p>
+            <p class="font-sans text-xs text-rose-400 mt-1 tracking-widest">Forever Together 💍</p>
+          </div>
+          <div class="font-sans text-sm leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-28 flex items-center justify-center mt-4 animate-fade-in-text">
+            <span>이제 저희 둘이 여러분을<br>결혼식으로 초대합니다 <span class="animate-heart-inline">❤️</span></span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="mt-4 text-center animate-fade-in-text">
-      <p class="font-serif text-2xl text-rose-700 italic">승혁 & 선경</p>
-      <p class="font-sans text-xs text-rose-400 mt-1 tracking-widest">Forever Together 💍</p>
-    </div>
-
-    <!-- 자막 박스 추가 -->
-    <div class="font-sans text-sm leading-relaxed font-medium text-rose-900 text-center px-6 bg-white/70 rounded-3xl shadow-sm backdrop-blur-md border border-white/50 w-full h-28 flex items-center justify-center mt-4 animate-fade-in-text">
-      <span [innerHTML]="'💍 그런 두 사람이 귀한 여러분을<br>결혼식에 초대합니다 🎊'"></span>
-    </div>
-  </div>
-</div>
 
       <!-- Phase 1~4: 지도 + 자막 -->
       <div *ngIf="currentPhase() !== 5 && started()" class="relative w-full max-w-lg z-10 px-4 flex flex-col items-center">
@@ -110,13 +108,13 @@ import { CommonModule } from '@angular/common';
             <text x="0" y="23" font-size="9" font-weight="bold" text-anchor="middle" fill="#3b82f6" font-family="sans-serif">BUSAN</text>
           </g>
 
-          <!-- Phase1: 서울→부산 -->
+          <!-- Phase1 -->
           <g *ngIf="currentPhase() === 1">
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g>
-<animateMotion dur="6.2s" fill="freeze">
-  <mpath href="#train-path-down"/>
-</animateMotion>
+              <animateMotion dur="4.8s" fill="freeze">
+                <mpath href="#train-path-down"/>
+              </animateMotion>
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
@@ -125,28 +123,28 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase2: 부산→서울 -->
-<g *ngIf="currentPhase() === 2">
-  <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
-  <g>
-    <animateMotion dur="6.2s" fill="freeze">
-      <mpath href="#train-path-up"/>
-    </animateMotion>
-    <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-    <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-    <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-    <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
-  </g>
-</g>
+          <!-- Phase2 -->
+          <g *ngIf="currentPhase() === 2">
+            <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
+            <g>
+              <animateMotion dur="4.8s" fill="freeze">
+                <mpath href="#train-path-up"/>
+              </animateMotion>
+              <circle cx="0" cy="22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="0" cy="42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/bashful_brady.png" x="-16" y="-52" width="36" height="36"/>
+            </g>
+          </g>
 
-          <!-- Phase3: 서울→부산 -->
+          <!-- Phase3 -->
           <g *ngIf="currentPhase() === 3">
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g>
-<animateMotion dur="6.2s" fill="freeze">
-  <mpath href="#train-path-down"/>
-</animateMotion>
+              <animateMotion dur="4.8s" fill="freeze">
+                <mpath href="#train-path-down"/>
+              </animateMotion>
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
@@ -156,31 +154,30 @@ import { CommonModule } from '@angular/common';
             </g>
           </g>
 
-          <!-- Phase4: 부산→서울 -->
-<g *ngIf="currentPhase() === 4">
-  <g>
-    <animateMotion dur="6.2s" fill="freeze">
-      <mpath href="#train-path-up"/>
-    </animateMotion>
-    <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
-    <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
-    <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
-    <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
-    <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
-    <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
-      ❤️
-      <animateTransform attributeName="transform" type="scale"
-        values="1;1.3;1;1.2;1"
-        keyTimes="0;0.25;0.5;0.75;1"
-        dur="0.6s" repeatCount="indefinite"
-        additive="sum"/>
-    </text>
-    <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
-    <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
-  </g>
-</g>
+          <!-- Phase4 -->
+          <g *ngIf="currentPhase() === 4">
+            <g>
+              <animateMotion dur="4.8s" fill="freeze">
+                <mpath href="#train-path-up"/>
+              </animateMotion>
+              <circle cx="-5" cy="25" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
+              <circle cx="0" cy="35" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
+              <circle cx="5" cy="45" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
+              <text x="0" y="0" font-size="28" text-anchor="middle" dominant-baseline="central" style="transform: scaleX(-1); transform-origin: center;">🚂</text>
+              <image href="/brady_face2.png" x="-110" y="-80" width="96" height="96"/>
+              <text x="-10" y="-32" font-size="18" text-anchor="middle" dominant-baseline="central">
+                ❤️
+                <animateTransform attributeName="transform" type="scale"
+                  values="1;1.3;1;1.2;1"
+                  keyTimes="0;0.25;0.5;0.75;1"
+                  dur="0.6s" repeatCount="indefinite"
+                  additive="sum"/>
+              </text>
+              <image href="/perrier_face.png" x="10" y="-68" width="72" height="72"/>
+              <text x="82" y="-32" font-size="16" text-anchor="middle" dominant-baseline="central">💐</text>
+            </g>
+          </g>
 
-          <!-- 경로 정의 (숨김) -->
           <defs>
             <path id="train-path-down" d="M 153,97 Q 221,180 289,263"/>
             <path id="train-path-up" d="M 289,263 Q 221,180 153,97"/>
@@ -303,6 +300,15 @@ import { CommonModule } from '@angular/common';
       20%  { opacity: 1; }
       100% { transform: translate(var(--tx, 0px), -120px) scale(1.2); opacity: 0; }
     }
+
+    .animate-heart-inline {
+      display: inline-block;
+      animation: heart-beat 0.8s ease-in-out infinite;
+    }
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+    }
   `]
 })
 export class StoryComponent implements AfterViewInit, OnDestroy {
@@ -328,10 +334,10 @@ export class StoryComponent implements AfterViewInit, OnDestroy {
   }
 
   runPhases() {
-    this.timers.push(setTimeout(() => this.currentPhase.set(2), 6200));
-    this.timers.push(setTimeout(() => this.currentPhase.set(3), 12400));
-    this.timers.push(setTimeout(() => this.currentPhase.set(4), 18600));
-    this.timers.push(setTimeout(() => this.currentPhase.set(5), 24800));
+    this.timers.push(setTimeout(() => this.currentPhase.set(2), 4770));
+    this.timers.push(setTimeout(() => this.currentPhase.set(3), 9540));
+    this.timers.push(setTimeout(() => this.currentPhase.set(4), 14310));
+    this.timers.push(setTimeout(() => this.currentPhase.set(5), 19080));
   }
 
   ngOnDestroy() {
