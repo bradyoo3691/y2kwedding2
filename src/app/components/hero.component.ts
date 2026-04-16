@@ -112,18 +112,14 @@ export class HeroComponent implements AfterViewInit, OnInit {
     }, 8500);
   }
 
-  enableSound() {
-    this.showPopup.set(false);
-    // iframe에 postMessage로 소리만 켜기 (리로드 없이)
-    const iframe = document.getElementById('vimeo-player') as HTMLIFrameElement;
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ method: 'setVolume', value: 1 }),
-        'https://player.vimeo.com'
-      );
-    }
-  }
-
+enableSound() {
+  this.showPopup.set(false);
+  this.vimeoUrl.set(
+    this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://player.vimeo.com/video/1183572285?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
+    )
+  );
+}
   disableSound() {
     this.showPopup.set(false);
   }
