@@ -31,15 +31,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     <section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-900">
-<iframe
-  *ngIf="vimeoUrl()"
-  id="vimeo-player"
-  [src]="vimeoUrl()"
-  class="absolute inset-0 w-full h-full"
-  style="border: none; transform: scale(1.5); transform-origin: center center;"
-  allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-  allowfullscreen
-></iframe> 
+          <iframe
+            id="vimeo-player"
+            [src]="vimeoUrl()"
+            class="absolute inset-0 w-full h-full"
+            style="border: none; transform: scale(1.5); transform-origin: center center;"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
           <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
         </div>
 
@@ -95,11 +94,17 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class HeroComponent implements AfterViewInit, OnInit {
   showPopup = signal(true);
   moved = signal(false);
-  vimeoUrl = signal<SafeResourceUrl | null>(null);
+  vimeoUrl = signal<SafeResourceUrl>('');
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.vimeoUrl.set(
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
+      )
+    );
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -107,21 +112,16 @@ export class HeroComponent implements AfterViewInit, OnInit {
     }, 8500);
   }
 
-enableSound() {
-  this.showPopup.set(false);
-  this.vimeoUrl.set(
-    this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0&controls=0&playsinline=1'
-    )
-  );
-}
-
-  disableSound() {
+  enableSound() {
     this.showPopup.set(false);
     this.vimeoUrl.set(
       this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=1&controls=0'
+        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
       )
     );
+  }
+
+  disableSound() {
+    this.showPopup.set(false);
   }
 }
