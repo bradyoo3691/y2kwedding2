@@ -31,15 +31,15 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     <section class="relative w-full p-0 md:p-6 lg:p-8 flex items-center justify-center bg-stone-50" style="height: calc(var(--vh, 1vh) * 100)">
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-900">
-          <iframe
-            *ngIf="vimeoUrl()"
-            id="vimeo-player"
-            [src]="vimeoUrl()"
-            class="absolute inset-0 w-full h-full"
-            style="border: none; transform: scale(1.5); transform-origin: center center;"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+<iframe
+  *ngIf="vimeoUrl()"
+  id="vimeo-player"
+  [src]="vimeoUrl()"
+  class="absolute inset-0 w-full h-full"
+  style="border: none; transform: scale(1.5); transform-origin: center center;"
+  allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+  allowfullscreen
+></iframe> 
           <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
         </div>
 
@@ -107,14 +107,14 @@ export class HeroComponent implements AfterViewInit, OnInit {
     }, 8500);
   }
 
-  enableSound() {
-    this.showPopup.set(false);
-    this.vimeoUrl.set(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0&controls=0'
-      )
-    );
-  }
+enableSound() {
+  this.showPopup.set(false);
+  this.vimeoUrl.set(
+    this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0&controls=0&playsinline=1'
+    )
+  );
+}
 
   disableSound() {
     this.showPopup.set(false);
