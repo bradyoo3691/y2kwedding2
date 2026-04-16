@@ -112,9 +112,9 @@ import { CommonModule } from '@angular/common';
           <g *ngIf="currentPhase() === 1">
             <image href="/perrier_face.png" x="292" y="224" width="36" height="36"/>
             <g>
-              <animateMotion dur="4.8s" fill="freeze">
-                <mpath href="#train-path-down"/>
-              </animateMotion>
+<animateMotion dur="4.8s" fill="freeze">
+  <mpath xlink:href="#train-path-down"/>
+</animateMotion>
               <circle cx="0" cy="-22" r="6" fill="white" opacity="0.7" filter="url(#smoke-blur)" class="animate-smoke-1"/>
               <circle cx="0" cy="-32" r="8" fill="white" opacity="0.5" filter="url(#smoke-blur)" class="animate-smoke-2"/>
               <circle cx="0" cy="-42" r="5" fill="white" opacity="0.3" filter="url(#smoke-blur)" class="animate-smoke-3"/>
