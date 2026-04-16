@@ -32,6 +32,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       <div class="relative w-full h-full md:rounded-3xl overflow-hidden shadow-2xl">
         <div class="absolute inset-0 w-full h-full bg-stone-900">
           <iframe
+            *ngIf="vimeoUrl()"
             id="vimeo-player"
             [src]="vimeoUrl()"
             class="absolute inset-0 w-full h-full"
@@ -94,17 +95,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class HeroComponent implements AfterViewInit, OnInit {
   showPopup = signal(true);
   moved = signal(false);
-  vimeoUrl = signal<SafeResourceUrl>('');
+  vimeoUrl = signal<SafeResourceUrl | null>(null);
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit() {
-    this.vimeoUrl.set(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
-      )
-    );
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -114,20 +109,19 @@ export class HeroComponent implements AfterViewInit, OnInit {
 
   enableSound() {
     this.showPopup.set(false);
-    const iframe = document.getElementById('vimeo-player') as HTMLIFrameElement;
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ method: 'setVolume', value: 1 }),
-        '*'
-      );
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ method: 'setMuted', value: false }),
-        '*'
-      );
-    }
+    this.vimeoUrl.set(
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0&controls=0'
+      )
+    );
   }
 
   disableSound() {
     this.showPopup.set(false);
+    this.vimeoUrl.set(
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=1&controls=0'
+      )
+    );
   }
 }
