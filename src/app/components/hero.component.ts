@@ -101,7 +101,7 @@ export class HeroComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.vimeoUrl.set(
       this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183572285?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
+        'https://player.vimeo.com/video/1183254717?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0'
       )
     );
   }
@@ -116,7 +116,7 @@ enableSound() {
   this.showPopup.set(false);
   this.vimeoUrl.set(
     this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://player.vimeo.com/video/1183572285?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
+      'https://player.vimeo.com/video/1183254717?autoplay=1&loop=1&autopause=0&muted=0&background=1&controls=0'
     )
   );
 }
