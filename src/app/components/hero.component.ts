@@ -114,11 +114,17 @@ export class HeroComponent implements AfterViewInit, OnInit {
 
   enableSound() {
     this.showPopup.set(false);
-    this.vimeoUrl.set(
-      this.sanitizer.bypassSecurityTrustResourceUrl(
-        'https://player.vimeo.com/video/1183580062?autoplay=1&loop=1&autopause=0&muted=0'
-      )
-    );
+    const iframe = document.getElementById('vimeo-player') as HTMLIFrameElement;
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ method: 'setVolume', value: 1 }),
+        '*'
+      );
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ method: 'setMuted', value: false }),
+        '*'
+      );
+    }
   }
 
   disableSound() {
